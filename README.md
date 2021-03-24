@@ -1,4 +1,4 @@
-# bt3103-project
+# midterm-project
 
 ## Project setup
 ```
