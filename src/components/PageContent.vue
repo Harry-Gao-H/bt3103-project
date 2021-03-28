@@ -1,6 +1,14 @@
 <template>
 
 <div>
+
+    <nav>
+      <p>
+      <router-link to="/">Menu</router-link>
+      <br><router-link to="/cart">Cart</router-link>
+      </p>
+    </nav>
+
     <div id="content">
         <div id = "profile">
             <ul>
@@ -40,6 +48,23 @@ export default {
 
 * {
   box-sizing: border-box;
+}
+
+nav {
+  float: left;
+  width: 15%;
+  background-color: white;
+  padding-right: 20px;
+  height: 400px;
+}
+
+/* Style the paragraph inside the navigation */
+nav p {
+  text-align: center;
+  padding-top: 100px;
+  font-size: 25px;
+  line-height: 2.5;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 body {
