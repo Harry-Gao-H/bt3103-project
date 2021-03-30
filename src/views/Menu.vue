@@ -2,17 +2,29 @@
 <div>
 
    <PageContent v-bind:itemsList="itemsListProps"></PageContent>
-
+    {{items}}
 </div>
 </template>
 
 <script>
 import PageContent from '@/components/PageContent.vue'
+import database from "../firebase.js"
+
 
 export default {
- data(){
-    return{
+  components: {
+    PageContent
+
+  },
+  created:function() {
+    this.fetchItems()
+  },
+  data() {
+    return {
       title:'Your first Vue Component',
+      
+      items: [],
+
       itemsListProps: [
         
         {
@@ -67,31 +79,22 @@ export default {
             "https://i.pinimg.com/originals/ad/87/eb/ad87eb2113e4d6480a21acdbb5f36114.jpg",
           show: false,
         },
-        {
-          id: "#099",
-          name: "Mapo Tofu",
-          imageURL:
-            "https://i2.wp.com/seonkyounglongest.com/wp-content/uploads/2020/09/Mapo-Tofu-12-minijpg.jpg?fit=1000%2C1500&ssl=1",
-          show: false,
-    
-        },
-        {
-          id: "#200",
-          name: "Cereal Prawn",
-          imageURL:
-            "https://i.pinimg.com/originals/ad/87/eb/ad87eb2113e4d6480a21acdbb5f36114.jpg",
-
-          price: 12,
-        },
-
       ]
     }
- },
-  
-  components: {
-    PageContent
-
+    
+  },
+  methods: {
+    fetchItems:function() {
+      database.collection("Menu").doc("14-4-2021")
+        .collection("Breakfast").get().then(snapshot => {
+          snapshot.docs.forEach(doc => {
+            this.items.push(doc.data())
+          })
+        } )
+    }
   }
+  
+
 }
 </script>
 
