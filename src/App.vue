@@ -11,10 +11,11 @@
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Oswald', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  text-shadow: 3px 4px rgba(black, .1);
   color: #2c3e50;
 }
 
@@ -38,11 +39,20 @@ img {
 }
 
 header {
-  background-color:#f0d509;
+  background-color:gold;
   text-align: center;
   color: navy;
   border:none;
   padding:2px;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Oswald, Avenir, Helvetica, Arial, sans-serif;
+  text-shadow: 3px 4px rgba(black, .1);
 }
+
+h1 {
+  font-family: Oswald, Avenir, Helvetica, Arial, sans-serif;
+  font-size:50px;
+  text-shadow: 3px 4px grey;
+}
+
+
 </style>
