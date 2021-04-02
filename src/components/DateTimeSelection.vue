@@ -18,19 +18,6 @@
 	{{cuisines}}
 
 	<div>
-  
-		<button v-on:click="showMenu=true" id="buttonClick">Check Menu</button>
-
-		<div v-show="showMenu">
-			<ul>
-				<li v-for="item in itemsList" v-bind:key="item.name" >
-
-					<h2><router-link to="/product">{{item.name}}</router-link></h2>
-					<img v-bind:src="item.imageURL"/>
-				</li>
-			</ul>
-		</div>
-
 		<div v-show = "selectedMeal == 'Breakfast'">
 			<p>Breakfast Takeaway Time</p>
 			<select id="time" name="time" v-model="takeawayTime">
@@ -53,6 +40,20 @@
 			</select>
 		</div>
   
+	</div>
+
+	<br>
+	
+	<button v-on:click="showMenu=true" id="buttonClick">Check Menu</button>
+
+	<div v-show="showMenu">
+		<ul>
+			<li v-for="item in itemsList" v-bind:key="item.name" >
+
+				<h2><router-link to="/product">{{item.name}}</router-link></h2>
+				<img v-bind:src="item.imageURL"/>
+			</li>
+		</ul>
 	</div>
 	
 
@@ -91,7 +92,7 @@ export default {
 			database.collection("Menu").doc(newDate)
 				.collection(this.selectedMeal).get().then(snapshot => {
 				snapshot.docs.forEach(doc => {
-						this.cuisines.push(doc.data())
+						this.cuisines.push([doc.id,doc.data()])
 					})
 				})
 		},
