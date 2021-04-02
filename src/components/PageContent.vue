@@ -13,9 +13,8 @@
         <div id = "profile">
             <ul>
             <li> 
-              <center><DateDropdown v-bind:itemsList="itemsList"></DateDropdown></center>
+              <center><DateTimeSelection v-bind:itemsList="itemsList"></DateTimeSelection></center>
               <br>
-              <MealAndSectionDropdown v-bind:itemsList="itemsList"></MealAndSectionDropdown> 
             </li>
             </ul>
         </div>
@@ -27,8 +26,7 @@
 
 
 <script>
-import DateDropdown from './DateDropdown.vue'
-import MealAndSectionDropdown from './MealAndSectionDropdown.vue'
+import DateTimeSelection from './DateTimeSelection.vue'
 
 export default {
   props:{
@@ -38,8 +36,7 @@ export default {
   },
 
   components: {
-    'DateDropdown':DateDropdown,
-    'MealAndSectionDropdown':MealAndSectionDropdown,
+    'DateTimeSelection':DateTimeSelection,
   },
 }
 </script>

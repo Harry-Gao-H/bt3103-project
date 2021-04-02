@@ -1,19 +1,19 @@
 <template>
 <div>
   
-   <button v-on:click="subTotalVal=true" id="buttonClick">Check Menu</button>
+  <button v-on:click="subTotalVal=true" id="buttonClick">Check Menu</button>
 
   <div v-show="subTotalVal">
-  <ul>
-        <li v-for="item in itemsList" v-bind:key="item.name" >
+    <ul>
+          <li v-for="item in itemsList" v-bind:key="item.name" >
 
-            <h2><router-link to="/product">{{item.name}}</router-link></h2>
-            <img v-bind:src="item.imageURL"/>
-        </li>
+              <h2><router-link to="/product">{{item.name}}</router-link></h2>
+              <img v-bind:src="item.imageURL"/>
+          </li>
     </ul>
   </div>
 
-  <div>
+  <div v-show ="false">
     <p>Did you Dine-in or Takeaway?</p>
 			<input type="radio" class="radio" id="dining" name="dinOrTake"> 
 			<label for="dining" class="radio">Dine-in</label> 
