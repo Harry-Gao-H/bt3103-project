@@ -4,15 +4,15 @@
         <section>
             <nav>
                 <p>
-          
-                  <br><router-link to="/">Profile</router-link>
+                     <br><router-link to="/">Dashboard</router-link>
                   <br><router-link to="/">Logout</router-link>
                 </p>
             </nav>
         
             <div id="content">
                 <div id = "profile">
-                    <table>
+
+ <table>
                         <tr>
                             <th>Time</th>
                             <th>Dishes</th>
@@ -28,49 +28,61 @@
                         </tr>
 
                     </table>
+
+                        <!--TEST-->
+
                 </div>
+           
             </div>
         </section>
         
  
     </div> 
-<!--<header>
-<label> Credits Left: 20</label>
-<button>Cart</button>
-</header>-->
 
-
-<!--
-<br><br><br><br><br><br>
-<ul>
-<li>
-<DateDropdown></DateDropdown>
-</li>
-</ul>
-
-<ul>
-<li>
-<MealAndSectionDropdown v-bind:itemsList="itemsList"></MealAndSectionDropdown>
-</li>
-</ul>
--->
-
- 
 </template>
 
 
 <script>
+import database from "../firebase.js"
 
 export default {
-  data() {
-      return {
-          itemsList : [["Chicken rice", "24 Feb 2021 17:30", 20, "Dine in"], ["Chicken rice", "24 Feb 2021 17:30", 30, "Take away"],
-           ["Ramen", "24 Feb 2021 17:30", 25, "Dine in"], ["Nasi Lemak", "24 Feb 2021 18:30", 25, "Dine in"]]
-      }
-  }
+   data(){
+    return{
+        itemsList : [["Chicken rice", "24 Feb 2021 17:30", 20, "Dine in"], ["Chicken rice", "24 Feb 2021 17:30", 30, "Take away"],
+           ["Ramen", "24 Feb 2021 17:30", 25, "Dine in"], ["Nasi Lemak", "24 Feb 2021 18:30", 25, "Dine in"]],
+        orders : [], //creating data property called orders array []
+        }
+  },
 
+  methods :{
+
+    // fetchItems:function(){ //fetching orders from database
+    //   database.collection('Order').get().then((querySnapShot)=>{
+    //     querySnapShot.forEach(doc=>{
+    //         console.log(doc.id, "=>", doc.data()); 
+    //         })})   
+    //     },
+
+        fetchItems:function(){ //fetching orders from database
+      database.collection('Order').doc().collection().get().then((querySnapShot)=>{
+        querySnapShot.forEach(doc=>{
+            console.log(doc.id, "=>", doc.data()); 
+            })})   
+        },
+
+},
+ created(){
+      this.fetchItems();   
+      },
 }
 </script>
+
+
+
+
+
+
+
 
 <style scoped>
 
