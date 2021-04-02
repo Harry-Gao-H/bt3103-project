@@ -14,7 +14,7 @@
       <input type = "text" name = "username" placeholder = "USERNAME" required> <br><br>
       <input type = "password" name = "password" placeholder = "PASSWORD" required> <br><br>
 
-      <button type = "submit" value = "Login"  > Login </button>
+      <button type = "submit" value = "Login"> Login </button>
       <p> <a href = "#"> Forgot Password </a> </p>
         
       </form>

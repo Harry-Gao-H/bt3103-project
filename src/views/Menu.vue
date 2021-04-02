@@ -2,7 +2,6 @@
 <div>
 
    <PageContent v-bind:itemsList="itemsListProps"></PageContent>
-    {{items}}
 </div>
 </template>
 
@@ -15,9 +14,6 @@ export default {
   components: {
     PageContent
 
-  },
-  created:function() {
-    this.fetchItems()
   },
   data() {
     return {
@@ -90,7 +86,7 @@ export default {
           snapshot.docs.forEach(doc => {
             this.items.push(doc.data())
           })
-        } )
+        })
     }
   }
   

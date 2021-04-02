@@ -3,23 +3,25 @@
 	<form>
 		<div>
 			<label for="meal">Choose your preferred date and time:</label>
-			<input id="meal" type="date" name="meal" min="2021-04-14" max="2021-04-20" v-model="selectedDate" required>
+			<input id="meal" type="date" name="meal" min="2021-04-14" max="2021-04-20" v-model="selectedDate" v-on:change="fetch()" required>
 			{{selectedDate}}
 			
 			<br>
-			<input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="breakfast" v-model="selectedMeal"> 
+			<input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
 			<label for="breakfast" class="radio">Breakfast</label> 
-			<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="dinner" v-model="selectedMeal"> 
+			<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMeal" v-on:change="fetch()"> 
 			<label for="dinner" class="radio">Dinner</label>
-			
+			{{selectedMeal}}
 		</div>
 	</form>
 
+	{{cuisines}}
+
 	<div>
   
-		<button v-on:click="subTotalVal=true" id="buttonClick">Check Menu</button>
+		<button v-on:click="showMenu=true" id="buttonClick">Check Menu</button>
 
-		<div v-show="subTotalVal">
+		<div v-show="showMenu">
 			<ul>
 				<li v-for="item in itemsList" v-bind:key="item.name" >
 
@@ -29,7 +31,7 @@
 			</ul>
 		</div>
 
-		<div v-show = "selectedMeal == 'breakfast'">
+		<div v-show = "selectedMeal == 'Breakfast'">
 			<p>Breakfast Takeaway Time</p>
 			<select id="time" name="time" v-model="takeawayTime">
 				<option value="0730">07:30</option>
@@ -40,7 +42,7 @@
 			</select>
 		</div>
 
-		<div v-show = "selectedMeal == 'dinner'">
+		<div v-show = "selectedMeal == 'Dinner'">
 			<p>Dinner Takeaway Time</p>
 			<select id="time" name="time" v-model="takeawayTime">
 				<option value="1800">18:00</option>
@@ -58,6 +60,7 @@
 </template>
 
 <script>
+import database from "../firebase.js"
 
 export default {
     props:{
@@ -69,8 +72,38 @@ export default {
 		return {
 			selectedDate:'',
 			selectedMeal:'',
-			subTotalVal:false,
-			takeawayTime:''
+			showMenu:false,
+			takeawayTime:'',
+			cuisines:[]
+		}
+	},
+
+	methods: {
+		fetchCuisines: function() {
+			//change the form of date
+			var strings = this.selectedDate.split("-")
+			var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
+			
+			console.log(newDate)
+			console.log(this.selectedMeal)
+
+			this.cuisines=[]; // clear the cuisines
+			database.collection("Menu").doc(newDate)
+				.collection(this.selectedMeal).get().then(snapshot => {
+				snapshot.docs.forEach(doc => {
+						this.cuisines.push(doc.data())
+					})
+				})
+		},
+		fetch: function() {
+			//fetch cuisines from database when time and meal are selected
+			if (this.selectedDate != '' && this.selectedMeal != '') {
+				this.fetchCuisines()
+			}
+		},
+		f:function() {
+			// for test
+			alert("testing")
 		}
 	}
 	

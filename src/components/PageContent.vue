@@ -28,6 +28,7 @@
 <script>
 import DateTimeSelection from './DateTimeSelection.vue'
 
+
 export default {
   props:{
       itemsList:{
@@ -38,6 +39,8 @@ export default {
   components: {
     'DateTimeSelection':DateTimeSelection,
   },
+
+  
 }
 </script>
 
