@@ -1,10 +1,18 @@
 <template>
-    
-    <div>
-        <button onclick="location.href='/menu'" type="button" id="back">Back</button>
+<div>
+<div class ="navbar">
+ <ul>
+                    <li><router-link to="/cart">Profile</router-link></li>
+                    <li><router-link to="/menu">Menu</router-link></li>
+                    <li><router-link to="/">Logout</router-link></li>
+                    
+                </ul>
+</div>
+    <div class="content">
+       
         <h1>Your Cart</h1>
         <h4>Your RC/Hall</h4>
-        <div id="content">
+        
         <table>
             <tr>
                 <th>Dishes</th>
@@ -22,11 +30,11 @@
 
         </table>
             
-        </div>
+        
         <p>Your Credit: {{credit}}   Credit needed: {{creditCount()}}</p>
         <button v-on:click="displayMessage()" > Confirm Order</button>
     </div>
-
+</div>
 </template>
 
 <script>
@@ -69,6 +77,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.content{
+    width:100%;
+    position:absolute;
+    top:60%;
+    transform:translateY(-50%);
+    text-align: center;
+    color:#fff;
+}
+
 table {
   border-collapse: collapse;
   width: 70%; 
@@ -86,14 +104,10 @@ tr:nth-child(even) {
   background-color: #acff59ad;
 }
 
-
-#back {
-    position: absolute;
-    left: 10%;
-    top: 30px;
-    text-align: left;
-    font-size: 90%;
-    font-weight: bold;
-    padding: 0.9%
+#request {
+  font-size: 25px;
+  height: 45px;
+  background-color: #41b3a3;
 }
+
 </style>
