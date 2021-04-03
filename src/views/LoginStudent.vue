@@ -4,7 +4,7 @@
     <title> This is the Student Login Page </title>
   </head>
   
-  <body>
+  <div class ="content">
     
     <h1 id = "login"> LOGIN </h1>
     <h2 id = "student"> STUDENT </h2>
@@ -14,14 +14,14 @@
       <input type = "text" name = "username" placeholder = "USERNAME" required> <br><br>
       <input type = "password" name = "password" placeholder = "PASSWORD" required> <br><br>
 
-      <button type = "submit" value = "Login"  > Login </button>
+      <button type = "submit" value = "Login"> Login </button>
       <p> <a href = "#"> Forgot Password </a> </p>
         
       </form>
     </div>
 
     
-  </body>
+  </div>
     </div>
 </template>
 
@@ -39,19 +39,12 @@ export default {
 
 
 <style scoped>
-#login {
-  position: relative;
-  top: 20px;
-  text-align: center;
-  color: #3895D3;
-  font-family: verdana;
-  font-size: 60px;
-}
 
 #student {
   position: relative;
   text-align: center;
   font-family: Sans-serif;
+  margin-bottom:20px;
 }
 
 #details{
@@ -63,16 +56,16 @@ input[type = text]{
   position: relative;
   text-align: center;
   margin: auto;
-  width: 10%;
-  height: 20px;
+  width: 15%;
+  height: 40px;
 }
 
 input[type = password]{
   position: relative;
   text-align: center;
   margin: auto;
-  width: 10%;
-  height: 20px;
+  width: 15%;
+  height: 40px;
 }
 
 input[type = submit]{

@@ -1,48 +1,34 @@
 <template>
-  <div id="app">
-      <header>
-    <h1 id="title"> <img alt="NUS FoodChope logo" src="./assets/foodchop.png">
-      NUS FoodChope 
-    </h1>
-  </header>
-    <router-view/>
-  </div>
+  <div class="banner">
+            <div class="navbar">
+                <img src="./assets/foodchop.png" class="logo">
+                <h1 style="color:white">NUS FoodChope</h1>
+                <ul>
+                    
+                </ul>
+            </div>
+
+             <router-view/>
+        </div>
 </template>
 
 <style>
+@import './assets/styles/style.css';
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Oswald', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  text-shadow: 3px 4px rgba(black, .1);
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+h1 {
+  font-family: Oswald, Avenir, Helvetica, Arial, sans-serif;
+  font-size:50px;
+  text-shadow: 3px 4px grey;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-  
-}
-
-img {
-    height:60px;
-    width:65px;
-}
-
-header {
-  background-color:#f0d509;
-  text-align: center;
-  color: navy;
-  border:none;
-  padding:2px;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-}
 </style>
