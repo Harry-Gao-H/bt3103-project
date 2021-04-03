@@ -15,7 +15,7 @@
 		</div>
 	</form>
 
-	{{cuisines}}
+	<!--{{cuisines}}-->
 
 	<div>
 		<div v-show = "selectedMeal == 'Breakfast'">
@@ -48,10 +48,12 @@
 
 	<div v-show="showMenu">
 		<ul>
-			<li v-for="item in itemsList" v-bind:key="item.name" >
-
-				<h2><router-link to="/product">{{item.name}}</router-link></h2>
-				<img v-bind:src="item.imageURL"/>
+			<li v-for="cuisine in cuisines" v-bind:key="cuisine[0]" >
+				<h2><a v-on:click="goToProductPage(cuisine)">{{cuisine[0]}}</a></h2>
+				
+				<p v-for="dish in cuisine[1].dishes" v-bind:key = "dish">
+					{{dish}}
+				</p>
 			</li>
 		</ul>
 	</div>
@@ -102,6 +104,10 @@ export default {
 				this.fetchCuisines()
 			}
 		},
+		goToProductPage:function(cuisine) {
+			this.$router.push( {name: "Product", params: { "cuisine": cuisine}} )
+		}
+		,
 		f:function() {
 			// for test
 			alert("testing")
