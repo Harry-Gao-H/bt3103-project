@@ -2,7 +2,7 @@
 <div>
 <div class ="navbar">
  <ul>
-                    <li><router-link to="/cart">Profile</router-link></li>
+                    <li><router-link to="/profile">Profile</router-link></li>
                     <li><router-link to="/menu">Menu</router-link></li>
                     <li><router-link to="/">Logout</router-link></li>
                     
@@ -11,7 +11,6 @@
     <div class="content">
        
         <h1>Your Cart</h1>
-        <h4>Your RC/Hall</h4>
         
         <table>
             <tr>
