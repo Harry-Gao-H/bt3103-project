@@ -1,7 +1,29 @@
 <template>
 <div id="product">
-<button onclick="location.href='/'" type="button" id="back">Back</button>
+<button onclick="location.href='/menu'" type="button" id="back">Back</button>
     <div class="flex-col">
+        <div class="center" style="color : white" >
+            <!--{{cuisine}}-->
+            <h2>{{meal}}: {{cuisine[0]}}</h2>
+			<p v-for="dish in cuisine[1].dishes" v-bind:key = "dish">
+                {{dish}}
+            </p>
+            <label for="small">I want a smaller proportion</label>
+            <input type="checkbox" id="small" v-model="smallProportionOption"> 
+            
+            {{smallProportionOption}}
+            <br>
+
+            <label for="model">Select Quantity:</label>
+            <select class="form-control" name="model" id="model" v-model="model">
+            <option v-for="option in quantity_options" v-bind:value="option.id" v-bind:key="option.id">{{option.text}}</option>
+            </select>
+
+            <br>
+            <button id="addCart" v-on:click="displayMessage()">Add to Cart</button> 
+        </div>
+        
+        <!--
         <img class = "left" src="https://cdn.kuali.com/wp-content/uploads/2004/08/21143457/hainanese-chicken-rice-830x536.jpg">
         <div class = "right">
             <h1>Chicken Rice</h1>
@@ -34,6 +56,7 @@
             <button id="addCart" v-on:click="displayMessage()">Add to Cart</button> 
             
         </div>
+        -->
     </div>
 </div>
 </template>
@@ -45,9 +68,14 @@ export default {
     data () {
         return {
             selectedDate: '',
+            meal:"",
+            cuisine:[],
+            quantity:0,
+            smallProportionOption:"",
+            time:"",
 
             quantity_options: [
-                    {
+            {
                 text: "1",
                 id: 1
             },
@@ -58,13 +86,17 @@ export default {
             {
                 text: "3",
                 id: 3
-            },
-            ],
+            }],
         }
+    },
+    created:function() {
+        this.cuisine = this.$route.params.cuisine
+        this.meal = this.$route.params.meal
     },
     methods: {
         displayMessage: function() {
             alert("Add successfully")
+            this.$router.push("/menu")
         }
     }
 };
@@ -102,6 +134,13 @@ export default {
     padding: 3%;
     font-weight: bold;
     font-size: 18px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
 }
 
 .left {
