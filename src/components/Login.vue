@@ -1,6 +1,6 @@
 <template>
     
-    <div class="content">
+    <div>
   <head>
     <title> This is the Login Page </title>
   </head>
@@ -24,6 +24,25 @@
 
 
 <style scoped>
+#login {
+  position: relative;
+  top: 20px;
+  text-align: center;
+  color: #3895D3;
+  font-family: verdana;
+  font-size: 60px;
+}
 
+
+.button{
+  display: block;
+  background-color: #f7f2e1;
+  text-align: center;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  margin: 0 auto;
+  
+}
 
 </style>
