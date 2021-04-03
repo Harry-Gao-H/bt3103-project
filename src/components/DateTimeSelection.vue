@@ -49,7 +49,7 @@
 	<div v-show="showMenu">
 		<ul>
 			<li v-for="cuisine in cuisines" v-bind:key="cuisine[0]" >
-				<h2><a v-on:click="goToProductPage(cuisine)">{{cuisine[0]}}</a></h2>
+				<h2><u v-on:click="goToProductPage(cuisine)">{{cuisine[0]}}</u></h2>
 				
 				<p v-for="dish in cuisine[1].dishes" v-bind:key = "dish">
 					{{dish}}
@@ -105,7 +105,7 @@ export default {
 			}
 		},
 		goToProductPage:function(cuisine) {
-			this.$router.push( {name: "Product", params: { "cuisine": cuisine}} )
+			this.$router.push( {name: "Product", params: {"cuisine": cuisine, "meal": this.selectedMeal}} )
 		}
 		,
 		f:function() {
