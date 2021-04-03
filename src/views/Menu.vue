@@ -2,7 +2,7 @@
 <div>
 <div class ="navbar">
   <ul>
-      <li><router-link to="/cart">Profile</router-link></li>
+      <li><router-link to="/profile">Profile</router-link></li>
       <li><router-link to="/cart">Cart</router-link></li>
       <li><router-link to="/">Logout</router-link></li>
   </ul>
