@@ -2,12 +2,11 @@
 <div>
 
 <div class ="navbar">
- <ul>
-                    <li><router-link to="/cart">Cart</router-link></li>
-                    <li><router-link to="/menu">Menu</router-link></li>
-                    <li><router-link to="/">Logout</router-link></li>
-                    
-                </ul>
+    <ul>
+        <li><router-link to="/cart">Cart</router-link></li>
+        <li><router-link to="/menu">Menu</router-link></li>
+        <li><router-link to="/">Logout</router-link></li>        
+    </ul>
 </div>
 
     <div class="sidenav">

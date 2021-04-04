@@ -4,7 +4,7 @@
   <ul>
       <li><router-link to="/profile">Profile</router-link></li>
       <li><router-link to="/cart">Cart</router-link></li>
-      <li><router-link to="/">Logout</router-link></li>
+      <li v-on:click="logout()">Logout</li>
   </ul>
 </div>
 
@@ -17,7 +17,7 @@
 <script>
 import PageContent from '@/components/PageContent.vue'
 import database from "../firebase.js"
-
+import firebase from "firebase"
 
 export default {
   components: {
@@ -96,7 +96,20 @@ export default {
             this.items.push(doc.data())
           })
         })
-    }
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert('Successfully logged out');
+          this.$router.push('/');
+        })
+        .catch(error => {
+          alert(error.message);
+          this.$router.push('/');
+        });
+    },
   }
   
 
