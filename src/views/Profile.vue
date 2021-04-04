@@ -5,7 +5,7 @@
     <ul>
         <li><router-link to="/cart">Cart</router-link></li>
         <li><router-link to="/menu">Menu</router-link></li>
-        <li><router-link to="/">Logout</router-link></li>        
+        <li v-on:click="logout()">Logout</li>       
     </ul>
 </div>
 
@@ -14,6 +14,7 @@
             <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" width="100" height="100">
 
             <div class="name">
+                {{user}}
                 Foo Shi Yun
             </div>
             <div class="title">
@@ -25,6 +26,7 @@
         <div class = "main">
             <h3> PROFILE </h3>
             <div class = "card">
+                
             <table>
                     <tbody>
                         <tr>
@@ -55,6 +57,28 @@
 </div>
 
 </template>
+
+<script>
+import { mapGetters } from "vuex";
+//import firebase from "firebase";
+
+export default {
+    data(){
+        return {
+            name:"" ,
+            email:"",
+            hostel:"",
+            credits:0
+        }
+    },
+    computed: {
+        ...mapGetters({
+    // map `this.user` to `this.$store.getters.user`
+        user: "user"
+        })
+    }
+}
+</script>
 
 <style scoped>
 
