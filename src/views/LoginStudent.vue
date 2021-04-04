@@ -5,14 +5,12 @@
   </head>
   
   <div class ="content">
-    
     <h1 id = "login"> LOGIN </h1>
     <h2 id = "student"> STUDENT </h2>
-    
     <div id = "details">
-      <form v-on:submit.prevent="submit()">
-      <input type = "text" name = "username" placeholder = "USERNAME" required> <br><br>
-      <input type = "password" name = "password" placeholder = "PASSWORD" required> <br><br>
+      <form v-on:submit.prevent="login()">
+      <input type = "text" placeholder="Your NUSNET" name = "NUSNET" v-model="nusnet" required> <br><br>
+      <input type = "password" placeholder = "Your Password" name = "password" v-model="password"  required> <br><br>
 
       <button type = "submit" value = "Login"> Login </button>
       <p> <a href = "#"> Forgot Password </a> </p>
@@ -27,11 +25,33 @@
 
 
 <script>
+import firebase from "firebase"
+
 export default {
+  data() {
+      return {
+        nusnet:"",
+        password:"",
+      }
+  },
   methods: {
     submit:function() {
       this.$router.push("/menu")
-    }
+    },
+
+    login:function() {
+      var email = this.nusnet + "@u.nus.edu"
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, this.password)
+        .then(() => {
+          alert('Successfully logged in');
+          this.$router.push('/menu');
+        })
+        .catch(() => {
+          alert("Wrong Password or Account");
+        });
+    },
   }
 }
 </script>
