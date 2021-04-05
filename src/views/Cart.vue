@@ -23,7 +23,7 @@
             <tr v-for="item in itemsBooked" v-bind:key="item[0]">
                 <td>{{item[0]}} <button v-on:click="remove(item)">remove</button></td>
                 <td>{{item[1]}}</td>
-                <td><button v-on:click="decrease">-</button> {{item[2]}} <button v-on:click="increase">+</button></td>
+                <td><button v-on:click="decrease(item)">-</button> {{item[2]}} <button v-on:click="increase(item)">+</button></td>
                 <td>{{item[3]}}</td>
             </tr>
 
@@ -43,7 +43,7 @@ export default {
         return {
             itemsBooked : [["Chicken rice", "24 Feb 2021 17:30", 1, "Take-away"] ],
             creditCounter : 0,
-            credit: 20
+            credit: 20,
         }
     },
     props: {
@@ -69,6 +69,14 @@ export default {
             this.itemsBooked = []
             this.credit -= this.creditCounter
             alert("Your order has been confirmed!")
+        },
+
+        increase:function(item) {
+            item.splice(2,1,item[2]+1)
+        },
+        decrease:function(item) {
+            if (item[2] > 1)
+            item.splice(2,1,item[2]-1)
         }
     }
 }
