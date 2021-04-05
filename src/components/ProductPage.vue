@@ -15,54 +15,29 @@
             <br>
 
             <label for="model">Select Quantity:</label>
-            <select class="form-control" name="model" id="model" v-model="model">
+            <select class="form-control" name="model" id="model" v-model="quantity">
             <option v-for="option in quantity_options" v-bind:value="option.id" v-bind:key="option.id">{{option.text}}</option>
+            
             </select>
-
+            {{quantity}}
             <br>
+            
+            <br>
+
+            <p>Your credit: {{userInfo.credit}}</p>
             <button id="addCart" v-on:click="displayMessage()">Add to Cart</button> 
         </div>
         
-        <!--
-        <img class = "left" src="https://cdn.kuali.com/wp-content/uploads/2004/08/21143457/hainanese-chicken-rice-830x536.jpg">
-        <div class = "right">
-            <h1>Chicken Rice</h1>
+       
 
-            <p>Calories: 25cal <br>
-            Diet: Normal diet
-            </p>
-
-            <strong style="margin-bottom:3%">Reduce Food Waste<br></strong>
-            <input type="checkbox" id="noVeg" name="remark" value="noVeg"> 
-            <label for="noVeg">I do not want vegetable</label>
-            <br>
-            <input type="checkbox" id="noSauce" name="remark" value="noSauce"> 
-            <label for="noSauce">I do not want extra-packed sauce</label>
-            <br>
-            <input type="checkbox" id="small" name="remark" value="small"> 
-            <label for="small">I want a smaller proportion</label>
-            <br> 
-            
-            <p>Date & time selected: 24 Feb 2021 17:30 <br> <b>You selected Takeaway</b> </p>
-         
-            <div class="form-group">
-                <label for="model">Select Quantity:</label>
-                <select class="form-control" name="model" id="model" v-model="model">
-                <option v-for="option in quantity_options" v-bind:value="option.id" v-bind:key="option.id">{{option.text}}</option>
-                </select>
-            </div>
-  
-            <p>Your Credit: 20</p>
-            <button id="addCart" v-on:click="displayMessage()">Add to Cart</button> 
-            
-        </div>
-        -->
     </div>
 </div>
 </template>
 
 
 <script>
+import { mapGetters } from "vuex";
+import database from "../firebase.js"
 export default {
     name: 'product',
     data () {
@@ -70,10 +45,10 @@ export default {
             selectedDate: '',
             meal:"",
             cuisine:[],
-            quantity:0,
+            quantity:1,
             smallProportionOption:"",
             time:"",
-
+            userInfo:{},
             quantity_options: [
             {
                 text: "1",
@@ -92,12 +67,24 @@ export default {
     created:function() {
         this.cuisine = this.$route.params.cuisine
         this.meal = this.$route.params.meal
+        database.collection("UserInfo").doc(this.user.data.email).get()
+            .then(snapshot=> {
+                this.userInfo = snapshot.data()
+            })
+        
+        
     },
     methods: {
         displayMessage: function() {
             alert("Add successfully")
             this.$router.push("/menu")
         }
+    },
+    computed: {
+    ...mapGetters({
+        // map `this.user` to `this.$store.getters.user`
+            user: "user"
+        })
     }
 };
 </script>

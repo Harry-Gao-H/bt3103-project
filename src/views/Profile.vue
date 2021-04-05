@@ -60,7 +60,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-//import firebase from "firebase";
+import firebase from "firebase";
 
 export default {
     data(){
@@ -70,6 +70,21 @@ export default {
             hostel:"",
             credits:0
         }
+    },
+    methods:{
+    logout() {
+        firebase
+            .auth()
+            .signOut()
+            .then(() => {
+            alert('Successfully logged out');
+            this.$router.push('/');
+            })
+            .catch(error => {
+            alert(error.message);
+            this.$router.push('/');
+            });
+        },
     },
     computed: {
         ...mapGetters({
