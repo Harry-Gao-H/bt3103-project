@@ -22,12 +22,12 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    fetchUser({ commit }, user) {
-      commit("SET_LOGGED_IN", user !== null);
-      if (user) {
+    fetchUser({ commit }, user1) {
+      commit("SET_LOGGED_IN", user1 !== null);
+      if (user1) {
         commit("SET_USER", {
-          displayName: user.displayName,
-          email: user.email
+          displayName: user1.displayName,
+          email: user1.email
         });
       } else {
         commit("SET_USER", null);

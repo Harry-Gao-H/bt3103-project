@@ -14,8 +14,8 @@
             <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" width="100" height="100">
 
             <div class="name">
-                {{user}}
-                Foo Shi Yun
+                {{userInfo.name}}
+                
             </div>
             <div class="title">
                 Student
@@ -32,22 +32,22 @@
                         <tr>
                             <td>Name</td>
                             <td>:</td>
-                            <td>Foo Shi Yun</td>
+                            <td>{{userInfo.name}} </td>
                         </tr>
                         <tr>
                             <td>Email</td>
                             <td>:</td>
-                            <td>e0420940@u.nus.edu</td>
+                            <td>{{user.data.email}}</td>
                         </tr>
                         <tr>
                             <td>Hostel</td>
                             <td>:</td>
-                            <td>Residential College 4</td>
+                            <td>{{userInfo.hostel}}</td>
                         </tr>
                         <tr>
-                            <td> Available Credits</td>
+                            <td>Available Credits</td>
                             <td>:</td>
-                            <td>80</td>
+                            <td>{{userInfo.credit}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -61,6 +61,7 @@
 <script>
 import { mapGetters } from "vuex";
 import firebase from "firebase";
+import database from "../firebase.js"
 
 export default {
     data(){
@@ -68,8 +69,20 @@ export default {
             name:"" ,
             email:"",
             hostel:"",
-            credits:0
+            credits:0,
+            userInfo:{}
         }
+    },
+    created() {
+        console.log("Email")
+        console.log(this.user.data)
+        console.log("Email " + this.user.data.email )
+
+        //this.
+        database.collection("UserInfo").doc(this.user.data.email).get()
+            .then(snapshot=> {
+                this.userInfo = snapshot.data()
+            })
     },
     methods:{
     logout() {
