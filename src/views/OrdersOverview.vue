@@ -1,0 +1,126 @@
+<template>
+<div>
+<div class ="navbar">
+  <ul>
+      <li><router-link to="/dashboard">Dashboard</router-link></li>
+      <li><router-link to="/cart">Cart</router-link></li>
+      <li v-on:click="logout()">Logout</li>
+  </ul>
+</div>
+
+<div id="content">
+   <PageContentStaff v-bind:itemsList="itemsListProps"></PageContentStaff>
+</div>
+</div>
+</template>
+
+<script>
+import PageContentStaff from '@/components/PageContentStaff.vue'
+import database from "../firebase.js"
+import firebase from "firebase"
+
+export default {
+  components: {
+    PageContentStaff
+
+  },
+  data() {
+    return {
+      title:'Your first Vue Component',
+      
+      items: [],
+
+      itemsListProps: [
+        
+        {
+          id: "#000",
+          name: "Prawn omelette",
+          imageURL:
+            "https://3.bp.blogspot.com/-SMxoySoXcK0/T696enjIijI/AAAAAAAACoc/A5bFWd024KY/s1600/IMG_5140.JPG",
+        
+        },
+        {
+          id: "#001",
+          name: "Chicken Rice",
+          imageURL:
+            "https://cdn.kuali.com/wp-content/uploads/2004/08/21143457/hainanese-chicken-rice-830x536.jpg",
+        
+        },
+        {
+          id: "#025",
+          name: "Dry Beef Hor Fun",
+          imageURL:
+            "https://3.bp.blogspot.com/-SMxoySoXcK0/T696enjIijI/AAAAAAAACoc/A5bFWd024KY/s1600/IMG_5140.JPG",
+    
+        },
+        {
+          id: "#067",
+          name: "Sambal KangKung",
+          imageURL:
+            "https://3.bp.blogspot.com/-SMxoySoXcK0/T696enjIijI/AAAAAAAACoc/A5bFWd024KY/s1600/IMG_5140.JPG",
+          show: false,
+      
+        },
+        {
+          id: "#077",
+          name: "Pork Fried Rice",
+          imageURL:
+            "https://3.bp.blogspot.com/-SMxoySoXcK0/T696enjIijI/AAAAAAAACoc/A5bFWd024KY/s1600/IMG_5140.JPG",
+          show: false,
+  
+        },
+        {
+          id: "#099",
+          name: "Mapo Tofu",
+          imageURL:
+            "https://3.bp.blogspot.com/-SMxoySoXcK0/T696enjIijI/AAAAAAAACoc/A5bFWd024KY/s1600/IMG_5140.JPG",
+          show: false,
+  
+        },
+        {
+          id: "#200",
+          name: "Cereal Prawn",
+          imageURL:
+            "https://3.bp.blogspot.com/-SMxoySoXcK0/T696enjIijI/AAAAAAAACoc/A5bFWd024KY/s1600/IMG_5140.JPG",
+          show: false,
+        },
+      ]
+    }
+    
+  },
+  methods: {
+    fetchItems:function() {
+      database.collection("Menu").doc("14-4-2021")
+        .collection("Breakfast").get().then(snapshot => {
+          snapshot.docs.forEach(doc => {
+            this.items.push(doc.data())
+          })
+        })
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert('Successfully logged out');
+          this.$router.push('/');
+        })
+        .catch(error => {
+          alert(error.message);
+          this.$router.push('/');
+        });
+    },
+  }
+  
+
+}
+</script>
+
+<style scoped>
+
+#content {
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+</style>

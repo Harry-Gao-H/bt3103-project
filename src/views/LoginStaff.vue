@@ -31,7 +31,7 @@
 export default {
   methods: {
     submit:function() {
-      this.$router.push("/staff-page")
+      this.$router.push("/orders-overview")
     }
   }
 }
