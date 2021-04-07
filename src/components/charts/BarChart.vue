@@ -2,9 +2,10 @@
 <template>
   <div id="main">
         <div id="chart">
-            <bar-chart v-bind:itemsProps="itemsProps"></bar-chart>
+            <!--<bar-chart v-bind:itemsProps="itemsProps"></bar-chart>-->
+            <bar-chart></bar-chart>
         </div>
-        <h1 v-for="item in this.itemsProps" v-bind:key="item">{{item}} </h1>
+        <!--<h1 v-for="item in this.itemsProps" v-bind:key="item">{{item}} </h1>-->
     </div>
 </template>
 
@@ -13,11 +14,11 @@ import barchart from './BarChart.js'
 
 
 export default {
-   props:{
-        itemsProps: {
-            type: Array
-        } 
-    },
+  //  props:{
+  //       itemsProps: {
+  //           type: Array
+  //       } 
+  //   },
   components: {
     'bar-chart': barchart
   }

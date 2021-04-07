@@ -99,7 +99,8 @@
 
 <div class="chart">
   <h1>Bar Chart</h1> 
-    <BarChart v-bind:itemsProps="itemsProps"></BarChart>
+    <!--<BarChart v-bind:itemsProps="itemsProps"></BarChart>-->
+	<BarChart></BarChart>
     
   </div>
 
@@ -127,7 +128,7 @@ export default {
 			//studentid: 'E0318191',
 			//studentIDs:[],
 			//mealsCount:'',
-			itemsProps : ['14-4-2021', 'Breakfast'],
+			//itemsProps : ['14-4-2021', 'Breakfast'],
 		}
 	},
 methods: {
@@ -175,13 +176,13 @@ methods: {
 			//console.log(this.cuisinesStaff.length)
 		},
 
-    passData: function() {
-      var strings = this.selectedDateStaff.split("-")
-			var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
-      this.itemsProps.push(newDate)
-      this.itemsProps.push(this.selectedMealStaff)
-      console.log(this.itemsProps)
-    },
+    // passData: function() {
+    //   var strings = this.selectedDateStaff.split("-")
+	// 		var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
+    //   this.itemsProps.push(newDate)
+    //   this.itemsProps.push(this.selectedMealStaff)
+    //   console.log(this.itemsProps)
+    // },
 	}
   
 
