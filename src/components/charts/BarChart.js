@@ -46,48 +46,24 @@ export default {
 
   methods: {
 
-    // fetchItems: function () {
-    //     database.collection('Order_test').doc(this.itemsProps[0])
-    //     .collection(this.itemsProps[1]).get().then(snapshot => {
-    //       snapshot.docs.forEach(doc => { 
-
-    //         console.log(this.itemsProps[0])
-    //         console.log(this.itemsProps[1])
-    //         console.log(doc.data())
-
-    //         for (var dish in doc.data().cuisine) {
-    //           if(!this.datacollection.labels.includes(dish)) {
-    //             this.datacollection.labels.push(dish)
-
-    //             console.log(this.datacollection.labels)
-
-    //             this.datacollection.datasets[0].data.push(parseInt(doc.data().quantity)) 
-    //             //this.datacollection.datasets[0].backgroundColor.push('blue')  
-    //           } else {
-    //             var index = this.datacollection.labels.indexOf(dish)
-    //             this.datacollection.datasets[0].data[index] += (parseInt(doc.data().quantity))
-    //           }
-    //         }
-        
-    //       })
-    //       this.renderChart(this.datacollection, this.options)
-    //     })
-    //   },
     fetchItems: function () {
       database.collection('Order_test').doc('14-4-2021')
       .collection('Breakfast').get().then(snapshot => {
         snapshot.docs.forEach(doc => { 
-          console.log(doc.data())
+          //console.log(doc.data())
 
-          for (var dish in doc.data().cuisine) {
-            if(!this.datacollection.labels.includes(dish)) {
-              this.datacollection.labels.push(dish)
+          for (var dish in doc.data()) {
+            //console.log(doc.data()[dish])
+            //console.log(doc.data().quantity)
+            console.log(doc.data()["cuisine"])
+            if(!this.datacollection.labels.includes(doc.data()["cuisine"])) {
+              this.datacollection.labels.push(doc.data()["cuisine"])
 
-              this.datacollection.datasets[0].data.push(parseInt(doc.data().quantity)) 
+              this.datacollection.datasets[0].data.push(parseInt(doc.data()["quantity"])) 
 
             } else {
               var index = this.datacollection.labels.indexOf(dish)
-              this.datacollection.datasets[0].data[index] += (parseInt(doc.data().quantity))
+              this.datacollection.datasets[0].data[index] += (parseInt(doc.data()["quantity"]))
             }
           }
       
