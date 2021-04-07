@@ -1,58 +1,61 @@
 <template>
 <div>
 
-<div class ="navbar">
-    <ul>
-        <li><router-link to="/cart">Cart</router-link></li>
-        <li><router-link to="/menu">Menu</router-link></li>
-        <li v-on:click="logout()">Logout</li>       
-    </ul>
-</div>
+    <div class ="navbar">
+        <ul>
+            <li><router-link to="/cart">Cart</router-link></li>
+            <li><router-link to="/menu">Menu</router-link></li>
+            <li v-on:click="logout()">Logout</li>       
+        </ul>
+    </div>
 
     <div class="sidenav">
         <div class="profile">
             <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" width="100" height="100">
 
             <div class="name">
+                {{userInfo}}
                 {{userInfo.name}}
+                
                 
             </div>
             <div class="title">
                 Student
             </div>
         </div>
-
     </div>
-        <div class = "main">
-            <h3> PROFILE </h3>
-            <div class = "card">
-                
-            <table>
-                    <tbody>
-                        <tr>
-                            <td>Name</td>
-                            <td>:</td>
-                            <td>{{userInfo.name}} </td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>:</td>
-                            <td>{{user.data.email}}</td>
-                        </tr>
-                        <tr>
-                            <td>Hostel</td>
-                            <td>:</td>
-                            <td>{{userInfo.hostel}}</td>
-                        </tr>
-                        <tr>
-                            <td>Available Credits</td>
-                            <td>:</td>
-                            <td>{{userInfo.credit}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            </div>
+
+    <div class = "main">
+        <h3> PROFILE </h3>
+        <button v:on-click="refresh()"> refresh </button>
+        <div class = "card">
+            
+        <table>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>:</td>
+                        <td>{{userInfo.name}} </td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td>{{userInfo.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Hostel</td>
+                        <td>:</td>
+                        <td>{{userInfo.hostel}}</td>
+                    </tr>
+                    <tr>
+                        <td>Available Credits</td>
+                        <td>:</td>
+                        <td>{{userInfo.credit}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </div>
 
@@ -75,29 +78,40 @@ export default {
     },
     created() {
         console.log("Email")
-        console.log(this.user.data)
-        console.log("Email " + this.user.data.email )
+        firebase.auth().onAuthStateChanged(user =>  {
+        
+            if (user) {
+                
+                database.collection("UserInfo").doc(user.email).get()
+                    .then(snapshot=> {
+                        this.userInfo = snapshot.data()
+                        this.userInfo.email = user.email
+                    })
+            }
+            
+        })
+    },
+    methods:{
+        logout() {
+            firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                alert('Successfully logged out');
+                this.$router.push('/');
+                })
+                .catch(error => {
+                alert(error.message);
+                this.$router.push('/');
+            });
+        },
 
-        //this.
-        database.collection("UserInfo").doc(this.user.data.email).get()
+        refresh() {
+            database.collection("UserInfo").doc(this.user.data.email).get()
             .then(snapshot=> {
                 this.userInfo = snapshot.data()
             })
-    },
-    methods:{
-    logout() {
-        firebase
-            .auth()
-            .signOut()
-            .then(() => {
-            alert('Successfully logged out');
-            this.$router.push('/');
-            })
-            .catch(error => {
-            alert(error.message);
-            this.$router.push('/');
-            });
-        },
+        }
     },
     computed: {
         ...mapGetters({
