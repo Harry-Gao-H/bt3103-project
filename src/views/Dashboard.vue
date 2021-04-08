@@ -99,8 +99,8 @@
 
 <div class="chart">
   <h1>Bar Chart</h1> 
-    <!--<BarChart v-bind:itemsProps="itemsProps"></BarChart>-->
-	<BarChart></BarChart>
+    
+	<BarChart ref="barchart"></BarChart>
     
   </div>
 
@@ -113,12 +113,12 @@ import BarChart from '@/components/charts/BarChart.vue'
 import database from "../firebase.js"
 export default {
 
-  components: {
-    //PageContentStaff,
-    'BarChart':BarChart,
+	components: {
+		//PageContentStaff,
+		'BarChart':BarChart,
 
-  },
-  data() {
+	},
+	data() {
 		return {
 			selectedDateStaff:'',
 			selectedMealStaff:'',
@@ -131,16 +131,14 @@ export default {
 			//itemsProps : ['14-4-2021', 'Breakfast'],
 		}
 	},
-methods: {
+	methods: {
 			fetchcuisinesStaff: function() {
 			//change the form of date
 			var strings = this.selectedDateStaff.split("-")
 			var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
       //console.log(newDate)
 			
-			// console.log(newDate)
-			// console.log(this.selectedMealStaff)
-			// console.log(this.takeawayTimeStaff)
+			this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
 
 			this.cuisinesStaff=[]; // clear the cuisinesStaff
 
@@ -161,6 +159,8 @@ methods: {
 			if (this.selectedDateStaff != '' && this.selectedMealStaff != '') {
 				// if (this.takeawayTimeStaff!='') {
 				this.fetchcuisinesStaff()
+
+				
 			}
 		},
 		goToProductPage:function(cuisine) {

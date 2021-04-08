@@ -72,10 +72,43 @@ export default {
       })
     },
 
-      test: function() {
-        console.log("testing")
-      }
+    test: function() {
+      console.log("testing")
+    },
+    clearData:function() {
+      this.datacollection.labels = []
+      this.datacollection.datasets[0].data = []
+      this.renderChart(this.datacollection, this.options)
+    },
+    updateData:function(date, meal) {
+      this.datacollection.labels = []
+      this.datacollection.datasets[0].data = []
+      database.collection('Order_test').doc(date)
+      .collection(meal).get().then(snapshot => {
+        snapshot.docs.forEach(doc => { 
+          //console.log(doc.data())
+
+          for (var dish in doc.data()) {
+        
+            console.log(doc.data()["cuisine"])
+            if(!this.datacollection.labels.includes(doc.data()["cuisine"])) {
+              this.datacollection.labels.push(doc.data()["cuisine"])
+
+              this.datacollection.datasets[0].data.push(parseInt(doc.data()["quantity"])) 
+
+            } else {
+              var index = this.datacollection.labels.indexOf(dish)
+              this.datacollection.datasets[0].data[index] += (parseInt(doc.data()["quantity"]))
+            }
+          }
       
+        })
+        this.renderChart(this.datacollection, this.options)
+      })
+
+
+    }
+    
 
   }, 
 

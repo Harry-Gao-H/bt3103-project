@@ -3,7 +3,11 @@
   <div id="main">
         <div id="chart">
             <!--<bar-chart v-bind:itemsProps="itemsProps"></bar-chart>-->
-            <bar-chart></bar-chart>
+            <button v-on:click="clearData()"> Clear Data </button> 
+            <!--<button v-on:click="updateData()"> Update Data </button> -->
+            <bar-chart ref="chart"></bar-chart>
+
+            
         </div>
         <!--<h1 v-for="item in this.itemsProps" v-bind:key="item">{{item}} </h1>-->
     </div>
@@ -19,8 +23,19 @@ export default {
   //           type: Array
   //       } 
   //   },
+
   components: {
     'bar-chart': barchart
+  },
+  
+  methods : {
+    clearData:function() {
+      //console.log("update")
+      this.$refs.chart.clearData()
+    },
+    updateData:function(date, meal) {
+      this.$refs.chart.updateData(date, meal)
+    }
   }
 };
 </script>
