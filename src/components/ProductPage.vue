@@ -11,6 +11,42 @@
             <br>
             <br>
             <br>
+
+            <div>
+                <div v-show = "meal == 'Breakfast'">
+                    <p>Breakfast Takeaway Time</p>
+                    <select id="time" name="time" v-model="time" >
+                        <option value="0730">07:30</option>
+                        <option value="0800">08:00</option>
+                        <option value="0830">08:30</option>
+                        <option value="0900">09:00</option>
+                        <option value="0930">09:30</option>
+                    </select>
+                </div>
+
+                <div v-show = "meal == 'Dinner'">
+                    <p>Dinner Takeaway Time</p>
+                    <select id="time" name="time" v-model="time">
+                        <option value="1800">18:00</option>
+                        <option value="1830">18:30</option>
+                        <option value="1900">19:00</option>
+                        <option value="1930">19:30</option>
+                        <option value="2000">20:00</option>
+                    </select>
+                </div>
+        
+            </div>
+
+            <br>
+            <label for="model">Select Quantity:</label>
+            <select class="form-control" name="model" id="model" v-model="quantity">
+            <option v-for="option in quantity_options" v-bind:value="option.id" v-bind:key="option.id">{{option.text}}</option>
+            </select>
+
+            {{quantity}}
+
+
+            <br>
             <label for="small">I want a smaller proportion</label>
             <input type="checkbox" id="small" v-model="smallProportionOption"> 
             
@@ -23,14 +59,7 @@
             <textarea id="remark" name="remark" rows="4" cols="50" v-model.lazy.trim="remark"></textarea> 
             {{remark}}
 
-            <br>
-            <label for="model">Select Quantity:</label>
-            <select class="form-control" name="model" id="model" v-model="quantity">
-            <option v-for="option in quantity_options" v-bind:value="option.id" v-bind:key="option.id">{{option.text}}</option>
-            </select>
 
-
-            {{quantity}}
             <br>
             
             <br>
@@ -38,7 +67,7 @@
             <p> Your credit: {{userInfo.credit}} </p>
 
 
-            <button id="addCart" v-on:click="displayMessage()">Add to Cart</button> 
+            <button id="addCart" v-on:click="addOrderToCart()">Add to Cart</button> 
         </div>
         
        
@@ -59,7 +88,7 @@ export default {
             meal:"",
             cuisine:[],
             quantity:1,
-            smallProportionOption:"",
+            smallProportionOption:false,
             time:"",
             remark: "",
             userInfo:{},
@@ -90,9 +119,13 @@ export default {
         
     },
     methods: {
-        displayMessage: function() {
-            alert("Add successfully")
+        addOrderToCart: function() {
+            if (this.time == "") {
+                alert("Please select the time")
+                return 
+            } 
 
+            alert("This order is successfully added to your cart")
             var thiscart = this.userInfo.cart
             thiscart.push({cuisine: this.cuisine, quantity: this.quantity, small:this.smallProportionOption, time:this.time, remark:this.remark})
             database.collection("UserInfo").doc(this.user.data.email).update({
