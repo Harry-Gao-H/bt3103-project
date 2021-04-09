@@ -8,23 +8,35 @@
 			<p v-for="dish in cuisine[1].dishes" v-bind:key = "dish">
                 {{dish}}
             </p>
+            <br>
+            <br>
+            <br>
             <label for="small">I want a smaller proportion</label>
             <input type="checkbox" id="small" v-model="smallProportionOption"> 
             
             {{smallProportionOption}}
             <br>
 
+
+            <label for="remark">Please note down your special need here if any :)</label>
+            <br>
+            <textarea id="remark" name="remark" rows="4" cols="50"></textarea> 
+
+            <br>
             <label for="model">Select Quantity:</label>
             <select class="form-control" name="model" id="model" v-model="quantity">
             <option v-for="option in quantity_options" v-bind:value="option.id" v-bind:key="option.id">{{option.text}}</option>
-            
             </select>
+
+
             {{quantity}}
             <br>
             
             <br>
 
-            <p>Your credit: {{userInfo.credit}}</p>
+            <p> Your credit: {{userInfo.credit}} </p>
+
+
             <button id="addCart" v-on:click="displayMessage()">Add to Cart</button> 
         </div>
         
@@ -49,6 +61,7 @@ export default {
             smallProportionOption:"",
             time:"",
             userInfo:{},
+            remake: "",
             quantity_options: [
             {
                 text: "1",
@@ -77,6 +90,10 @@ export default {
     methods: {
         displayMessage: function() {
             alert("Add successfully")
+
+            var cart = this.userInfo.cart
+            cart.push({ })
+            database.collection("UserInfo").doc(this.user.data.email)
             this.$router.push("/menu")
         }
     },
