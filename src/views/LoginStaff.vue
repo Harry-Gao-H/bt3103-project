@@ -12,8 +12,8 @@
     
     <div class = "details">
       <form v-on:submit.prevent="submit()">
-      <input type = "text" name = "username" placeholder = "USERNAME" required> <br><br>
-      <input type = "password" name = "password" placeholder = "PASSWORD" required> <br><br>
+      <input type = "text" name = "username" placeholder = "USERNAME" v-model.trim.lazy ="username" required> <br><br>
+      <input type = "password" name = "password" placeholder = "PASSWORD" v-model.lazy="password" required> <br><br>
 
          <button type = "submit" value = "Login"> Login </button>
       
@@ -29,6 +29,13 @@
 
 <script>
 export default {
+
+  data() {
+    return {
+      username:"",
+      password:""
+    }
+  },
   methods: {
     submit:function() {
       this.$router.push("/orders-overview")
