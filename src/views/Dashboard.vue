@@ -3,8 +3,7 @@
 <div class ="navbar">
   <ul>
       <li><router-link to="/orders-overview">Overview</router-link></li>
-      <li><router-link to="/cart">Cart</router-link></li>
-      <li v-on:click="logout()">Logout</li>
+      <li class="navbarstyle" v-on:click="logout()">Logout</li>
 
   </ul>
 </div>
@@ -195,5 +194,12 @@ export default {
   width: 100%;
   background-color: #f1f1f1;
 }
+
+.navbarstyle {
+  text-decoration:none;
+  color:#fff;
+  text-transform:uppercase;
+}
+
 
 </style>

@@ -5,7 +5,7 @@
         <ul>
             <li><router-link to="/cart">Cart</router-link></li>
             <li><router-link to="/menu">Menu</router-link></li>
-            <li v-on:click="logout()">Logout</li>       
+            <li class="navbarstyle" v-on:click="logout()">Logout</li>       
         </ul>
     </div>
 
@@ -198,5 +198,10 @@ body {
     width: 80%;
 }
 
+.navbarstyle {
+  text-decoration:none;
+  color:#fff;
+  text-transform:uppercase;
+}
 
 </style>
