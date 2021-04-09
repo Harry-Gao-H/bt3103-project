@@ -9,7 +9,7 @@
     <h2 id = "student"> STUDENT </h2>
     <div id = "details">
       <form v-on:submit.prevent="login()">
-      <input type = "text" placeholder="Your NUSNET" name = "NUSNET" v-model="nusnet" required> <br><br>
+      <input type = "text" placeholder="Your NUSNET" name = "NUSNET" v-model.trim="nusnet" required> <br><br>
       <input type = "password" placeholder = "Your Password" name = "password" v-model="password"  required> <br><br>
 
       <button type = "submit" value = "Login"> Login </button>
