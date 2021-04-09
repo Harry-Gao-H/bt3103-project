@@ -162,5 +162,14 @@ export default {
   padding: 20px; 
 }
 
+select {
+	cursor: pointer;
+    padding: 1px;
+	border-radius: 1px;
+	background-color: #ddd;
+	list-style: none;
+    margin-left: 3px
+}
+
 
 </style>
