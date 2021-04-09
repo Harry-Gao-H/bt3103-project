@@ -56,7 +56,7 @@ export default {
 }
 
 .details{
-   position: relative;
+  position: relative;
   text-align: center;
 }
 
@@ -66,6 +66,7 @@ input[type = text], input[type = password]{
   margin: auto;
   width: 15%;
   height: 40px;
+  border: 3px solid white;
 }
 
 input[type = submit]{
@@ -76,5 +77,21 @@ input[type = submit]{
   margin: auto;
   font-size: 15px;
   width: 10%;
+  border: 3px solid white;
 }
+
+button{
+    width:200px;
+    padding:15px 0;
+    text-align:center;
+    margin:20px 10px;
+    border-radius:25px;
+    font-weight:bold;
+    border:2px solid #009688;
+    background:transparent;
+    color:rgb(22, 20, 20);
+    cursor:pointer;
+    font-size:20px;
+}
+
 </style>
