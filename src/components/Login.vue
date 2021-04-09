@@ -24,6 +24,20 @@
 
 
 <style scoped>
-
+button{
+    width:200px;
+    padding:15px 0;
+    text-align:center;
+    margin:20px 10px;
+    border-radius:25px;
+    font-weight:bold;
+    border:2px solid #009688;
+    background:transparent;
+    color:rgb(22, 20, 20);
+    cursor:pointer;
+    font-size:20px;
+    background-color: #f7f2e1;
+    
+}
 
 </style>
