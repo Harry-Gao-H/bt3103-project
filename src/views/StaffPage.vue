@@ -1,80 +1,82 @@
 <template>
 <div>
-<div class ="navbar">
- <ul>
-                    <li><router-link to="/cart">Dashboard</router-link></li>
-                    <li><router-link to="/">Logout</router-link></li>
-                    
-                </ul>
-</div>
-<div class="content">
-        
 
- <table>
-                        <tr>
-                            <th>Time</th>
-                            <th>Dishes</th>
-                            <th>Quantity</th>
-                            <th>Type</th>
-                        </tr>
-                            
-                        <tr v-for="item in itemsList" v-bind:key="item[0]">
-                            <td>{{item[1]}}</td>
-                            <td>{{item[0]}}</td>
-                            <td>{{item[2]}}</td>
-                            <td>{{item[3]}}</td>
-                        </tr>
+  <div class ="navbar">
+  <ul>
+    <li><router-link to="/cart">Dashboard</router-link></li>
+    <li><router-link to="/">Logout</router-link></li>
+    </ul>
+  </div>
 
-                    </table>
+  <div class="content">
+    <order-listing :orders="orders" />
+  </div>
 
-                     
- 
-    </div> 
 </div>
 </template>
 
 
 <script>
 import database from "../firebase.js"
+import orderListing from "../components/OrderListing"
 
 export default {
-   data(){
-    return{
-        itemsList : [["Chicken rice", "24 Feb 2021 17:30", 20, "Dine in"], ["Chicken rice", "24 Feb 2021 17:30", 30, "Take away"],
-           ["Ramen", "24 Feb 2021 17:30", 25, "Dine in"], ["Nasi Lemak", "24 Feb 2021 18:30", 25, "Dine in"]],
-        orders : [], //creating data property called orders array []
-        }
+  name: "staffPage",
+
+  components: {
+    orderListing
   },
 
-  methods :{
+  data: () => ({
+    selectedDate: "10-4-2021",
+    selectedMeal: "Breakfast",  
+    orders: [],
+  }),
 
-    // fetchItems:function(){ //fetching orders from database
-    //   database.collection('Order').get().then((querySnapShot)=>{
-    //     querySnapShot.forEach(doc=>{
-    //         console.log(doc.id, "=>", doc.data()); 
-    //         })})   
-    //     },
+  methods: {
+    getOrders(date) {
 
-        fetchItems:function(){ //fetching orders from database
-      database.collection('Order').doc().collection().get().then((querySnapShot)=>{
-        querySnapShot.forEach(doc=>{
-            console.log(doc.id, "=>", doc.data()); 
-            })})   
-        },
+      var dict = {
+        stud_id: "",
+        collect_time: "",
+        meal_type: [],
+        special_need: []
+        };
 
-},
- created(){
-      this.fetchItems();   
-      },
-}
+      if (this.selectedMeal == "Breakfast"){
+        this.orders = [];
+        database.collection("Order_test").doc(date)
+          .collection(this.selectedMeal).get().then(snapshot => {
+            snapshot.docs.forEach(doc => {
+              let copyDict= JSON.parse(JSON.stringify(dict))
+              copyDict["stud_id"] = doc.id,
+              copyDict["collect_time"] = doc.data().takeawayTiming,
+              copyDict["meal_type"] = doc.data().mealSelect,
+              this.orders.push(copyDict)
+            })
+          })
+          console.log(this.orders)
+      } else {
+        this.orders=[];
+        database.collection("Order_test").doc(date)
+          .collection(this.selectedMeal).get().then(snapshot => {
+            snapshot.docs.forEach(doc => {
+              dict.stud_id = doc.id,
+              dict.collect_time = doc.data().takeawayTiming,
+              dict.meal_type = doc.data().mealSelect,
+              this.orders.push(dict)
+              console.log(this.orders)
+                })
+            })  
+      }
+    },
+  },
+
+  created() {
+    this.getOrders(this.selectedDate);
+  },
+};
 </script>
-
-
-
-
-
-
-
 
 <style scoped>
 table {
