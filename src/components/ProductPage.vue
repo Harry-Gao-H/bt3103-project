@@ -4,7 +4,7 @@
     <div class="flex-col">
         <div class="center" style="color : white" >
             <!--{{cuisine}}-->
-            <h2>{{meal}}: {{cuisine[0]}}</h2>
+            <h2>{{selectedDate}}     {{meal}}: {{cuisine[0]}}</h2>
 			<p v-for="dish in cuisine[1].dishes" v-bind:key = "dish">
                 {{dish}}
             </p>
@@ -20,7 +20,8 @@
 
             <label for="remark">Please note down your special need here if any :)</label>
             <br>
-            <textarea id="remark" name="remark" rows="4" cols="50"></textarea> 
+            <textarea id="remark" name="remark" rows="4" cols="50" v-model.lazy.trim="remark"></textarea> 
+            {{remark}}
 
             <br>
             <label for="model">Select Quantity:</label>
@@ -60,8 +61,8 @@ export default {
             quantity:1,
             smallProportionOption:"",
             time:"",
+            remark: "",
             userInfo:{},
-            remake: "",
             quantity_options: [
             {
                 text: "1",
@@ -80,6 +81,7 @@ export default {
     created:function() {
         this.cuisine = this.$route.params.cuisine
         this.meal = this.$route.params.meal
+        this.selectedDate = this.$route.params.date
         database.collection("UserInfo").doc(this.user.data.email).get()
             .then(snapshot=> {
                 this.userInfo = snapshot.data()
@@ -91,9 +93,11 @@ export default {
         displayMessage: function() {
             alert("Add successfully")
 
-            var cart = this.userInfo.cart
-            cart.push({ })
-            database.collection("UserInfo").doc(this.user.data.email)
+            var thiscart = this.userInfo.cart
+            thiscart.push({cuisine: this.cuisine, quantity: this.quantity, small:this.smallProportionOption, time:this.time, remark:this.remark})
+            database.collection("UserInfo").doc(this.user.data.email).update({
+                cart:thiscart
+            })
             this.$router.push("/menu")
         }
     },

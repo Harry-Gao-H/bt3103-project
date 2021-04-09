@@ -105,7 +105,7 @@ export default {
 			}
 		},
 		goToProductPage:function(cuisine) {
-			this.$router.push( {name: "Product", params: {"cuisine": cuisine, "meal": this.selectedMeal}} )
+			this.$router.push( {name: "Product", params: {"cuisine": cuisine, "meal": this.selectedMeal, "date":this.selectedDate}} )
 		}
 		,
 		f:function() {
