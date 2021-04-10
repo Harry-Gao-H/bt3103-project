@@ -54,7 +54,7 @@ export default {
           for (var dish in doc.data()) {
             //console.log(doc.data()[dish])
             //console.log(doc.data().quantity)
-            console.log(doc.data()["cuisine"])
+            //console.log(doc.data()["cuisine"])
             if(!this.datacollection.labels.includes(doc.data()["cuisine"])) {
               this.datacollection.labels.push(doc.data()["cuisine"])
 
@@ -89,7 +89,7 @@ export default {
 
           for (var dish in doc.data()) {
         
-            console.log(doc.data()["cuisine"])
+            //console.log(doc.data()["cuisine"])
             if(!this.datacollection.labels.includes(doc.data()["cuisine"])) {
               this.datacollection.labels.push(doc.data()["cuisine"])
 

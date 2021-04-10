@@ -49,17 +49,14 @@ export default {
       database.collection('Order_test').doc('14-4-2021')
       .collection('Breakfast').get().then(snapshot => {
         snapshot.docs.forEach(doc => { 
-          //console.log(doc.data())
 
           for (var dish in doc.data()) {
-            //console.log(doc.data()[dish])
-            //console.log(doc.data().quantity)
-            console.log(doc.data()["cuisine"])
+         
             if(!this.datacollection.labels.includes(doc.data()["cuisine"])) {
               this.datacollection.labels.push(doc.data()["cuisine"])
 
               this.datacollection.datasets[0].data.push(parseInt(doc.data()["quantity"])) 
-
+             
             } else {
               var index = this.datacollection.labels.indexOf(dish)
               this.datacollection.datasets[0].data[index] += (parseInt(doc.data()["quantity"]))
@@ -71,9 +68,6 @@ export default {
       })
     },
 
-    test: function() {
-      console.log("testing")
-    },
     clearData:function() {
       this.datacollection.labels = []
       this.datacollection.datasets[0].data = []
@@ -85,7 +79,6 @@ export default {
       database.collection('Order_test').doc(date)
       .collection(meal).get().then(snapshot => {
         snapshot.docs.forEach(doc => { 
-          //console.log(doc.data())
 
           for (var dish in doc.data()) {
         
