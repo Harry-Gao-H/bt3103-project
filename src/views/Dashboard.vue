@@ -107,13 +107,13 @@
 </template>
 
 <script>
-//import PageContentStaff from '@/components/PageContentStaff.vue'
 import BarChart from '@/components/charts/BarChart.vue'
 import database from "../firebase.js"
+import firebase from "firebase"
+
 export default {
 
 	components: {
-		//PageContentStaff,
 		'BarChart':BarChart,
 
 	},
@@ -124,10 +124,6 @@ export default {
 			showMenuStaff:false,
 			takeawayTimeStaff:'',
 			cuisinesStaff:[],
-			//studentid: 'E0318191',
-			//studentIDs:[],
-			//mealsCount:'',
-			//itemsProps : ['14-4-2021', 'Breakfast'],
 		}
 	},
 	methods: {
@@ -169,6 +165,19 @@ export default {
 			// for test
 			alert("testing")
 		},
+	logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert('Successfully logged out');
+          this.$router.push('/');
+        })
+        .catch(error => {
+          alert(error.message);
+          this.$router.push('/');
+        });
+    },
 
 		countMeals: function() {
 			this.mealsCount = this.cuisinesStaff.length;
@@ -196,10 +205,25 @@ export default {
 }
 
 .navbarstyle {
-  text-decoration:none;
-  color:#fff;
-  text-transform:uppercase;
+	text-decoration:none;
+	color:#fff;
+	text-transform:uppercase;
 }
 
+button{
+    width:200px;
+    padding:15px 0;
+    text-align:center;
+    margin:20px 10px;
+    border-radius:25px;
+    font-weight:bold;
+    border:2px solid #009688;
+    background:transparent;
+    color:rgb(22, 20, 20);
+    cursor:pointer;
+    font-size:20px;
+    background-color: #f7f2e1;
+    
+}
 
 </style>

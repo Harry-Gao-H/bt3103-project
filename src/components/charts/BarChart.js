@@ -117,6 +117,7 @@ export default {
   created () {
     //console.log(this.itemsProps[0])
     //console.log(this.itemsProps[1])
-    this.fetchItems()
+    //this.fetchItems()
+    this.clearData()
   }
 }
