@@ -19,8 +19,9 @@
           <img src="../assets/foodchop.png" class="logo">
           <br>
           <br>
-          <h2 id = "heading"> Welcome To NUS FoodChope </h2>
-          <p id = "description"> Staff Login <p>
+          <h2 id = "heading"> NUS FoodChope Staff Login </h2>
+          <p id = "description"> Enter your email to begin <p>
+              <br>
  
 
             <!-- Username -->
