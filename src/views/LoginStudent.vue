@@ -312,12 +312,14 @@ input[type=radio]:nth-of-type(2):checked ~ .pages .page:nth-of-type(2) .input:nt
    }
 }
 
+/*
 #login-page{
   background-color: white;
   width: 100%;
   height: 100vh;
   padding-top: 20px;
 }
+*/
 
 </style>
 
