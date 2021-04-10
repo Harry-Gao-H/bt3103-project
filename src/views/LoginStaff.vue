@@ -16,7 +16,8 @@
       <input type = "password" name = "password" placeholder = "PASSWORD" v-model.lazy="password" required> <br><br>
 
          <button style="color:black" type = "submit" value = "Login"> Login </button>
-      
+         
+      <p> <a href = "/login-student"> Not a Staff? Login as a Student instead </a> </p>
       <p> <a href = "#"> Forgot Password </a> </p>
       
       </form>
