@@ -122,13 +122,13 @@ export default {
 }
 
 form {
-   background-color: white;
+   background-color: rgb(232, 237, 255);
    width: 100%;
 }
 
 #wrapper {
   display: block;
-  margin-left: 40%;
+  margin-left: 38%;
 }
 
 label {
