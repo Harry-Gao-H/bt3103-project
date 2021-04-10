@@ -25,15 +25,12 @@ export default {
 
               {
                 label: "Total orders WITH smaller portion for each cuisine", 
-                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#c15b3e","#c45850"],
                 data: [0,0,0,0]
               },
               {
                 label: "Total orders WITHOUT smaller portion for each cuisine", 
-                backgroundColor: ['#ff6384',
-                '#36a2eb',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
+                backgroundColor: ['#aed3ea','#ddcee3','#b2e6db','#e8c3b9',
                 ],
                 data: [0,0,0,0]
               },
@@ -43,7 +40,7 @@ export default {
         options: {
             legend: { display: false },
             title: {
-              display: true,
+              display: false,
               text: 'Total Number of each cuisine'
             },
             responsive: true,

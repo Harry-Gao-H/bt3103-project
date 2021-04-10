@@ -6,6 +6,7 @@
             <!--<button v-on:click="updateData()"> Update Data </button> -->
             <bar-chart ref="chart"></bar-chart>
 
+
             
         </div>
         <!--<h1 v-for="item in this.itemsProps" v-bind:key="item">{{item}} </h1>-->

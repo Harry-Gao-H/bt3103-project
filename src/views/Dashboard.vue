@@ -15,7 +15,7 @@
               <center> <div id="dropdown">
 	<form>
 		<div>
-			<label for="meal">Choose your preferred date and time:</label>
+			<label for="meal">Choose date and time:</label>
 			<input id="meal" type="date" name="meal" min="2021-04-14" max="2021-04-20" v-model="selectedDateStaff" v-on:change="fetch()" required>
 			
 			
@@ -100,18 +100,25 @@
 
 <div v-show="showChart" class="column">
   <p class="chartTitle">Bar Chart</p>
+  <br>
+  <h3> Total orders for each cuisine </h3>
   <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
 <center>	<BarChart ref="barchart"></BarChart>  </center>
 </div> 
 
 <div v-show="showChart" class="column">
   <p class="chartTitle">Pie Chart</p>
+  <br>
+<h3> Total orders for each cuisine </h3>
+
   <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
 <center>	<PieChart ref="piechart"></PieChart>  </center>
 </div> 
 
 <div v-show="showChart" class="column">
   <p class="chartTitle">Grouped Bar Chart</p>
+  <br>
+  <h3> Total orders with/without smaller portions for each cuisine </h3>
   <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
 <center>	<GroupedBarChart ref="groupedbarchart"></GroupedBarChart>  </center>
 </div> 
@@ -361,7 +368,7 @@ width:100%;
 
 /*TESTING 2*/
 .column {
-	width:50%;
+	width:33%;
     /*position:absolute;*/
     text-align: center;
     /*color:#fff;*/

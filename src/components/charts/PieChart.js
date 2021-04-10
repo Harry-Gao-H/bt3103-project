@@ -39,7 +39,7 @@ export default {
         options: {
             legend: { display: true },
             title: {
-              display: true,
+              display: false,
               text: 'Total orders for each cuisine'
             },
             responsive: true,
