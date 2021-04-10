@@ -48,7 +48,8 @@ export default {
         },
         { text: 'Collection Time', value: 'collect_time' },
         { text: 'Meal Type', value: 'meal_type' },
-        { text: '', value: 'data-table-expand' },
+        { text: 'Smaller Proportion', value: 'smaller' },
+        { text: 'Remark', value: 'remark'}
       ],
     }
   },

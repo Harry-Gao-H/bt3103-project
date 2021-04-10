@@ -8,8 +8,12 @@
 </div>
 
 <div id="content">
-   <order-listing :orders="orders" />
+  <div id="wrapper">
+  <input id="dateSelect" type="date" v-model="selectedDate" v-on:change="fetch()" required>
+  <order-listing :orders="orders" />
+  </div>
 </div>
+
 </div>
 </template>
 
@@ -25,20 +29,24 @@ export default {
   },
   
   data: () => ({
-    selectedDate: "10-4-2021",
     selectedMeal: "Breakfast",  
     orders: [],
+    selectedDate: "",
+    modal: false,
   }),
 
   methods: {
     getOrders(date) {
-
       var dict = {
         stud_id: "",
         collect_time: "",
         meal_type: [],
-        special_need: []
+        smaller: false,
+        remark: "",
         };
+      
+      var strings = this.selectedDate.split("-")
+			date = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
 
       if (this.selectedMeal == "Breakfast"){
         this.orders = [];
@@ -49,6 +57,8 @@ export default {
               copyDict["stud_id"] = doc.id,
               copyDict["collect_time"] = doc.data().takeawayTiming,
               copyDict["meal_type"] = doc.data().mealSelect,
+              copyDict["smaller"] = doc.data().smaller,
+              copyDict["remark"] = doc.data().remark,
               this.orders.push(copyDict)
             })
           })
@@ -80,6 +90,11 @@ export default {
           this.$router.push('/');
         });
     },
+    fetch: function() {
+			if (this.selectedDate != '' ) {
+				this.getOrders()
+			}
+		},
   },
   created() {
     this.getOrders(this.selectedDate);
@@ -89,15 +104,23 @@ export default {
 
 <style scoped>
 
-#content {
-  width: 100%;
-  background-color: #f1f1f1;
-}
-
 .navbarstyle {
   text-decoration:none;
   color:#fff;
   text-transform:uppercase;
 }
+
+input {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  background-color: white;
+}
+
+#wrapper {
+  width: 100%;
+  background-color: white;
+}
+
 
 </style>
