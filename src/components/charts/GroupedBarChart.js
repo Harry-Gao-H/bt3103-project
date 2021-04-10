@@ -17,19 +17,19 @@ export default {
             labels: [],
             datasets: [
               {
-                label: "TOTAL ORDERS", 
+                label: "Total Orders", 
                 backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
                 data: [],
                 hidden:true,
               },
 
               {
-                label: "Total orders WITH smaller portion for each cuisine", 
+                label: "Total orders with smaller portion", 
                 backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#c15b3e","#c45850"],
                 data: [0,0,0,0]
               },
               {
-                label: "Total orders WITHOUT smaller portion for each cuisine", 
+                label: "Total orders without smaller portion", 
                 backgroundColor: ['#aed3ea','#ddcee3','#b2e6db','#e8c3b9',
                 ],
                 data: [0,0,0,0]

@@ -18,7 +18,7 @@ export default {
             labels: [],
             datasets: [
                 {
-                label: "Total orders for each cuisine", 
+                label: "Total orders", 
                 // backgroundColor: ['rgba(255, 99, 132, 0.2)',
                 // 'rgba(75, 192, 192, 0.2)',
                 // 'rgba(54, 162, 235, 0.2)',
@@ -37,10 +37,10 @@ export default {
             ]
         },
         options: {
-            legend: { display: true },
+            legend: { display: false },
             title: {
               display: false,
-              text: 'Total orders for each cuisine'
+              text: 'Total orders'
             },
             responsive: true,
             maintainAspectRatio: false,
