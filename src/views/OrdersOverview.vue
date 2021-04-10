@@ -68,7 +68,9 @@ export default {
               let copyDict= JSON.parse(JSON.stringify(dict))
               copyDict["stud_id"] = doc.id,
               copyDict["collect_time"] = doc.data().takeawayTiming,
-              copyDict["meal_type"] = doc.data().dishes.map(dish => dish.toLowerCase()),
+              copyDict["meal_type"] = doc.data().dishes.map(dish => dish.toLowerCase().split(' ').map(function(word) {
+    return (word.charAt(0).toUpperCase() + word.slice(1));
+  }).join(' ')),
               copyDict["smaller"] = doc.data().smallerPortion,
               copyDict["quantity"] = doc.data().quantity,
               copyDict["remark"] = doc.data().remark,
@@ -84,7 +86,9 @@ export default {
               let copyDict= JSON.parse(JSON.stringify(dict))
               copyDict["stud_id"] = doc.id,
               copyDict["collect_time"] = doc.data().takeawayTiming,
-              copyDict["meal_type"] = doc.data().dishes.map(dish => dish.toLowerCase()),
+              copyDict["meal_type"] = doc.data().dishes.map(dish => dish.toLowerCase().split(' ').map(function(word) {
+    return (word.charAt(0).toUpperCase() + word.slice(1));
+  }).join(' ')),
               copyDict["smaller"] = doc.data().smallerPortion,
               copyDict["quantity"] = doc.data().quantity,
               copyDict["remark"] = doc.data().remark,
