@@ -53,6 +53,7 @@ export default {
         collect_time: "",
         meal_type: [],
         smaller: false,
+        quantity: 0,
         remark: "",
         };
       
@@ -67,8 +68,9 @@ export default {
               let copyDict= JSON.parse(JSON.stringify(dict))
               copyDict["stud_id"] = doc.id,
               copyDict["collect_time"] = doc.data().takeawayTiming,
-              copyDict["meal_type"] = doc.data().mealSelect,
-              copyDict["smaller"] = doc.data().smaller,
+              copyDict["meal_type"] = doc.data().dishes.map(dish => dish.toLowerCase()),
+              copyDict["smaller"] = doc.data().smallerPortion,
+              copyDict["quantity"] = doc.data().quantity,
               copyDict["remark"] = doc.data().remark,
               this.orders.push(copyDict)
             })
@@ -79,11 +81,14 @@ export default {
         database.collection("Order_test").doc(date)
           .collection(this.selectedMeal).get().then(snapshot => {
             snapshot.docs.forEach(doc => {
-              dict.stud_id = doc.id,
-              dict.collect_time = doc.data().takeawayTiming,
-              dict.meal_type = doc.data().mealSelect,
-              this.orders.push(dict)
-              console.log(this.orders)
+              let copyDict= JSON.parse(JSON.stringify(dict))
+              copyDict["stud_id"] = doc.id,
+              copyDict["collect_time"] = doc.data().takeawayTiming,
+              copyDict["meal_type"] = doc.data().dishes.map(dish => dish.toLowerCase()),
+              copyDict["smaller"] = doc.data().smallerPortion,
+              copyDict["quantity"] = doc.data().quantity,
+              copyDict["remark"] = doc.data().remark,
+              this.orders.push(copyDict)
                 })
               })  
             }
