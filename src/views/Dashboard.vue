@@ -12,27 +12,25 @@
         <div id = "profile">
             <ul>
             <li> 
-              <center>
-              <div id="dropdown">
+              <center> <div id="dropdown">
 	<form>
 		<div>
 			<label for="meal">Choose your preferred date and time:</label>
 			<input id="meal" type="date" name="meal" min="2021-04-14" max="2021-04-20" v-model="selectedDateStaff" v-on:change="fetch()" required>
-			{{selectedDateStaff}}
+			
 			
 			<br>
-			<input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMealStaff" v-on:change="fetch()"> 
+			<input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showBarChart=true"> 
 			<label for="breakfast" class="radio">Breakfast</label> 
-			<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMealStaff" v-on:change="fetch()"> 
+			<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showBarChart=true"> 
 			<label for="dinner" class="radio">Dinner</label>
-			{{selectedMealStaff}}
+		
 		</div>
 	</form>
 
-	<!--{{cuisinesStaff}}-->
-
+<!--
 	<div>
-		<div v-show = "selectedMealStaff == 'Breakfast'">
+		<div v-show = "selectedMealStaff == 'Breakfast'" class="box">
 			<p>Breakfast Takeaway Time</p>
 			<select id="time" name="time" v-model="takeawayTimeStaff" v-on:change="fetch()">
 				<option value="0730">07:30</option>
@@ -43,7 +41,7 @@
 			</select>
 		</div>
 
-		<div v-show = "selectedMealStaff == 'Dinner'">
+		<div v-show = "selectedMealStaff == 'Dinner'" class="box">
 			<p>Dinner Takeaway Time</p>
 			<select id="time" name="time" v-model="takeawayTimeStaff" v-on:change="fetch()">
 				<option value="1800">18:00</option>
@@ -55,21 +53,22 @@
 		</div>
   
 	</div>
-
+-->
 	<br>
 	
-	<button v-on:click="showMenuStaff=true; countMeals(); passData();" id="buttonClick">Check Menu</button>
-	<!--<button v-on:click="showMenuStaff=true;" id="buttonClick">Check Menu</button>-->
+	<!-- <button v-on:click="showMenuStaff=true; passData();" id="buttonClick">Check Menu</button> -->
+	<!-- <button v-on:click="showBarChart=true" id="buttonClick">Populate Charts</button> -->
 
+<!--
 	<div v-show="showMenuStaff">
 		<ul>
 
 			<li v-for="cuisine in cuisinesStaff" v-bind:key="cuisine[0]" >
 				<h2><u v-on:click="goToProductPage(cuisine)">{{cuisine[0]}}</u></h2>
 				
-			<!--	<p v-for="cuisineType in cuisine[1]" v-bind:key = "cuisineType">
+				<p v-for="cuisineType in cuisine[1]" v-bind:key = "cuisineType">
 				{{cuisineType}}
-				</p>  -->
+				</p>  
 
 				<p> {{cuisine[1].cuisine}}</p>
 
@@ -86,23 +85,30 @@
 
 		</ul>
 	</div>
-	
+	-->
 
-  </div></center>
-              <br>
-            </li>
-            </ul>
-        </div>
-    </div>
+</div></center>
+    <br>
+    </li>
+    </ul>
+    
+</div>
 
+<div v-show="showBarChart" class="chart">
+  <p class="chartTitle">Bar Chart</p>
+  <br>
+  <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> 
+	<BarChart ref="barchart"></BarChart>  
+</div> 
 
-<div class="chart">
+<!-- 
+<div v-show="showBarChart" class="chart">
   <h1>Bar Chart</h1> 
-    
-	<BarChart ref="barchart"></BarChart>
-    
-  </div>
+	<BarChart ref="barchart"></BarChart>  
+</div> 
+-->
 
+</div>
 </div>
 </template>
 
@@ -124,6 +130,8 @@ export default {
 			showMenuStaff:false,
 			takeawayTimeStaff:'',
 			cuisinesStaff:[],
+			showBarChart:false,
+			formattedDate:'',
 		}
 	},
 	methods: {
@@ -131,8 +139,8 @@ export default {
 			//change the form of date
 			var strings = this.selectedDateStaff.split("-")
 			var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
-      //console.log(newDate)
 			
+			this.formattedDate = newDate;
 			this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
 
 			this.cuisinesStaff=[]; // clear the cuisinesStaff
@@ -141,21 +149,15 @@ export default {
 				.collection(this.selectedMealStaff).get().then(snapshot => {
 				snapshot.docs.forEach(doc => {
 						this.cuisinesStaff.push([doc.id,doc.data()])
-	
-            //console.log(doc.id)
-            //console.log(doc.data())
+
 					})
 				})
-
-
 		},
 		fetch: function() {
 			//fetch cuisinesStaff from database when time and meal are selected
 			if (this.selectedDateStaff != '' && this.selectedMealStaff != '') {
 				// if (this.takeawayTimeStaff!='') {
 				this.fetchcuisinesStaff()
-
-				
 			}
 		},
 		goToProductPage:function(cuisine) {
@@ -179,10 +181,10 @@ export default {
         });
     },
 
-		countMeals: function() {
-			this.mealsCount = this.cuisinesStaff.length;
-			//console.log(this.cuisinesStaff.length)
-		},
+		// countMeals: function() {
+		// 	this.mealsCount = this.cuisinesStaff.length;
+		// 	//console.log(this.cuisinesStaff.length)
+		// },
 
     // passData: function() {
     //   var strings = this.selectedDateStaff.split("-")
@@ -198,6 +200,24 @@ export default {
 </script>
 
 <style scoped>
+#dropdown {
+font-family: Avenir, Helvetica, Arial, sans-serif;
+
+}
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+.radio { 
+	display: inline;
+	padding: 10px;
+}
 
 #content {
   width: 100%;
@@ -215,6 +235,7 @@ button{
     padding:15px 0;
     text-align:center;
     margin:20px 10px;
+	margin-top:5px;
     border-radius:25px;
     font-weight:bold;
     border:2px solid #009688;
@@ -224,6 +245,71 @@ button{
     font-size:20px;
     background-color: #f7f2e1;
     
+}
+
+.box select {
+  background-color: #f00c0c;
+  color: white;
+  padding: 6px;
+  width: 180px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  margin-top:5px;
+  font-size: 16px;
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+
+.chart {
+	width:100%;
+    /*position:absolute;*/
+    text-align: center;
+    /*color:#fff;*/
+    /*margin-top:80px;*/
+	margin:20px auto;
+    /*font-weight:100;*/
+    line-height:25px;
+
+	border-radius: 25px;
+	border: 2px solid #73AD21;
+	padding: 20px;
+}
+
+.chartTitle {
+	font-size:40px;
+	font-weight:bold;
+}
+
+.chartDetails {
+	font-size:30px;
+	font-weight:bold;
 }
 
 </style>

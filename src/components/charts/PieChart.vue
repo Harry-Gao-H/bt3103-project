@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import barchart from './BarChart.js'
+import piechart from './PieChart.js'
 
 
 export default {
@@ -25,7 +25,7 @@ export default {
   //   },
 
   components: {
-    'bar-chart': barchart
+    'pie-chart': piechart
   },
   
   methods : {

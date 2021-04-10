@@ -19,7 +19,7 @@ export default {
             datasets: [
                 {
                 label: "Orders", // is like the legend, which we dont need
-                backgroundColor: ['blue','purple','teal','orange','green','pink'],
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
                 data: []
               }
             ]
@@ -28,7 +28,7 @@ export default {
             legend: { display: false },
             title: {
               display: true,
-              text: 'Total Number of each dish'
+              text: 'Total Number of each cuisine'
             },
             responsive: true,
             maintainAspectRatio: false,
