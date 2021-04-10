@@ -78,6 +78,10 @@ input[type = text]{
   margin: auto;
   width: 15%;
   height: 40px;
+  color: #fff;
+  font-size:18px;
+  border-style: solid;
+  border-width: 3px;
 }
 
 input[type = password]{
@@ -86,6 +90,10 @@ input[type = password]{
   margin: auto;
   width: 15%;
   height: 40px;
+  color: #fff;
+  font-size:18px;
+  border-style: solid;
+  border-width: 3px;
 }
 
 input[type = submit]{
@@ -97,5 +105,25 @@ input[type = submit]{
   font-size: 15px;
   width: 10%;
   
+}
+
+button{
+    width:200px;
+    padding:15px 0;
+    text-align:center;
+    margin:20px 10px;
+    border-radius:25px;
+    font-weight:bold;
+    border:2px solid #009688;
+    background:transparent;
+    color:rgb(22, 20, 20);
+    cursor:pointer;
+    font-size:20px;
+    background-color: #f7f2e1;
+    
+}
+
+a {
+  color: #fff
 }
 </style >

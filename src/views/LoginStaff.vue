@@ -15,7 +15,7 @@
       <input type = "text" name = "username" placeholder = "USERNAME" v-model.trim.lazy ="username" required> <br><br>
       <input type = "password" name = "password" placeholder = "PASSWORD" v-model.lazy="password" required> <br><br>
 
-         <button type = "submit" value = "Login"> Login </button>
+         <button style="color:black" type = "submit" value = "Login"> Login </button>
       
       <p> <a href = "#"> Forgot Password </a> </p>
       
@@ -60,13 +60,28 @@ export default {
   text-align: center;
 }
 
-input[type = text], input[type = password]{
+input[type = text]{
   position: relative;
   text-align: center;
   margin: auto;
   width: 15%;
   height: 40px;
-  border: 3px solid white;
+  color: #fff;
+  font-size:18px;
+  border-style: solid;
+  border-width: 3px;
+}
+
+input[type = password]{
+  position: relative;
+  text-align: center;
+  margin: auto;
+  width: 15%;
+  height: 40px;
+  color: #fff;
+  font-size:18px;
+  border-style: solid;
+  border-width: 3px;
 }
 
 input[type = submit]{
@@ -77,7 +92,7 @@ input[type = submit]{
   margin: auto;
   font-size: 15px;
   width: 10%;
-  border: 3px solid white;
+  
 }
 
 button{
@@ -92,6 +107,12 @@ button{
     color:rgb(22, 20, 20);
     cursor:pointer;
     font-size:20px;
+    background-color: #f7f2e1;
+    
+}
+
+a {
+  color: #fff
 }
 
 </style>
