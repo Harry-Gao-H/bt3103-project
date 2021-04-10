@@ -89,24 +89,31 @@
 
 </div></center>
     <br>
+	<center> <p class="message" v-show="showChart"> Charts Populated for {{selectedMealStaff}} on {{this.formattedDate}}</p> </center>
     </li>
     </ul>
     
 </div>
 
-<div v-show="showChart" class="chart">
+
+<div class="row">
+
+<div v-show="showChart" class="column">
   <p class="chartTitle">Bar Chart</p>
-  <br>
-  <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> 
-	<BarChart ref="barchart"></BarChart>  
+  <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
+<center>	<BarChart ref="barchart"></BarChart>  </center>
 </div> 
 
-<div v-show="showChart" class="chart">
+<div v-show="showChart" class="column">
   <p class="chartTitle">Pie Chart</p>
-  <br>
-  <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> 
-	<PieChart ref="piechart"></PieChart>  
+  <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
+<center>	<PieChart ref="piechart"></PieChart>  </center>
 </div> 
+
+</div>
+
+
+
 
 <!-- 
 <div v-show="showBarChart" class="chart">
@@ -306,20 +313,63 @@ button{
 	margin:20px auto;
     /*font-weight:100;*/
     line-height:25px;
-
 	border-radius: 25px;
 	border: 2px solid #73AD21;
 	padding: 20px;
 }
 
 .chartTitle {
-	font-size:40px;
+	font-size:35px;
 	font-weight:bold;
 }
 
-.chartDetails {
-	font-size:30px;
+.message {
+	font-size:35px;
 	font-weight:bold;
 }
 
+/* TESTING BELOW */
+#main{
+    display:table;
+}
+
+#chart{
+width:100%;
+    /*position:absolute;*/
+    text-align: center;
+    /*color:#fff;*/
+    /*margin-top:80px;*/
+	margin:20px auto;
+    /*font-weight:100;*/
+    line-height:25px;
+	border-radius: 25px;
+	border: 2px solid #73AD21;
+	padding: 20px;
+	
+	
+}
+
+/*TESTING 2*/
+.column {
+	width:50%;
+    /*position:absolute;*/
+    text-align: center;
+    /*color:#fff;*/
+    /*margin-top:80px;*/
+	margin:20px auto;
+    /*font-weight:100;*/
+    line-height:25px;
+	border-radius: 25px;
+	border: 2px solid #73AD21;
+	padding: 20px;
+	float:left;
+	
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 </style>
