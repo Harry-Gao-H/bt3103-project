@@ -1,4 +1,3 @@
-<!-- Week 8 - Activity 1 - Step 3 -->
 <template>
   <div id="main">
         <div id="chart">

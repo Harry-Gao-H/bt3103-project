@@ -1,10 +1,10 @@
-import {Bar} from 'vue-chartjs' 
+import {Pie} from 'vue-chartjs' 
 
 import database from '../../firebase.js'
 
 
 export default {
-  extends: Bar,
+  extends: Pie,
 //   props:{
 //     itemsProps: {
 //         type: Array

@@ -20,9 +20,9 @@
 			
 			
 			<br>
-			<input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showBarChart=true"> 
+			<input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showChart=true"> 
 			<label for="breakfast" class="radio">Breakfast</label> 
-			<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showBarChart=true"> 
+			<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showChart=true"> 
 			<label for="dinner" class="radio">Dinner</label>
 		
 		</div>
@@ -94,11 +94,18 @@
     
 </div>
 
-<div v-show="showBarChart" class="chart">
+<div v-show="showChart" class="chart">
   <p class="chartTitle">Bar Chart</p>
   <br>
   <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> 
 	<BarChart ref="barchart"></BarChart>  
+</div> 
+
+<div v-show="showChart" class="chart">
+  <p class="chartTitle">Pie Chart</p>
+  <br>
+  <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> 
+	<PieChart ref="piechart"></PieChart>  
 </div> 
 
 <!-- 
@@ -114,6 +121,7 @@
 
 <script>
 import BarChart from '@/components/charts/BarChart.vue'
+import PieChart from '@/components/charts/PieChart.vue'
 import database from "../firebase.js"
 import firebase from "firebase"
 
@@ -121,6 +129,7 @@ export default {
 
 	components: {
 		'BarChart':BarChart,
+		'PieChart':PieChart,
 
 	},
 	data() {
@@ -142,6 +151,7 @@ export default {
 			
 			this.formattedDate = newDate;
 			this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
+			this.$refs.piechart.updateData(newDate, this.selectedMealStaff)
 
 			this.cuisinesStaff=[]; // clear the cuisinesStaff
 
