@@ -8,10 +8,21 @@
 </div>
 
 <div id="content">
+  
+  <form>
   <div id="wrapper">
   <input id="dateSelect" type="date" v-model="selectedDate" v-on:change="fetch()" required>
-  <order-listing :orders="orders" />
+  
+  <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
+	<label for="breakfast" class="radio">Breakfast</label> 
+	<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMeal" v-on:change="fetch()"> 
+	<label for="dinner" class="radio">Dinner</label>
+  
   </div>
+  </form>
+
+  <order-listing :orders="orders" />
+  
 </div>
 
 </div>
@@ -29,7 +40,7 @@ export default {
   },
   
   data: () => ({
-    selectedMeal: "Breakfast",  
+    selectedMeal: "",  
     orders: [],
     selectedDate: "",
     modal: false,
@@ -110,17 +121,29 @@ export default {
   text-transform:uppercase;
 }
 
-input {
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  background-color: white;
+form {
+   background-color: white;
+   width: 100%;
 }
 
 #wrapper {
-  width: 100%;
-  background-color: white;
+  display: block;
+  margin-left: 40%;
 }
 
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: 0 auto;
+}
+
+.radio { 
+	display: inline;
+  margin-left: 20px;
+}
 
 </style>
