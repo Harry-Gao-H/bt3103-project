@@ -3,6 +3,7 @@ import {Pie} from 'vue-chartjs'
 import database from '../../firebase.js'
 
 
+
 export default {
   extends: Pie,
 //   props:{
@@ -17,27 +18,39 @@ export default {
             labels: [],
             datasets: [
                 {
-                label: "Orders", 
+                label: "Total orders for each cuisine", 
+                // backgroundColor: ['rgba(255, 99, 132, 0.2)',
+                // 'rgba(75, 192, 192, 0.2)',
+                // 'rgba(54, 162, 235, 0.2)',
+                // 'rgba(153, 102, 255, 0.2)',
+                // ],
                 backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+
+                // borderColor: ['rgba(255, 99, 132, 0.2)',
+                // 'rgba(75, 192, 192, 0.2)',
+                // 'rgba(54, 162, 235, 0.2)',
+                // 'rgba(153, 102, 255, 0.2)',
+                // ],
+                
                 data: []
               }
             ]
         },
         options: {
-            legend: { display: false },
+            legend: { display: true },
             title: {
               display: true,
-              text: 'Total Number of each cuisine'
+              text: 'Total orders for each cuisine'
             },
             responsive: true,
             maintainAspectRatio: false,
-            scales : {
-              yAxes: [{
-                  ticks : {
-                      beginAtZero : true 
-                  }
-              }]
-          }
+          //   scales : {
+          //     yAxes: [{
+          //         ticks : {
+          //             beginAtZero : true 
+          //         }
+          //     }]
+          // }
         }
     }
   },

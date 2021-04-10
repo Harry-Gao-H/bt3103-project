@@ -17,7 +17,7 @@ export default {
             labels: [],
             datasets: [
                 {
-                label: "Orders", 
+                label: "Total orders for each cuisine", 
                 backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
                 data: []
               }
@@ -27,7 +27,8 @@ export default {
             legend: { display: false },
             title: {
               display: true,
-              text: 'Total Number of each cuisine'
+              text: "Total orders for each cuisine",
+              size:16,
             },
             responsive: true,
             maintainAspectRatio: false,
@@ -90,28 +91,19 @@ export default {
             if (dish == "cuisine") {
               if(!this.datacollection.labels.includes(doc.data()["cuisine"])) {
                 this.datacollection.labels.push(doc.data()["cuisine"])
-  
-                //console.log(this.datacollection.labels)
-                 // this.datacollection.datasets[0].data.push(parseInt(doc.data()["quantity"])) 
+
                  this.datacollection.datasets[0].data.push(doc.data()["quantity"]) 
-                //console.log(this.datacollection.datasets[0].data)
                 
                } else {
                 var index = this.datacollection.labels.indexOf(doc.data()["cuisine"])
-                //console.log(index)
-                // this.datacollection.datasets[0].data[index] += (parseInt(doc.data()["quantity"]))
+
                 this.datacollection.datasets[0].data[index] += (doc.data()["quantity"])
-              }
-               
+               }   
             }
-
           }
-
         })
         this.renderChart(this.datacollection, this.options)
       })
-
-
     },
     
 

@@ -110,6 +110,12 @@
 <center>	<PieChart ref="piechart"></PieChart>  </center>
 </div> 
 
+<div v-show="showChart" class="column">
+  <p class="chartTitle">Grouped Bar Chart</p>
+  <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
+<center>	<GroupedBarChart ref="groupedbarchart"></GroupedBarChart>  </center>
+</div> 
+
 </div>
 
 
@@ -129,6 +135,8 @@
 <script>
 import BarChart from '@/components/charts/BarChart.vue'
 import PieChart from '@/components/charts/PieChart.vue'
+import GroupedBarChart from '@/components/charts/GroupedBarChart.vue'
+
 import database from "../firebase.js"
 import firebase from "firebase"
 
@@ -137,6 +145,7 @@ export default {
 	components: {
 		'BarChart':BarChart,
 		'PieChart':PieChart,
+		'GroupedBarChart': GroupedBarChart,
 
 	},
 	data() {
@@ -159,6 +168,7 @@ export default {
 			this.formattedDate = newDate;
 			this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
 			this.$refs.piechart.updateData(newDate, this.selectedMealStaff)
+			this.$refs.groupedbarchart.updateData(newDate, this.selectedMealStaff)
 
 			this.cuisinesStaff=[]; // clear the cuisinesStaff
 
@@ -177,13 +187,13 @@ export default {
 				this.fetchcuisinesStaff()
 			}
 		},
-		goToProductPage:function(cuisine) {
-			this.$router.push( {name: "Product", params: {"cuisine": cuisine, "meal": this.selectedMealStaff}} )
-		},
-		f:function() {
-			// for test
-			alert("testing")
-		},
+		// goToProductPage:function(cuisine) {
+		// 	this.$router.push( {name: "Product", params: {"cuisine": cuisine, "meal": this.selectedMealStaff}} )
+		// },
+		// f:function() {
+		// 	// for test
+		// 	alert("testing")
+		// },
 	logout() {
       firebase
         .auth()
