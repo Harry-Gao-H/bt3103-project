@@ -4,7 +4,7 @@
         <ul>
             <li><router-link to="/profile">Profile</router-link></li>
             <li><router-link to="/menu">Menu</router-link></li>
-            <li><router-link to="/">Logout</router-link></li>   
+            <li class="navbarstyle" v-on:click="logout()">Logout</li>  
         </ul>
     </div>
     <div class="content">
@@ -24,7 +24,7 @@
                 <td>{{item.cuisine}} <button v-on:click="remove(item)">remove</button></td>
                 <td>{{item.date}}</td>
                 <td>{{item.time}}</td>
-                <td><button v-on:click="decrease(item)">-</button> {{item.quantity}} <button v-on:click="increase(item)">+</button></td>
+                <td>{{item.quantity}}</td>
                 <td>{{getRemark(item.smallProportionOption)}} <br>{{item.remark}} </td>
             </tr>
 
@@ -32,7 +32,7 @@
             
         
         <p>Your Credit: {{credit}}   Credit needed: {{creditCount()}}</p>
-        <button v-on:click="sendOrders()" > Confirm Order</button>
+        <button v-on:click="sendOrders()"> Confirm Order</button>
     </div>
 </div>
 </template>
@@ -69,10 +69,30 @@ export default {
         })
     },
     methods: {
+        logout() {
+            firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                alert('Successfully logged out');
+                this.$router.push('/');
+                })
+                .catch(error => {
+                alert(error.message);
+                this.$router.push('/');
+            });
+        },
         remove:function(item){
-            for(let i = 0; i < this.items.length;i++) {
+            for(let i = 0; i < this.items.length; i++) {
                 if (item == this.items[i]) {
                     this.items.splice(i, 1)
+                    database.collection("UserInfo").doc(this.user.data.email).update({
+                        cart:this.items
+                    }).then(()=> {
+                        location.reload()
+                    })
+
+
                 }
             }
         },
@@ -90,13 +110,6 @@ export default {
             alert("Your order has been confirmed!")
         },
 
-        increase:function(item) {
-            item.splice(2,1,item[2]+1)
-        },
-        decrease:function(item) {
-            if (item[2] > 1)
-            item.splice(2,1,item[2]-1)
-        },
 
         getRemark:function(smallerOption) {
             if (smallerOption) {

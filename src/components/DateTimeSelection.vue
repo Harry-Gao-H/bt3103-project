@@ -158,7 +158,7 @@ export default {
 		var yyyy = tomorrow.getFullYear();
 		if(dd<10){
 				dd='0'+dd
-			} 
+		}
 		if(mm<10){
 			mm='0'+mm
 		} 
@@ -167,9 +167,9 @@ export default {
 		//get the date of one week after
 		var oneWeekAfter = new Date(today)
 		oneWeekAfter.setDate(oneWeekAfter.getDate() + 7)
-		var dd = oneWeekAfter.getDate();
-		var mm = oneWeekAfter.getMonth()+1; //January is 0!
-		var yyyy = oneWeekAfter.getFullYear();
+		dd = oneWeekAfter.getDate();
+		mm = oneWeekAfter.getMonth() + 1; //January is 0!
+		yyyy = oneWeekAfter.getFullYear();
 		if(dd<10){
 				dd='0'+dd
 		} 

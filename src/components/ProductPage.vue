@@ -59,9 +59,7 @@
             <textarea id="remark" name="remark" rows="4" cols="50" v-model.lazy.trim="remark"></textarea> 
             {{remark}}
 
-
             <br>
-            
             <br>
 
             <p> Your credit: {{userInfo.credit}} </p>
@@ -145,6 +143,7 @@ export default {
 
 
 <style scoped>
+
 .flex-col {
   display: flex;
   justify-content: flex-start;
@@ -167,7 +166,8 @@ export default {
     text-align: left;
     font-size: 90%;
     font-weight: bold;
-    padding: 0.9%
+    padding: 0.9%;
+    background: cornsilk;
 }
 
 #addCart {
@@ -179,6 +179,7 @@ export default {
 
 .center {
   margin: auto;
+  text-align: center;
   width: 50%;
   border: 3px solid green;
   padding: 10px;
