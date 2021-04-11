@@ -2,6 +2,9 @@ import {Pie} from 'vue-chartjs'
 
 import database from '../../firebase.js'
 
+//import "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+//import "https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"
+
 
 
 export default {
@@ -44,6 +47,13 @@ export default {
             },
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+              labels: {
+                render: 'percentage',
+                precision: 2
+                
+              }
+            }
           //   scales : {
           //     yAxes: [{
           //         ticks : {

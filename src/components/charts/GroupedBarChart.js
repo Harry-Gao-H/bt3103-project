@@ -2,14 +2,17 @@ import {Bar} from 'vue-chartjs'
 
 import database from '../../firebase.js'
 //import "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"
+//import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
+
 
 export default {
   extends: Bar,
-//   props:{
-//     itemsProps: {
-//         type: Array
-//     } 
-// },
+
+  components: {
+		//ChartJSPluginDataLabels,
+
+	},
+
   data: function () {
     return {
         datacollection: {
@@ -38,7 +41,7 @@ export default {
             ]
         },
         options: {
-            legend: { display: false },
+            legend: { display: true },
             title: {
               display: false,
               text: 'Total Number of each cuisine'
@@ -69,12 +72,24 @@ export default {
               //stacked:true
            }],
            xAxes: [{
-                    //stacked: true,
+                    // stacked: true,
                     ticks: {
                       beginAtZero: true
                     }
                   }]
       },
+
+      tooltips: {
+        mode: 'index',
+      },
+
+      plugins: {
+        labels: {
+          render: 'percentage',
+          
+        }
+      }
+
       }
     }
   },
