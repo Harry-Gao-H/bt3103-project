@@ -6,7 +6,7 @@
         <div id = "profile">
             <ul>
             <li> 
-              <center><DateTimeSelection v-bind:itemsList="itemsList"></DateTimeSelection></center>
+              <center><DateTimeSelection></DateTimeSelection></center>
               <br>
             </li>
             </ul>
@@ -23,12 +23,6 @@ import DateTimeSelection from './DateTimeSelection.vue'
 
 
 export default {
-  props:{
-      itemsList:{
-          type:Array
-      }
-  },
-
   components: {
     'DateTimeSelection':DateTimeSelection,
   },
