@@ -14,10 +14,7 @@
             <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" width="100" height="100">
 
             <div class="name">
-                {{userInfo}}
-                {{userInfo.name}}
-                
-                
+                {{userInfo.name}}  
             </div>
             <div class="title">
                 Student
@@ -27,7 +24,6 @@
 
     <div class = "main">
         <h3> PROFILE </h3>
-        <button v:on-click="refresh()"> refresh </button>
         <div class = "card">
             
         <table>
