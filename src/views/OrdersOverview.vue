@@ -7,7 +7,7 @@
   </ul>
 </div>
 
-<div id="content">
+<div>
   
   <form>
   <div id="wrapper">
@@ -43,7 +43,6 @@ export default {
     selectedMeal: "",  
     orders: [],
     selectedDate: "",
-    modal: false,
   }),
 
   methods: {
