@@ -2,7 +2,7 @@
   <div id="main">
         <div id="chart">
             <!--<bar-chart v-bind:itemsProps="itemsProps"></bar-chart>-->
-            <button v-on:click="clearData()"> Clear Data </button> 
+            <!-- <button v-on:click="clearData()"> Clear Data </button> -->
             <!--<button v-on:click="updateData()"> Update Data </button> -->
             <grouped-bar-chart ref="chart"></grouped-bar-chart>
 

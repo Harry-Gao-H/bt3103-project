@@ -1,7 +1,7 @@
 import {Bar} from 'vue-chartjs' 
 
 import database from '../../firebase.js'
-
+//import "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"
 
 export default {
   extends: Bar,
@@ -18,19 +18,19 @@ export default {
             datasets: [
               {
                 label: "Total Orders", 
-                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                backgroundColor: ["#25668e", "#634171","#2c8773","#873f2c"],
                 data: [],
-                hidden:true,
-              },
+                //hidden:true,
+              }, //35, 80
 
               {
                 label: "Total orders with smaller portion", 
-                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#c15b3e","#c45850"],
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#c15b3e"],
                 data: [0,0,0,0]
               },
               {
                 label: "Total orders without smaller portion", 
-                backgroundColor: ['#aed3ea','#ddcee3','#b2e6db','#e8c3b9',
+                backgroundColor: ['#aed3ea','#d2beda','#b2e6db','#e8c3b9',
                 ],
                 data: [0,0,0,0]
               },
@@ -63,17 +63,18 @@ export default {
         scales:{
           yAxes:[{
               ticks:{
-                  min:0
+                  min:0,
+                  precision:0
               },
-              stacked:true
+              //stacked:true
            }],
            xAxes: [{
-                    stacked: true,
+                    //stacked: true,
                     ticks: {
                       beginAtZero: true
                     }
                   }]
-      }
+      },
       }
     }
   },

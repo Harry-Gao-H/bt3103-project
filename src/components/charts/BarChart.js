@@ -18,7 +18,7 @@ export default {
             datasets: [
                 {
                 label: "Total orders", 
-                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#c15b3e"],
                 data: []
               }
             ]
@@ -35,7 +35,8 @@ export default {
             scales : {
               yAxes: [{
                   ticks : {
-                      beginAtZero : true 
+                      beginAtZero : true, 
+                      precision: 0
                   }
               }]
           }

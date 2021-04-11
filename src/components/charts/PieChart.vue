@@ -2,7 +2,7 @@
   <div id="main">
         <div id="chart">
             <!--<bar-chart v-bind:itemsProps="itemsProps"></bar-chart>-->
-            <button v-on:click="clearData()"> Clear Data </button> 
+            <!-- <button v-on:click="clearData()"> Clear Data </button> -->
             <!--<button v-on:click="updateData()"> Update Data </button> -->
             <pie-chart ref="chart"></pie-chart>
 
@@ -40,7 +40,15 @@ export default {
 </script>
 
 <style scoped>
-
+#chart{
+width:100%;
+    /*position:absolute;*/
+    text-align: center;
+    /*color:#fff;*/
+    /*margin-top:80px;*/
+	margin:12px auto;
+    /*font-weight:100;*/
+}
 
 button{
     width:200px;

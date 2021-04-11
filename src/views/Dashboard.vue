@@ -98,30 +98,32 @@
 
 <div class="row">
 
+<!--
 <div v-show="showChart" class="column">
-  <p class="chartTitle">Bar Chart</p>
   <br>
-  <h3> Total orders for each cuisine </h3>
-  <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
+  <h3> Total orders for each cuisine </h3> 
+  <br>
 <center>	<BarChart ref="barchart"></BarChart>  </center>
+</div> 
+-->
+
+<div v-show="showChart" class="column">
+  <br>
+  <h3> Total orders along with/without smaller portions <br> for each cuisine</h3>
+  <br>
+  <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
+<center>	<GroupedBarChart ref="groupedbarchart"></GroupedBarChart>  </center>
 </div> 
 
 <div v-show="showChart" class="column">
-  <p class="chartTitle">Pie Chart</p>
   <br>
 <h3> Total orders for each cuisine </h3>
-
+<br>
   <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
 <center>	<PieChart ref="piechart"></PieChart>  </center>
 </div> 
 
-<div v-show="showChart" class="column">
-  <p class="chartTitle">Grouped Bar Chart</p>
-  <br>
-  <h3> Total orders with/without smaller portions for each cuisine </h3>
-  <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
-<center>	<GroupedBarChart ref="groupedbarchart"></GroupedBarChart>  </center>
-</div> 
+
 
 </div>
 
@@ -140,7 +142,7 @@
 </template>
 
 <script>
-import BarChart from '@/components/charts/BarChart.vue'
+//import BarChart from '@/components/charts/BarChart.vue'
 import PieChart from '@/components/charts/PieChart.vue'
 import GroupedBarChart from '@/components/charts/GroupedBarChart.vue'
 
@@ -150,7 +152,7 @@ import firebase from "firebase"
 export default {
 
 	components: {
-		'BarChart':BarChart,
+		//'BarChart':BarChart,
 		'PieChart':PieChart,
 		'GroupedBarChart': GroupedBarChart,
 
@@ -173,7 +175,7 @@ export default {
 			var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
 			
 			this.formattedDate = newDate;
-			this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
+			//this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
 			this.$refs.piechart.updateData(newDate, this.selectedMealStaff)
 			this.$refs.groupedbarchart.updateData(newDate, this.selectedMealStaff)
 
@@ -362,13 +364,11 @@ width:100%;
 	border-radius: 25px;
 	border: 2px solid #73AD21;
 	padding: 20px;
-	
-	
 }
 
 /*TESTING 2*/
 .column {
-	width:33%;
+	width:50%;
     /*position:absolute;*/
     text-align: center;
     /*color:#fff;*/

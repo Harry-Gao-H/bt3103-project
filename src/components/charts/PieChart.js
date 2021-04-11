@@ -24,7 +24,7 @@ export default {
                 // 'rgba(54, 162, 235, 0.2)',
                 // 'rgba(153, 102, 255, 0.2)',
                 // ],
-                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#c15b3e"],
 
                 // borderColor: ['rgba(255, 99, 132, 0.2)',
                 // 'rgba(75, 192, 192, 0.2)',
