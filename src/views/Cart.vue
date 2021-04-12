@@ -10,7 +10,7 @@
     <div class="content">
     
         <h1>Your Cart</h1>
-        {{items}}    
+        <!--{{items}}-->    
         <table>
             <tr>
                 <th>Cuisine</th>
@@ -142,21 +142,19 @@ export default {
                     var updatedHistory = []
                     docRef.get().then(
                         snapshot => {
-                            updatedHistory.append(snapshot.data().history)
+                            if (typeof(snapshot.data().history) !== 'undefined') {
+                                updatedHistory = snapshot.data().history
+                            }
                             console.log(updatedHistory)
                         }
                         
-                    )
-                    if (history == null) {
+                    ).then( () => {
                         docRef.update({
-                            history: this.items
+                            history: updatedHistory.concat(this.items)
                         })
-                    } else {
-                        updatedHistory.append(this.items)
-                        docRef.update({
-                            history: updatedHistory
-                        })
-                    }
+                    }).then (() => {
+                        location.reload()
+                    })
                 })
 
                 
