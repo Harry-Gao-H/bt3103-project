@@ -99,10 +99,11 @@ export default {
 .login-content {
     min-height: 500px;
     text-align: center;
-    width: 20%;
+    max-width: 100%;
     background: #fff;
     border-radius: 2px;
     border: 1px solid #e9e9e9;
+    align-items: center;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -298,12 +299,16 @@ input[type=radio]:nth-of-type(2):checked ~ .pages .page:nth-of-type(2) .input:nt
    }
 }
 
+/*
+
 #login-page{
   background-color: white;
   width: 100%;
   height: 100vh;
   padding-top: 20px;
 }
+
+*/
 
 
 
