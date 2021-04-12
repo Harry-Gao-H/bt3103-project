@@ -70,6 +70,8 @@ export default {
                         this.items.sort((a,b) => (a.date>b.date) ? 1 : ((b.time > a.time) ? -1:0))
                     })
             }
+
+            //console.log(this.items)
             
         })
     },
@@ -119,7 +121,6 @@ export default {
 				5 : "16-4-2021",
 				6 : "17-4-2021",
 			} 
-            
             console.log(this.items)
             var days = []
             var meals = []
@@ -130,7 +131,8 @@ export default {
                 days[i] = dayToDate[day];
                 meals[i] = item.meal
             }
-            
+            this.updateDatabase(0)
+            /*
             for (let i = 0; i < this.items.length; i++) {
                 //var item = this.items[i]
                 console.log(item)
@@ -155,15 +157,56 @@ export default {
                         })
                     }
                 })
-
             }
+            */
             
 
 			
-            this.items = []
+            //this.items = []
             this.credit -= this.creditCount()
             alert("Your order has been confirmed!")
         },
+
+        updateDatabase:function(i) {
+            //i stands for index
+            console.log(i)
+            
+            if (i >= this.items.length) {
+                //delete the item from user cart, and add them to history
+                return
+            }
+            var item = this.items[i]
+            var dayToDate = {
+				0 : "18-4-2021",
+				1 : "19-4-2021",
+				2 : "20-4-2021",
+				3 : "14-4-2021",
+				4 : "15-4-2021",
+				5 : "16-4-2021",
+				6 : "17-4-2021",
+			} 
+            var day = new Date(item.date).getDay()
+            var docRef = database.collection("Order").doc(dayToDate[day]).collection(item.meal).doc(this.userId)
+            
+
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    console.log("push to existing")
+                    var newOrders = doc.data().orders
+                    newOrders.push(item)
+                    console.log(newOrders)
+                    docRef.update({ orders : newOrders}).then(() => this.updateDatabase(i+1))
+                } else {
+                    console.log("push to new");
+                    console.log({ "orders": [item] })
+
+                    docRef.set({
+                        "orders": [item]
+                    }).then(() => this.updateDatabase(i+1))
+                }
+            })
+        },
+
         getCuisine:function(cuisine) {
             var string =  cuisine[1].dishes.toString()
             return cuisine[0] + " : " + string.toLowerCase()
