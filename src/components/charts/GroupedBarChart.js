@@ -41,7 +41,7 @@ export default {
             ]
         },
         options: {
-            legend: { display: true },
+            legend: { display: false },
             title: {
               display: false,
               text: 'Total Number of each cuisine'
@@ -107,55 +107,6 @@ export default {
       this.renderChart(this.datacollection, this.options)
     },
 
-
-    // updateData:function(date, meal) {
-    //   this.datacollection.labels = []
-    //   this.datacollection.datasets[0].data = []
-    //   this.datacollection.datasets[1].data = []
-
-    //   database.collection('Order_test').doc(date)
-    //   .collection(meal).get().then(snapshot => {
-    //     snapshot.docs.forEach(doc => { 
-
-    //       for (var dish in doc.data()) {
-    //         if (dish == "cuisine") {
-    //           if(!this.datacollection.labels.includes(doc.data()["cuisine"])) {
-    //             this.datacollection.labels.push(doc.data()["cuisine"])
-    //            }
-    //         }
-    //       }
-    //     })
-    //   })
-
-    //   database.collection('Order_test').doc(date)
-    //   .collection(meal).get().then(snapshot => {
-    //     snapshot.docs.forEach(doc => { 
-    //       // console.log(this.datacollection.labels)
-
-    //       for (var item in doc.data()) {
-    //         if (item == "smallerPortion") {
-    //           if (doc.data()["smallerPortion"]) {
-    //             console.log(doc.data())
-    //             console.log(doc.data()["quantity"])
-    //             var index = this.datacollection.labels.indexOf(doc.data()["cuisine"])
-    //             this.datacollection.datasets[0].data[index]+= (doc.data()["quantity"])
-
-
-    //           } else if (!doc.data()["smallerPortion"]) {
-    //             var index2 = this.datacollection.labels.indexOf(doc.data()["cuisine"])
-
-    //             this.datacollection.datasets[1].data[index2]+= (doc.data()["quantity"])
-    //             // console.log(this.datacollection.datasets[1].data)
-
-    //           }
-              
-    //         }
-    //       }
-    //     })
-    //     this.renderChart(this.datacollection, this.options)
-    //   })
-    // },
-
                
     updateData:function(date, meal) {
       this.datacollection.labels = []
@@ -163,60 +114,92 @@ export default {
       this.datacollection.datasets[1].data = [0,0,0,0]
       this.datacollection.datasets[2].data = [0,0,0,0]
 
-      database.collection('Order_test').doc(date)
+      database.collection('Order').doc(date)
       .collection(meal).get().then(snapshot => {
         snapshot.docs.forEach(doc => { 
 
-          for (var dish in doc.data()) {
-            if (dish == "cuisine") {
-              if(!this.datacollection.labels.includes(doc.data()["cuisine"])) {
-                this.datacollection.labels.push(doc.data()["cuisine"])
+          for (var index in doc.data().orders) {
 
-                 this.datacollection.datasets[0].data.push(doc.data()["quantity"]) 
-                
-               } else {
-                var index = this.datacollection.labels.indexOf(doc.data()["cuisine"])
+            for (var order in doc.data().orders[index]) { 
 
-                this.datacollection.datasets[0].data[index] += (doc.data()["quantity"])
-               }   
-            }
-          }
-        })
-      })
+              if (order == "cuisine") {
 
-      database.collection('Order_test').doc(date)
-      .collection(meal).get().then(snapshot => {
-        snapshot.docs.forEach(doc => { 
+                for (var i in doc.data().orders[index][order]) {
 
-          for (var item in doc.data()) {
-            // console.log(item+"hi")
-            if (item == "smallerPortion") {
-              if (doc.data()["smallerPortion"]) {
-
-                if(this.datacollection.labels.includes(doc.data()["cuisine"])) {
-  
-                  var index = this.datacollection.labels.indexOf(doc.data()["cuisine"])
-
-                  // this.datacollection.datasets[1].data.splice(index, 0, doc.data()["quantity"])
-                  this.datacollection.datasets[1].data[index]+=(doc.data()["quantity"]) 
-                  console.log(this.datacollection.datasets[1].data)
-                 } 
-              } 
-              if (!doc.data()["smallerPortion"]) {
-                 if(this.datacollection.labels.includes(doc.data()["cuisine"])) {
-  
-                  var index2 = this.datacollection.labels.indexOf(doc.data()["cuisine"])
-
-                  // this.datacollection.datasets[1].data.splice(index, 0, doc.data()["quantity"])
-                  this.datacollection.datasets[2].data[index2]+=(doc.data()["quantity"]) 
-                  console.log(this.datacollection.datasets[2].data)
-                 } 
+                  if (typeof doc.data().orders[index][order][i] == 'string') {
+                    if (!this.datacollection.labels.includes(doc.data().orders[index][order][i])) {
+                      this.datacollection.labels.push(doc.data().orders[index][order][i])
+                      this.datacollection.datasets[0].data.push(doc.data().orders[index]["quantity"])
+                    } else {
+                      var indexOfCuisine = this.datacollection.labels.indexOf(doc.data().orders[index][order][i]) 
+                      this.datacollection.datasets[0].data[indexOfCuisine] += (doc.data().orders[index]["quantity"])
+                      }
+                    }
+                }
+              }
               }
             }
-          }
-        })
-        this.renderChart(this.datacollection, this.options)
+          })
       })
+
+
+      database.collection('Order').doc(date)
+      .collection(meal).get().then(snapshot => {
+        snapshot.docs.forEach(doc => { 
+
+          for (var index in doc.data().orders) {
+
+            // console.log(doc.data().orders[index])
+
+            for (var order in doc.data().orders[index]) { 
+              // console.log(order)
+
+              if (order == "small") {
+
+
+
+                if (doc.data().orders[index]["small"]) {
+                  // console.log(doc.data().orders[index]["small"])
+                  // console.log(doc.data().orders[index])
+
+                  for (var i in doc.data().orders[index]) {
+                    if (i == "cuisine") {
+                      // console.log(doc.data().orders[index][i][0])
+                      if (this.datacollection.labels.includes(doc.data().orders[index][i][0])) {
+                        var index2 = this.datacollection.labels.indexOf(doc.data().orders[index][i][0])
+                        console.log(index2)
+                        // console.log(doc.data().orders[index]["quantity"])
+                        this.datacollection.datasets[1].data[index2] += (doc.data().orders[index]["quantity"])
+                        // console.log(this.datacollection.datasets[1].data)
+
+                      }
+                    }
+                  }
+                }
+                  if (!doc.data().orders[index]["small"]) {
+                    for (var j in doc.data().orders[index]) {
+                      if (j=="cuisine") {
+                        if (this.datacollection.labels.includes(doc.data().orders[index][j][0])) {
+                          var index3 = this.datacollection.labels.indexOf(doc.data().orders[index][j][0])
+                          this.datacollection.datasets[2].data[index3] += doc.data().orders[index]["quantity"]
+                          console.log(this.datacollection.datasets[2].data)
+                        }
+                      }
+                    }
+                  }
+
+              }
+             
+
+              }
+            }
+          })
+          this.renderChart(this.datacollection, this.options)
+
+      })
+
+
+
 
 
     },
