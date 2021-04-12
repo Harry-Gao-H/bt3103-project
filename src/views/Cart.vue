@@ -112,59 +112,17 @@ export default {
             return counter;
         },
         sendOrders:function(){
-            var dayToDate = {
-				0 : "18-4-2021",
-				1 : "19-4-2021",
-				2 : "20-4-2021",
-				3 : "14-4-2021",
-				4 : "15-4-2021",
-				5 : "16-4-2021",
-				6 : "17-4-2021",
-			} 
-            console.log(this.items)
-            var days = []
-            var meals = []
-            for (let i = 0; i < this.items.length; i++) {
-                var item = this.items[i]
-                var day = new Date(item.date).getDay();
-
-                days[i] = dayToDate[day];
-                meals[i] = item.meal
+            //disallow uploading the orders if credit not enough
+            if (this.credit < this.creditCount()) {
+                alert("Your credit is not enough")
+                return 
+            } else if (this.items.length == 0) {
+                alert("Please add cuisine before confirming order")
+                return 
+            } else {
+                this.updateDatabase(0)
+                alert("Your order has been confirmed!")
             }
-            this.updateDatabase(0)
-            /*
-            for (let i = 0; i < this.items.length; i++) {
-                //var item = this.items[i]
-                console.log(item)
-                //var day = new Date(item.date).getDay();
-                
-                var docRef = database.collection("Order").doc(days[i]).collection(meals[i]).doc(this.userId)
-                docRef.get().then((doc) => {
-                    console.log(days[i])
-                    console.log(meals[i])
-                    if (doc.exists) {
-                        console.log("push to existing")
-                        var newOrders = doc.data().orders
-                        newOrders.push(this.items[i])
-                        console.log(newOrders)
-                        docRef.update({ orders : newOrders})
-                    } else {
-                        console.log("push to new");
-                        console.log({ "orders": [this.items[i]] })
-
-                        docRef.set({
-                            "orders": [this.items[i]]
-                        })
-                    }
-                })
-            }
-            */
-            
-
-			
-            //this.items = []
-            this.credit -= this.creditCount()
-            alert("Your order has been confirmed!")
         },
 
         updateDatabase:function(i) {
@@ -172,7 +130,39 @@ export default {
             console.log(i)
             
             if (i >= this.items.length) {
-                //delete the item from user cart, and add them to history
+                //reduce the credit from user account
+                database.collection("UserInfo").doc(this.user.data.email).update({
+                    credit : this.credit - this.creditCount()
+                }).then(() => {
+                    //delete the item from user cart, and add them to history
+                    database.collection("UserInfo").doc(this.user.data.email).update({
+                        cart : []
+                    })
+                    var docRef = database.collection("UserInfo").doc(this.user.data.email)
+                    var updatedHistory = []
+                    docRef.get().then(
+                        snapshot => {
+                            updatedHistory.append(snapshot.data().history)
+                            console.log(updatedHistory)
+                        }
+                        
+                    )
+                    if (history == null) {
+                        docRef.update({
+                            history: this.items
+                        })
+                    } else {
+                        updatedHistory.append(this.items)
+                        docRef.update({
+                            history: updatedHistory
+                        })
+                    }
+                })
+
+                
+                
+
+
                 return
             }
             var item = this.items[i]
