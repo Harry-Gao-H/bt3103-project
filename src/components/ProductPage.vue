@@ -125,7 +125,8 @@ export default {
 
             alert("This order is successfully added to your cart")
             var thiscart = this.userInfo.cart
-            thiscart.push({cuisine: this.cuisine, quantity: this.quantity, small:this.smallProportionOption, time:this.time, date: this.selectedDate, remark:this.remark})
+            thiscart.push({cuisine: this.cuisine, quantity: this.quantity, small:this.smallProportionOption,
+                                 time:this.time, date: this.selectedDate, remark:this.remark, meal:this.meal})
             database.collection("UserInfo").doc(this.user.data.email).update({
                 cart:thiscart
             })

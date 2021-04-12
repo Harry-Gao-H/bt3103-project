@@ -21,11 +21,12 @@
             </tr>
                 
             <tr v-for="item in items" v-bind:key="item[0]">
-                <td>{{item.cuisine}} <button v-on:click="remove(item)">remove</button></td>
+                <td>{{getCuisine(item.cuisine)}} </td>
                 <td>{{item.date}}</td>
                 <td>{{item.time}}</td>
                 <td>{{item.quantity}}</td>
-                <td>{{getRemark(item.smallProportionOption)}} <br>{{item.remark}} </td>
+                <td>{{getRemark(item.small)}} <br><br>{{item.remark}} </td>
+                <td><button v-on:click="remove(item)">Remove</button></td>
             </tr>
 
         </table>
@@ -48,8 +49,9 @@ export default {
     data() {
         return {
             items: [],
-            creditCounter : 0,
-            credit: 20,
+            //creditCounter : 0,
+            credit: 0,
+            userId:"",
             //userInfo:{}
         }
     },
@@ -62,7 +64,10 @@ export default {
                     .then(snapshot=> {
                         //this.userInfo = snapshot.data()
                         //this.userInfo.email = user.email
+                        this.credit = snapshot.data().credit
+                        this.userId = user.email.split("@")[0]
                         this.items = snapshot.data().cart
+                        this.items.sort((a,b) => (a.date>b.date) ? 1 : ((b.time > a.time) ? -1:0))
                     })
             }
             
@@ -105,12 +110,64 @@ export default {
             return counter;
         },
         sendOrders:function(){
+            var dayToDate = {
+				0 : "18-4-2021",
+				1 : "19-4-2021",
+				2 : "20-4-2021",
+				3 : "14-4-2021",
+				4 : "15-4-2021",
+				5 : "16-4-2021",
+				6 : "17-4-2021",
+			} 
+            
+            console.log(this.items)
+            var days = []
+            var meals = []
+            for (let i = 0; i < this.items.length; i++) {
+                var item = this.items[i]
+                var day = new Date(item.date).getDay();
+
+                days[i] = dayToDate[day];
+                meals[i] = item.meal
+            }
+            
+            for (let i = 0; i < this.items.length; i++) {
+                //var item = this.items[i]
+                console.log(item)
+                //var day = new Date(item.date).getDay();
+                
+                var docRef = database.collection("Order").doc(days[i]).collection(meals[i]).doc(this.userId)
+                docRef.get().then((doc) => {
+                    console.log(days[i])
+                    console.log(meals[i])
+                    if (doc.exists) {
+                        console.log("push to existing")
+                        var newOrders = doc.data().orders
+                        newOrders.push(this.items[i])
+                        console.log(newOrders)
+                        docRef.update({ orders : newOrders})
+                    } else {
+                        console.log("push to new");
+                        console.log({ "orders": [this.items[i]] })
+
+                        docRef.set({
+                            "orders": [this.items[i]]
+                        })
+                    }
+                })
+
+            }
+            
+
+			
             this.items = []
-            this.credit -= this.creditCounter
+            this.credit -= this.creditCount()
             alert("Your order has been confirmed!")
         },
-
-
+        getCuisine:function(cuisine) {
+            var string =  cuisine[1].dishes.toString()
+            return cuisine[0] + " : " + string.toLowerCase()
+        },
         getRemark:function(smallerOption) {
             if (smallerOption) {
                 return "Want a smaller proportion"

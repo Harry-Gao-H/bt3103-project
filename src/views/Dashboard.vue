@@ -199,10 +199,6 @@ export default {
 		// goToProductPage:function(cuisine) {
 		// 	this.$router.push( {name: "Product", params: {"cuisine": cuisine, "meal": this.selectedMealStaff}} )
 		// },
-		// f:function() {
-		// 	// for test
-		// 	alert("testing")
-		// },
 	logout() {
       firebase
         .auth()
