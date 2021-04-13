@@ -233,15 +233,16 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
- .order-cart {
+  .order-cart {
   width: 70%;
-  height: 100%;
+  height: 60vh;
   margin: 25px 0 auto 300px;
   background: #FFFFFF;
   box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
   border-radius: 6px;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .title {
@@ -256,16 +257,14 @@ body {
 .credits{
     background-color: white;
     text-align:center;
-    height: 30px;
-    padding-top: 8px;
+    padding-top: 5px;
 }
 
 .options {
     border: 1px solid lightgrey;
     text-align: center;
     background-color:white;
-    height: 40px;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 .orders {
