@@ -104,12 +104,10 @@ p {
 .left {
   left: 0;
   background-color: lightslategray;
-  
-  
 }
 
 .right {
-  right: 0;
+  right: -20px;
   background-image:linear-gradient(to bottom,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)), url(../assets/styles/background2.jpg);
   background-size: cover;
   
