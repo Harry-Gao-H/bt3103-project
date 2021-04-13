@@ -94,6 +94,11 @@ export default {
         password:"",
       }
   },
+  /*
+  created() {
+    console.log(firebase.auth().currentUser)
+  },
+  */
   methods: {
     submit:function() {
       this.$router.push("/menu")
