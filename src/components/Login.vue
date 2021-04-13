@@ -50,6 +50,16 @@
  
 </template>
 
+<script>
+// @ is an alias to /src
+import firebase from "firebase"
+
+export default {
+  create() {
+    console.log(firebase.auth().currentUser)
+  }
+}
+</script>
 
 
 

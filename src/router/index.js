@@ -83,11 +83,16 @@ const router = new VueRouter({
 router.beforeEach(( to,from,next ) => {
   if (to.meta.requiresAuth) {
     
-    if (firebase.auth().currentUser == null && from ) {
-      alert("Please login first")
-      return next({path: '/' })
+    firebase.auth().onAuthStateChanged( (user) => {
+      if (user) {
+        
 
-    } 
+        return next()
+      } else {
+        alert("Please login first")
+        return next({path: '/' })
+      }
+    })
   }
 
   return next()
