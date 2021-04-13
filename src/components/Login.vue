@@ -12,13 +12,16 @@
       <div class = "centered-left">
         <img src="../assets/foodchop.png" class="logo-login">
         <br> 
-        <div class = "staff">
-          <button class = "button" > <router-link to="/login-staff">Staff</router-link> </button>
-          </div>
 
         <div class = "student">
             <button class = "button"> <router-link to="/login-student">Student</router-link> </button>
             </div>
+            
+        <div class = "staff">
+          <button class = "button" > <router-link to="/login-staff">Staff</router-link> </button>
+          </div>
+
+        
         
     </div>
 

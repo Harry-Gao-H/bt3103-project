@@ -25,8 +25,10 @@
 }
 
 h1 {
-  font-family: Oswald, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Raleway',sans-serif;
   font-size:50px;
+  text-shadow: 2px 2px lightslategray;
+  font-weight: 700;
   
 }
 
