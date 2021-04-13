@@ -46,7 +46,7 @@
                  {{getRemark(item.small)}} <br>{{item.remark}}
             </div>
 
-            <button v-on:click="remove(item)">Remove</button>
+            <button id = "remove" v-on:click="remove(item)">Remove</button>
 
             </div>
         <div class = "credits">
@@ -318,13 +318,18 @@ body {
   padding: 20px 30px;
   height: 120px;
   display: flex;
+  border: 1px solid lightgray;
 }
-
 
 .buttons {
   position: relative;
   padding-top: 30px;
   margin-right: 60px;
+}
+
+#remove{
+    position: relative;
+    padding-top: 0px;
 }
 
 .cuisine {
