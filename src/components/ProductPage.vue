@@ -160,22 +160,38 @@ export default {
   font-size: 1.4em;
 }
 
+/* Button Design */
+
 #back {
     position: absolute;
     left: 10%;
-    top: 30px;
-    text-align: left;
-    font-size: 90%;
+    top: 17%;
+    width: 8%;
+    text-align: center;
+    font-size: 100%;
+    line-height: 10px;
     font-weight: bold;
     padding: 0.9%;
+    border-radius:10px;
+    border:2px solid hsl(174, 100%, 29%);
+    cursor:pointer;
     background: cornsilk;
 }
 
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
 #addCart {
-    margin-top: 8%;
+    margin-top: 5%;
     padding: 3%;
     font-weight: bold;
+    cursor:pointer;
+    border:2px solid hsl(174, 100%, 29%);
+    border-radius:10px;
     font-size: 18px;
+    background: cornsilk;
+    color: black;
 }
 
 .center {
