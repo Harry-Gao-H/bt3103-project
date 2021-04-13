@@ -5,7 +5,7 @@
             <li><router-link to="/profile">Profile</router-link></li>
             <li><router-link to="/menu">Menu</router-link></li>
             <li><router-link to="/history">History</router-link></li>
-            <li class="navbarstyle" v-on:click="logout()">Logout</li>  
+            <li class="logout-btn" v-on:click="logout()">Logout</li>  
         </ul>
     </div>
     
@@ -373,4 +373,30 @@ body {
     text-align: center;
     font-weight: bold;
 }
+
+/* Logout button CSS */
+.logout-btn{
+    list-style:none;
+    display:inline-block;
+    margin:0 20px;
+    position:relative;
+    text-decoration:none;
+    color:#fff;
+    text-transform:uppercase;
+}
+.logout-btn::after{
+    content:'';
+    height:3px;
+    width:0;
+    background:lightslategray;
+    position:absolute;
+    left:0;
+    bottom:-10px;
+    transition:0.5s;
+}
+.logout-btn:hover::after{
+    width:100%;
+}
+
+
 </style>
