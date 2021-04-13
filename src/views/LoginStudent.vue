@@ -1,38 +1,38 @@
 <template>
 
-  <div id = "login-page">
+  <div id = "loginpage">
     <head>
       <title> This is the Student Login Page </title>
     </head>
 
     <body>
-    
-    <div class = "login-content">
-      <input type="radio" name="tab" id="signin" checked="checked"/>
-      <input type="radio" name="tab" id="register"/>
 
-      <div class = "pages">
 
-        <!-- Student login page -->
-        <div class="page">
-          <form v-on:submit.prevent="login()">
-          <img src="../assets/foodchop.png" class="logo">
+    <div class = "split left">
+    <input type="radio" name="tab" id="signin" checked="checked"/>
+    <input type="radio" name="tab" id="register"/>
+
+      <div class = "centered-left">
+          
+        <form v-on:submit.prevent="login()">
+          <div class="loadingio-spinner-eclipse-uoxpvuq5zt"><div class="ldio-z1piwl5e5pi">
+              <div></div>
+              </div></div>
           <br>
           <br>
-          <h2 id = "heading"> NUS FoodChope Student Login </h2>
-          <p id = "description"> Enter your NUSNET ID to begin <p>
-            <br>
+          <h2 id = "heading"> Student Login </h2>
+          <p id = "description">  Enter your NUSNET ID to begin <p>
 
             <!-- Username -->
             <div class = "input">
 
-              <div class = "title"> USERNAME </div>
-                    <input class = "text" type = "text" name = "username" placeholder = "NUSNET ID" v-model.trim.lazy = "nusnet" required>
+              <div class = "title"> </div>
+                    <input class = "text" type = "text" name = "username"  placeholder = "NUSNET ID" v-model.trim.lazy = "nusnet" required>
             </div>
 
             <!-- Password -->
             <div class = "input">
-              <div class = "title"> PASSWORD </div>
+              <div class = "title">  </div>
                 <input class = "text" type = "password" name = "password" placeholder = "Password" v-model.lazy="password" required>
             </div>
 
@@ -44,29 +44,44 @@
               <br>
             </div>
             </form>
-            </div>
 
-      </div>
-
-      <div class="tabs">
-          <label class="tab" for="link-to-student">
-            <div class="text"> Not a Staff? Login as a Student instead </div>
-          </label>
+             <div class="tabs">
+          
+          
           <label class="tab" for="link-to-staff">
             <div class="text">
               <p><a href = "/login-staff"> Not a Student? Login as a Staff instead </a></p>
-              <p class = "reset"> <a href = "#"> Forgot Password </a></p>
+              <p> <a href = "#"> Forgot Password </a></p>
               </div>
           </label>
           
     </div>
     </div>
+
+    <div class = "split right">
+      <div class = "centered-right">
+        <!-- Gif placement -->
+        <div class="loadingio-spinner-pulse-2y3o1uqx1kt"><div class="ldio-hv4tq3e0s57">
+          <div></div><div></div><div></div>
+          </div></div>
+        <h1> NUS FoodChope </h1>
+
+        <h2> Hostel Dining Made Easy </h2>
+
+        <p> NUS FoodChope is an online platform developed to simplify the takeout process for all NUS hostel residents. 
+          Try out this hassle-free food ordering system today! </p>
+      </div>
+        
+        
+      </div>
+    </div>
+
+
     </body>
   </div>
 
  
   </template>
-
 
 <script>
 import firebase from "firebase"
@@ -101,119 +116,52 @@ export default {
 </script>
 
 <style scoped>
-  body {
-    color: white;
-    font-family:  sans-serif;
-    color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+body {
+  font-family: Arial;
+  color: white;
 }
 
-.login-content {
-    min-height: 500px;
-    text-align: center;
-    max-width: 100%;
-    background: #fff;
-    border-radius: 2px;
-    border: 1px solid #e9e9e9;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    animation: hi 0.5s;
-    transform: translateZ(0px);
-}
+/* CSS left side */
 
-.login-content * {
-    box-sizing: border-box;
-}
-
-.title {
-  text-align: left;
-  font-weight: bold;
-
-}
-
-.pages {
-    flex: 1;
-    white-space: nowrap;
-    position: relative;
-    transition: all 0.4s;
-    display: flex;
-    padding-top: 20px;
-    
-}
-
-.pages .page {
-    min-width: 100%;
-    padding: 20px 15px 0;
-    padding-top: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.logo{
-    width: 95px;
-    height: 90px;
-    align-items: center;
-
-}
-
-#heading{
-    margin-bottom: 0;
-    color: #333333;
-}
-
-#description{
-    color: black;
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.pages .page:nth-of-type(1) .input {
-    transform: translateX(-100%) scale(0.5);
-}
-.pages .page:nth-of-type(2) .input {
-    transform: translateX(100%) scale(0.5);
-}
-.pages .page .input {
-    transition: all 1s;
-    opacity: 0;
-    transition-delay: 0s;
-}
-
-.pages .page .title {
-    margin-bottom: 10px;
-    font-size: 14px;
-    position: relative;
-    line-height: 14px;
-}
-.pages .page .input {
+.split .centered-left .title {
     width: 100%;
     margin-top: 20px;
     padding: 0 30px;
+    
+    font-size: 20px;
+    text-align: left;
+    
 }
-.pages .page input.text {
-    background: #f6f7f9;
-    border: none;
-    border-radius: 4px;
+
+.split .centered-left .input {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 30px;
+    
+}
+::placeholder { 
+  color: black;
+  
+}
+
+.split .centered-left input.text {
+    outline: 0;
+    border-width: 0 0 2px;
+    border-bottom: 1px solid #1890ff;
     width: 100%;
     height: 40px;
     line-height: 40px;
     padding: 0px 10px;
-    color: rgba(0, 0, 0, 0.5);
-    outline: none;
+    
+   
 }
-.pages .page input[type=submit] {
-    background: #E60023;
+.split .centered-left input[type=submit] {
     color: #f6f7f9;
     height: 40px;
     line-height: 40px;
     width: 100%;
-    border: none;
+    border: 2px solid black;
     border-radius: 4px;
     font-weight: 600;
 }
@@ -221,7 +169,7 @@ export default {
     max-height: 50px;
     height: 50px;
     display: flex;
-    background: #fff;
+    background: lightslategray;
     
 }
 .tabs .tab {
@@ -231,6 +179,7 @@ export default {
     line-height: 30px;
     transition: all 0.2s;
 }
+
 .tabs .tab .text {
     font-size: 14px;
     transform: scale(1);
@@ -245,82 +194,197 @@ export default {
 input[type=radio] {
     display: none;
 }
-input[type=radio]:nth-of-type(1):checked ~ .tabs .tab:nth-of-type(1) {
-    display: none;
-    color: #3f4c7f;
-}
-input[type=radio]:nth-of-type(1):checked ~ .tabs .tab:nth-of-type(1) .text {
-    transform: scale(0.9);
-}
-input[type=radio]:nth-of-type(1):checked ~ .pages {
-    transform: translateX(0%);
-}
-input[type=radio]:nth-of-type(1):checked ~ .pages .page:nth-of-type(1) .input {
-    opacity: 1;
-    transform: translateX(0%);
-    transition: all 0.5s;
-}
-input[type=radio]:nth-of-type(1):checked ~ .pages .page:nth-of-type(1) .input:nth-child(1) {
-    transition-delay: 0.2s;
-}
-input[type=radio]:nth-of-type(1):checked ~ .pages .page:nth-of-type(1) .input:nth-child(2) {
-    transition-delay: 0.4s;
-}
-input[type=radio]:nth-of-type(1):checked ~ .pages .page:nth-of-type(1) .input:nth-child(3) {
-    transition-delay: 0.6s;
-}
-input[type=radio]:nth-of-type(1):checked ~ .pages .page:nth-of-type(1) .input:nth-child(4) {
-    transition-delay: 0.8s;
-}
-input[type=radio]:nth-of-type(1):checked ~ .pages .page:nth-of-type(1) .input:nth-child(5) {
-    transition-delay: 1s;
-}
-input[type=radio]:nth-of-type(2):checked ~ .tabs .tab:nth-of-type(2) {
-    display: none;
-    color: #3f4c7f;
-}
-input[type=radio]:nth-of-type(2):checked ~ .tabs .tab:nth-of-type(2) .text {
-    transform: scale(0.9);
-}
-input[type=radio]:nth-of-type(2):checked ~ .pages {
-    transform: translateX(-100%);
-}
-input[type=radio]:nth-of-type(2):checked ~ .pages .page:nth-of-type(2) .input {
-    opacity: 1;
-    transform: translateX(0%);
-    transition: all 0.5s;
-}
-input[type=radio]:nth-of-type(2):checked ~ .pages .page:nth-of-type(2) .input:nth-child(1) {
-    transition-delay: 0.2s;
-}
-input[type=radio]:nth-of-type(2):checked ~ .pages .page:nth-of-type(2) .input:nth-child(2) {
-    transition-delay: 0.4s;
-}
-input[type=radio]:nth-of-type(2):checked ~ .pages .page:nth-of-type(2) .input:nth-child(3) {
-    transition-delay: 0.6s;
-}
-input[type=radio]:nth-of-type(2):checked ~ .pages .page:nth-of-type(2) .input:nth-child(4) {
-    transition-delay: 0.8s;
-}
-input[type=radio]:nth-of-type(2):checked ~ .pages .page:nth-of-type(2) .input:nth-child(5) {
-    transition-delay: 1s;
-}
 
-@keyframes hi {
-    from {
-        transform: translateY(50%) scale(0, 0);
-        opacity: 0;
-   }
-}
-
-/*
-#login-page{
-  background-color: white;
+.logo-login {
   width: 100%;
-  height: 100vh;
+}
+
+/* Setting font for right-side */
+h1 { 
+  color: #f1eeee;
+  font-family: 'Raleway',sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 2px 2px lightslategray;
+  }
+
+h2 { 
+  color: #ffffff;
+  font-family: 'Raleway',sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  text-align: center;
+  text-shadow: 1px 1px lightslategray;
+  }
+
+p { 
+  color: #f8f8f8;
+  font-family: 'Raleway',sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 32px;
+  margin: 0 0 24px; 
+  }
+
+.split {
+  height: 100%;
+  width: 70%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
   padding-top: 20px;
 }
-*/
+
+.left {
+  left: 0;
+  background-color: lightslategray;
+  
+  
+}
+
+.right {
+  right: 0;
+  background-image:linear-gradient(to bottom,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)), url(../assets/styles/background2.jpg);
+  background-size: cover;
+  
+}
+
+.centered-left {
+  position: absolute;
+  top: 50%;
+  left: 22%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.button{
+  text-align: center;
+  background-color: none;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+
+/* right Gif CSS */
+
+@keyframes ldio-hv4tq3e0s57-1 {
+  0% { top: 36px; height: 128px }
+  50% { top: 60px; height: 80px }
+  100% { top: 60px; height: 80px }
+}
+@keyframes ldio-hv4tq3e0s57-2 {
+  0% { top: 41.99999999999999px; height: 116.00000000000001px }
+  50% { top: 60px; height: 80px }
+  100% { top: 60px; height: 80px }
+}
+@keyframes ldio-hv4tq3e0s57-3 {
+  0% { top: 48px; height: 104px }
+  50% { top: 60px; height: 80px }
+  100% { top: 60px; height: 80px }
+}
+.ldio-hv4tq3e0s57 div { position: absolute; width: 30px }.ldio-hv4tq3e0s57 div:nth-child(1) {
+  left: 35px;
+  background: #e15b64;
+  animation: ldio-hv4tq3e0s57-1 1s cubic-bezier(0,0.5,0.5,1) infinite;
+  animation-delay: -0.2s
+}
+.ldio-hv4tq3e0s57 div:nth-child(2) {
+  left: 85px;
+  background: #f8b26a;
+  animation: ldio-hv4tq3e0s57-2 1s cubic-bezier(0,0.5,0.5,1) infinite;
+  animation-delay: -0.1s
+}
+.ldio-hv4tq3e0s57 div:nth-child(3) {
+  left: 135px;
+  background: #abbd81;
+  animation: ldio-hv4tq3e0s57-3 1s cubic-bezier(0,0.5,0.5,1) infinite;
+  animation-delay: undefineds
+}
+
+.loadingio-spinner-pulse-2y3o1uqx1kt {
+  width: 180px;
+  height: 170px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+.ldio-hv4tq3e0s57 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-hv4tq3e0s57 div {
+   box-sizing: content-box;
+    }
+/* generated by https://loading.io/ */
+
+/* left gif */
+
+@keyframes ldio-z1piwl5e5pi {
+  0% { transform: rotate(0deg) }
+  50% { transform: rotate(180deg) }
+  100% { transform: rotate(360deg) }
+}
+.ldio-z1piwl5e5pi div {
+  position: absolute;
+  animation: ldio-z1piwl5e5pi 1s linear infinite;
+  width: 80px;
+  height: 80px;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 0 0 #fbbc42;
+  transform-origin: 40px 41px;
+}
+.loadingio-spinner-eclipse-uoxpvuq5zt {
+  width: 61px;
+  height: 61px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+.ldio-z1piwl5e5pi {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(0.61);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-z1piwl5e5pi div { box-sizing: content-box; }
+/* generated by https://loading.io/ */
+
+
 
 </style>
 
