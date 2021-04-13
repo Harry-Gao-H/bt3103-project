@@ -59,45 +59,26 @@ export default {
       var strings = this.selectedDate.split("-")
 			date = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
 
-      if (this.selectedMeal == "Breakfast"){
-        this.orders = [];
-        database.collection("Order").doc(date)
-          .collection(this.selectedMeal).get().then(snapshot => {
-            snapshot.docs.forEach(doc => {
-              let copyDict= JSON.parse(JSON.stringify(dict));
-              var container = doc.data().orders;
-              copyDict["stud_id"] = doc.id;
-              for (var i = 0; i < container.length; i++) {
-                copyDict["collect_time"] = container[i].time,
-                copyDict["meal_type"] = container[i].cuisine[1].dishes.map(dish => dish.toLowerCase().split(' ').map(function(word) { 
-                return (word.charAt(0).toUpperCase() + word.slice(1));}).join(' ')),
-                copyDict["smaller"] = container[i].small,
-                copyDict["quantity"] = container[i].quantity,
-                copyDict["remark"] = container[i].remark 
-              }
-              this.orders.push(copyDict)
-              console.log(this.orders)
-            })
-          })
-      } else {
-        this.orders=[];
-        database.collection("Order_test").doc(date)
-          .collection(this.selectedMeal).get().then(snapshot => {
-            snapshot.docs.forEach(doc => {
-              let copyDict= JSON.parse(JSON.stringify(dict))
-              copyDict["stud_id"] = doc.id,
-              copyDict["collect_time"] = doc.data().takeawayTiming,
-              copyDict["meal_type"] = doc.data().dishes.map(dish => dish.toLowerCase().split(' ').map(function(word) {
-    return (word.charAt(0).toUpperCase() + word.slice(1));
-  }).join(' ')),
-              copyDict["smaller"] = doc.data().smallerPortion,
-              copyDict["quantity"] = doc.data().quantity,
-              copyDict["remark"] = doc.data().remark,
-              this.orders.push(copyDict)
-                })
-              })  
+      this.orders = [];
+      database.collection("Order").doc(date)
+        .collection(this.selectedMeal).get().then(snapshot => {
+          snapshot.docs.forEach(doc => {
+            let copyDict= JSON.parse(JSON.stringify(dict));
+            var container = doc.data().orders;
+            copyDict["stud_id"] = doc.id;
+            for (var i = 0; i < container.length; i++) {
+              copyDict["collect_time"] = container[i].time,
+              copyDict["meal_type"] = container[i].cuisine[1].dishes.map(dish => dish.toLowerCase().split(' ').map(function(word) { 
+              return (word.charAt(0).toUpperCase() + word.slice(1));}).join(' ')),
+              copyDict["smaller"] = container[i].small,
+              copyDict["quantity"] = container[i].quantity,
+              copyDict["remark"] = container[i].remark 
             }
-          },
+            this.orders.push(copyDict)
+            console.log(this.orders)
+          })
+        })
+        },
           logout() {
             firebase
             .auth()

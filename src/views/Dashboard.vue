@@ -181,10 +181,10 @@ export default {
 
 		this.cuisinesStaff=[]; // clear the cuisinesStaff
 
-		database.collection("Order_test").doc(newDate)
-			.collection(this.selectedMealStaff).get().then(snapshot => {
-			snapshot.docs.forEach(doc => {
-					this.cuisinesStaff.push([doc.id,doc.data()])
+			database.collection("Order").doc(newDate)
+				.collection(this.selectedMealStaff).get().then(snapshot => {
+				snapshot.docs.forEach(doc => {
+						this.cuisinesStaff.push([doc.id,doc.data()])
 
 				})
 			})
