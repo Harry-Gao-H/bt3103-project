@@ -6,30 +6,41 @@
     </head>
 
     <body>
-    
-    <div class = "login-content">
 
-      <div class = "pages">
-          
-        <div class="page">
-          <img src="../assets/foodchop.png" class="logo">
-          <br>
-          <br>
-          <h2 id = "heading"> Welcome To NUS FoodChope </h2>
-          <p id = "description"> Hostel Dining Made Easy </p>
 
-            <div class = "staff">
-              <button class = "button" > <router-link to="/login-staff">Staff</router-link> </button>
+    <div class = "split left">
+      <div class = "centered-left">
+        <img src="../assets/foodchop.png" class="logo-login">
+        <br> 
+        <div class = "staff">
+          <button class = "button" > <router-link to="/login-staff">Staff</router-link> </button>
+          </div>
 
-              </div>
-
-<div class = "student">
-               <button class = "button"> <router-link to="/login-student">Student</router-link> </button>
-
-              </div>
-              </div>
+        <div class = "student">
+            <button class = "button"> <router-link to="/login-student">Student</router-link> </button>
+            </div>
+        
     </div>
+
+    <div class = "split right">
+      <div class = "centered-right">
+        <!-- Gif placement -->
+        <div class="loadingio-spinner-pulse-2y3o1uqx1kt"><div class="ldio-hv4tq3e0s57">
+          <div></div><div></div><div></div>
+          </div></div>
+        <h1> NUS FoodChope </h1>
+
+        <h2> Hostel Dining Made Easy </h2>
+
+        <p> NUS FoodChope is an online platform developed to simplify the takeout process for all NUS hostel residents. 
+          Try out this hassle-free food ordering system today! </p>
+      </div>
+        
+        
+      </div>
     </div>
+
+
     </body>
   </div>
 
@@ -38,79 +49,159 @@
 
 
 <style scoped>
-  body {
-    color: white;
-    font-family:  sans-serif;
-    color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+body {
+  font-family: Arial;
+  color: white;
 }
 
-.login-content {
-    min-height: 500px;
-    text-align: center;
-    width: 20%;
-    background: #fff;
-    border-radius: 2px;
-    border: 1px solid #e9e9e9;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    animation: hi 0.5s;
-    transform: translateZ(0px);
+.logo-login {
+  width: 12%;
 }
 
-.login-content * {
-    box-sizing: border-box;
+/* Setting font for right-side */
+h1 { 
+  color: #f1eeee;
+  font-family: 'Raleway',sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 2px 2px lightslategray;
+  }
 
+h2 { 
+  color: #ffffff;
+  font-family: 'Raleway',sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  text-align: center;
+  text-shadow: 1px 1px lightslategray;
+  }
+
+p { 
+  color: #f8f8f8;
+  font-family: 'Raleway',sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 32px;
+  margin: 0 0 24px; 
+  }
+
+.split {
+  height: 100%;
+  width: 70%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
 }
 
-
-.pages {
-    flex: 1;
-    white-space: nowrap;
-    position: relative;
-    transition: all 0.4s;
-    display: flex;
-    padding-top: 20px;
-    
+.left {
+  left: 0;
+  background-color: lightslategray;
+  
+  
 }
 
-.pages .page {
-    min-width: 100%;
-    padding: 20px 15px 0;
-    padding-top: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.right {
+  right: 0;
+  background-image:linear-gradient(to bottom,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)), url(../assets/styles/background2.jpg);
+  background-size: cover;
+  
 }
 
-.logo{
-    width: 95px;
-    height: 90px;
-    align-items: center;
-
+.centered-left {
+  position: absolute;
+  top: 50%;
+  left: 22%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
+.centered-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
-#description{
-    color: black;
-    margin-top: 10px;
-    font-size: 18px;
+.centered img {
+  width: 150px;
+  border-radius: 50%;
 }
 
 .button{
   text-align: center;
-    background-color: #f6f7f9;
-    font-size: 19px;
-    cursor: pointer;
-    line-height: 18px;
-    border: 1px solid black;
-    border-radius: 4px;
+  background-color: none;
+  font-size: 19px;
+  cursor: pointer;
+  line-height: 12px;
+  border: 1px solid black;
+  border-radius: 4px;
 
 }
+
+/* Gif CSS */
+
+@keyframes ldio-hv4tq3e0s57-1 {
+  0% { top: 36px; height: 128px }
+  50% { top: 60px; height: 80px }
+  100% { top: 60px; height: 80px }
+}
+@keyframes ldio-hv4tq3e0s57-2 {
+  0% { top: 41.99999999999999px; height: 116.00000000000001px }
+  50% { top: 60px; height: 80px }
+  100% { top: 60px; height: 80px }
+}
+@keyframes ldio-hv4tq3e0s57-3 {
+  0% { top: 48px; height: 104px }
+  50% { top: 60px; height: 80px }
+  100% { top: 60px; height: 80px }
+}
+.ldio-hv4tq3e0s57 div { position: absolute; width: 30px }.ldio-hv4tq3e0s57 div:nth-child(1) {
+  left: 35px;
+  background: #e15b64;
+  animation: ldio-hv4tq3e0s57-1 1s cubic-bezier(0,0.5,0.5,1) infinite;
+  animation-delay: -0.2s
+}
+.ldio-hv4tq3e0s57 div:nth-child(2) {
+  left: 85px;
+  background: #f8b26a;
+  animation: ldio-hv4tq3e0s57-2 1s cubic-bezier(0,0.5,0.5,1) infinite;
+  animation-delay: -0.1s
+}
+.ldio-hv4tq3e0s57 div:nth-child(3) {
+  left: 135px;
+  background: #abbd81;
+  animation: ldio-hv4tq3e0s57-3 1s cubic-bezier(0,0.5,0.5,1) infinite;
+  animation-delay: undefineds
+}
+
+.loadingio-spinner-pulse-2y3o1uqx1kt {
+  width: 180px;
+  height: 170px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+.ldio-hv4tq3e0s57 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-hv4tq3e0s57 div {
+   box-sizing: content-box;
+    }
+/* generated by https://loading.io/ */
 
 
 </style>
