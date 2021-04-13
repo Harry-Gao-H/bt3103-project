@@ -15,6 +15,15 @@
             Your Cart
         </div>
 
+        <!-- Heading -->
+        <div class = "header">
+            <div class = "a"> Cuisine </div>
+            <div class = "b"> Quantity </div>
+            <div class = "c"> Date </div>
+            <div class = "d"> Time </div>
+            <div class = "e"> Remark </div>
+        </div>
+
         <!--{{items}}-->    
         <div class = "item" v-for="item in items" v-bind:key="item[0]" >
             <div class = "cuisine">
@@ -260,7 +269,51 @@ body {
   font-size: 18px;
   font-weight: 400;
 }
- 
+
+/* turns on flexbox */
+.header{
+    display:flex;
+    padding: 20px 30px;
+    font-weight: 700;
+}
+
+/* set width between each element */
+.a{
+    min-width: 450px;
+    max-width: 450px;
+    text-align: center;
+
+}
+.b{
+    flex:1;
+  margin-left: 3%;
+  min-width: 50px;
+  max-width: 120px;
+
+}
+
+.c{
+  min-width: 100px;
+  max-width: 100px;
+  margin-left: 3%;
+
+}
+
+.d{
+  min-width: 100px;
+  max-width: 120px;
+  margin-left: 6%;
+
+}
+
+.e{
+    min-width: 120px;
+    max-width: 120px;
+    margin-left: 7.5%;
+
+}
+
+
 .item {
   padding: 20px 30px;
   height: 120px;
@@ -279,6 +332,8 @@ body {
   min-width: 450px;
   max-width: 450px;
   height: 120px;
+  text-align:center;
+  
 }
 
 .quantity {
@@ -290,7 +345,7 @@ body {
 .time{
   padding-top: 10px;
   min-width: 100px;
-  margin-left: 7%;
+  margin-left: 8%;
 }
 
 .remark {
