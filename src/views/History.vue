@@ -4,13 +4,13 @@
         <ul>
             <li><router-link to="/profile">Profile</router-link></li>
             <li><router-link to="/menu">Menu</router-link></li>
-            <li><router-link to="/history">History</router-link></li>
+            <li><router-link to="/cart">Cart</router-link></li>
             <li class="navbarstyle" v-on:click="logout()">Logout</li>  
         </ul>
     </div>
     <div class="content">
     
-        <h1>Your Cart</h1>
+        <h1>Your Order History</h1>
         <!--{{items}}-->    
         <table>
             <tr>
@@ -46,14 +46,12 @@ import database from "../firebase.js"
 
 export default {
 
-    name: 'Cart',
+    name: 'History',
     data() {
         return {
             items: [],
-            //creditCounter : 0,
             credit: 0,
             userId:"",
-            //userInfo:{}
         }
     },
     created() {
@@ -63,16 +61,12 @@ export default {
             if (user) {
                 database.collection("UserInfo").doc(user.email).get()
                     .then(snapshot=> {
-                        //this.userInfo = snapshot.data()
-                        //this.userInfo.email = user.email
                         this.credit = snapshot.data().credit
                         this.userId = user.email.split("@")[0]
                         this.items = snapshot.data().cart
                         this.items.sort((a,b) => (a.date>b.date) ? 1 : ((b.time > a.time) ? -1:0))
                     })
             }
-
-            //console.log(this.items)
             
         })
     },

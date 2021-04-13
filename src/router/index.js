@@ -20,9 +20,6 @@ const routes = [
   {
     path: '/login-student',
     name: 'LoginStudent',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/LoginStudent.vue')
   },
   {
@@ -33,46 +30,36 @@ const routes = [
   {
     path: '/product',
     name: 'Product',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../components/ProductPage.vue')
   },
 
   {
     path: '/cart',
     name: 'Cart',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/Cart.vue')
+  },
+  {
+    path: '/history',
+    name: 'History',
+    component: () => import('../views/History.vue')
   },
 
   {
     path: '/profile',
     name: 'Profile',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/Profile.vue')
   },
 
   {
     path: '/orders-overview',
     name: 'OrdersOverview',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/OrdersOverview.vue')
   },
-{
-  path: '/dashboard',
-  name: 'Dashboard',
-  // route level code-splitting
-  // this generates a separate chunk (about.[hash].js) for this route
-  // which is lazy-loaded when the route is visited.
-  component: () => import('../views/Dashboard.vue')
-},
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/Dashboard.vue')
+  },
 ]
 
 const router = new VueRouter({
