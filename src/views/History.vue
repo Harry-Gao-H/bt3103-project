@@ -9,7 +9,7 @@
         </ul>
     </div>
     <div class="content">
-    
+        {{items}}
         <h1>Your Order History</h1>
         <p>Your Credit: {{credit}} </p>
         
@@ -89,7 +89,15 @@ export default {
                         this.credit = snapshot.data().credit
                         this.userId = user.email.split("@")[0]
                         this.items = snapshot.data().history
-                        this.items.sort((a,b) => (a.date>b.date) ? 1 : ((b.time > a.time) ? -1:0))
+                        this.items.sort(
+                            function(a, b) {
+                                if (a.date != b.date) {
+                                    return a.date > b.date ? 1:-1
+                                } else {
+                                    return a.time > b.time ? 1 : -1
+                                }
+                        
+                            })
 
                         var today = new Date()
 
@@ -98,11 +106,32 @@ export default {
                             var date = new Date(item.date)
                             if (date >= today) {
                                 this.comingOrders.push(item)
+
                             } else if (date < today) {
                                 this.expiredOrders.push(item)
                             }
                         }
+                        /*
+                        this.comingOrders.sort(
+                            function(a, b) {
+                                if (a.date != b.date) {
+                                    return a.date > b.date ? 1:-1
+                                } else {
+                                    return a.time > b.time ? 1 : -1
+                                }
+                        
+                            })
+                        this.expiredOrders.sort(
+                            function(a, b) {
+                                if (a.date != b.date) {
+                                    return a.date > b.date ? 1:-1
+                                } else {
+                                    return a.time > b.time ? 1 : -1
+                                }
+                        
+                            })
 
+                        */
                     })
             }
             
