@@ -9,10 +9,18 @@
         </ul>
     </div>
     <div class="content">
-    
+        
         <h1>Your Order History</h1>
-        <!--{{items}}-->    
-        <table>
+        <p>Your Credit: {{credit}} </p>
+        
+        <form>
+            <input type="radio" class="radio" id="coming" name="coming-or-expired" value="coming" v-model="orderType" > 
+            <label for="coming" class="radio">Coming Orders  </label>     
+            <input type="radio" class="radio" id="expired" name="coming-or-expired" value="expired" v-model="orderType"> 
+            <label for="expired" class="radio">Expired Orders  </label>
+        </form> 
+
+        <table v-if="orderType == 'coming'">
             <tr>
                 <th>Cuisine</th>
                 <th>Date</th>
@@ -21,20 +29,35 @@
                 <th>Remark</th>
             </tr>
                 
-            <tr v-for="item in items" v-bind:key="item[0]">
+            <tr v-for="item in comingOrders" v-bind:key="item[0]">
                 <td>{{getCuisine(item.cuisine)}} </td>
                 <td>{{item.date}}</td>
                 <td>{{item.time}}</td>
                 <td>{{item.quantity}}</td>
                 <td>{{getRemark(item.small)}} <br><br>{{item.remark}} </td>
-                <td><button v-on:click="remove(item)">Remove</button></td>
             </tr>
 
-        </table>
-            
+        </table> 
+
+        <table v-if="orderType == 'expired'">
+            <tr>
+                <th>Cuisine</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Quantity</th>
+                <th>Remark</th>
+            </tr>
+
+            <tr v-for="item in expiredOrders" v-bind:key="item[0]">
+                <td>{{getCuisine(item.cuisine)}} </td>
+                <td>{{item.date}}</td>
+                <td>{{item.time}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{getRemark(item.small)}} <br><br>{{item.remark}} </td>
+            </tr>
+
+        </table>    
         
-        <p>Your Credit: {{credit}}   Credit needed: {{creditCount()}}</p>
-        <button v-on:click="sendOrders()"> Confirm Order</button>
     </div>
 </div>
 </template>
@@ -50,8 +73,11 @@ export default {
     data() {
         return {
             items: [],
+            comingOrders:[],
+            expiredOrders:[],
             credit: 0,
             userId:"",
+            orderType:"coming"
         }
     },
     created() {
@@ -63,8 +89,50 @@ export default {
                     .then(snapshot=> {
                         this.credit = snapshot.data().credit
                         this.userId = user.email.split("@")[0]
-                        this.items = snapshot.data().cart
-                        this.items.sort((a,b) => (a.date>b.date) ? 1 : ((b.time > a.time) ? -1:0))
+                        this.items = snapshot.data().history
+                        this.items.sort(
+                            function(a, b) {
+                                if (a.date != b.date) {
+                                    return a.date > b.date ? 1:-1
+                                } else {
+                                    return a.time > b.time ? 1 : -1
+                                }
+                        
+                            })
+
+                        var today = new Date()
+
+                        for (let i = 0; i < this.items.length; i++) {
+                            var item = this.items[i]
+                            var date = new Date(item.date)
+                            if (date >= today) {
+                                this.comingOrders.push(item)
+
+                            } else if (date < today) {
+                                this.expiredOrders.push(item)
+                            }
+                        }
+                        /*
+                        this.comingOrders.sort(
+                            function(a, b) {
+                                if (a.date != b.date) {
+                                    return a.date > b.date ? 1:-1
+                                } else {
+                                    return a.time > b.time ? 1 : -1
+                                }
+                        
+                            })
+                        this.expiredOrders.sort(
+                            function(a, b) {
+                                if (a.date != b.date) {
+                                    return a.date > b.date ? 1:-1
+                                } else {
+                                    return a.time > b.time ? 1 : -1
+                                }
+                        
+                            })
+
+                        */
                     })
             }
             
@@ -84,20 +152,6 @@ export default {
                 this.$router.push('/');
             });
         },
-        remove:function(item){
-            for(let i = 0; i < this.items.length; i++) {
-                if (item == this.items[i]) {
-                    this.items.splice(i, 1)
-                    database.collection("UserInfo").doc(this.user.data.email).update({
-                        cart:this.items
-                    }).then(()=> {
-                        location.reload()
-                    })
-
-
-                }
-            }
-        },
         creditCount:function(){
             var counter = 0; 
             for(let i = 0; i < this.items.length;i++) {
@@ -105,89 +159,6 @@ export default {
             }
             this.creditCounter = counter;
             return counter;
-        },
-        sendOrders:function(){
-            //disallow uploading the orders if credit not enough
-            if (this.credit < this.creditCount()) {
-                alert("Your credit is not enough")
-                return 
-            } else if (this.items.length == 0) {
-                alert("Please add cuisine before confirming order")
-                return 
-            } else {
-                this.updateDatabase(0)
-                alert("Your order has been confirmed!")
-            }
-        },
-
-        updateDatabase:function(i) {
-            //i stands for index
-            console.log(i)
-            
-            if (i >= this.items.length) {
-                //reduce the credit from user account
-                database.collection("UserInfo").doc(this.user.data.email).update({
-                    credit : this.credit - this.creditCount()
-                }).then(() => {
-                    //delete the item from user cart, and add them to history
-                    database.collection("UserInfo").doc(this.user.data.email).update({
-                        cart : []
-                    })
-                    var docRef = database.collection("UserInfo").doc(this.user.data.email)
-                    var updatedHistory = []
-                    docRef.get().then(
-                        snapshot => {
-                            if (typeof(snapshot.data().history) !== 'undefined') {
-                                updatedHistory = snapshot.data().history
-                            }
-                            console.log(updatedHistory)
-                        }
-                        
-                    ).then( () => {
-                        docRef.update({
-                            history: updatedHistory.concat(this.items)
-                        })
-                    }).then (() => {
-                        location.reload()
-                    })
-                })
-
-                
-                
-
-
-                return
-            }
-            var item = this.items[i]
-            var dayToDate = {
-				0 : "18-4-2021",
-				1 : "19-4-2021",
-				2 : "20-4-2021",
-				3 : "14-4-2021",
-				4 : "15-4-2021",
-				5 : "16-4-2021",
-				6 : "17-4-2021",
-			} 
-            var day = new Date(item.date).getDay()
-            var docRef = database.collection("Order").doc(dayToDate[day]).collection(item.meal).doc(this.userId)
-            
-
-            docRef.get().then((doc) => {
-                if (doc.exists) {
-                    console.log("push to existing")
-                    var newOrders = doc.data().orders
-                    newOrders.push(item)
-                    console.log(newOrders)
-                    docRef.update({ orders : newOrders}).then(() => this.updateDatabase(i+1))
-                } else {
-                    console.log("push to new");
-                    console.log({ "orders": [item] })
-
-                    docRef.set({
-                        "orders": [item]
-                    }).then(() => this.updateDatabase(i+1))
-                }
-            })
         },
 
         getCuisine:function(cuisine) {
