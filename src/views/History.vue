@@ -9,16 +9,17 @@
         </ul>
     </div>
     <div class="content">
-        {{items}}
+        
         <h1>Your Order History</h1>
         <p>Your Credit: {{credit}} </p>
         
-        
-        <input type="radio" class="radio" id="coming" name="coming-or-expired" value="coming" v-model="orderType" > 
-        <label for="coming" class="radio">Coming Orders  </label>     
-        <input type="radio" class="radio" id="expired" name="coming-or-expired" value="expired" v-model="orderType"> 
-        <label for="expired" class="radio">Expired Orders  </label>
-         
+        <form>
+            <input type="radio" class="radio" id="coming" name="coming-or-expired" value="coming" v-model="orderType" > 
+            <label for="coming" class="radio">Coming Orders  </label>     
+            <input type="radio" class="radio" id="expired" name="coming-or-expired" value="expired" v-model="orderType"> 
+            <label for="expired" class="radio">Expired Orders  </label>
+        </form> 
+
         <table v-if="orderType == 'coming'">
             <tr>
                 <th>Cuisine</th>
@@ -76,7 +77,7 @@ export default {
             expiredOrders:[],
             credit: 0,
             userId:"",
-            orderType:""
+            orderType:"coming"
         }
     },
     created() {
