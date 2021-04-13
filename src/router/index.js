@@ -85,11 +85,12 @@ router.beforeEach(( to,from,next ) => {
     
     firebase.auth().onAuthStateChanged( (user) => {
       if (user) {
-        
-
+        // user is signed in, allowed access
+      
         return next()
       } else {
-        alert("Please login first")
+        //user is signed out, show login page
+        //alert("Please login first")
         return next({path: '/' })
       }
     })
