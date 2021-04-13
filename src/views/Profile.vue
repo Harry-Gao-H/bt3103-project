@@ -128,7 +128,7 @@ body {
 
 .main {
     margin-top: 2%;
-    margin-left: 29%;
+    margin-left: 15%;
     font-size: 28px;
     padding: 0 10px;
     width: 58%;

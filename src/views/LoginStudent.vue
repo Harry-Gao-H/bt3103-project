@@ -161,10 +161,16 @@ body {
     height: 40px;
     line-height: 40px;
     width: 100%;
-    border: 2px solid black;
+    border: px solid black;
     border-radius: 4px;
     font-weight: 600;
 }
+
+.split .centered-left input[type=submit]:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+
 .tabs {
     max-height: 50px;
     height: 50px;
