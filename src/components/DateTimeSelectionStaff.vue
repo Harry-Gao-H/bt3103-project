@@ -91,9 +91,6 @@ export default {
 			showMenuStaff:false,
 			takeawayTimeStaff:'',
 			cuisinesStaff:[],
-			//studentid: 'E0318191',
-			//studentIDs:[],
-			//mealsCount:'',
 			//itemsProps : [this.selectedDateStaff, this.selectedMealStaff],
 		}
 	},

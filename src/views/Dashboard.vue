@@ -169,25 +169,25 @@ export default {
 		}
 	},
 	methods: {
-			fetchcuisinesStaff: function() {
-			//change the form of date
-			var strings = this.selectedDateStaff.split("-")
-			var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
-			
-			this.formattedDate = newDate;
-			//this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
-			this.$refs.piechart.updateData(newDate, this.selectedMealStaff)
-			this.$refs.groupedbarchart.updateData(newDate, this.selectedMealStaff)
+		fetchcuisinesStaff: function() {
+		//change the form of date
+		var strings = this.selectedDateStaff.split("-")
+		var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
+		
+		this.formattedDate = newDate;
+		//this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
+		this.$refs.piechart.updateData(newDate, this.selectedMealStaff)
+		this.$refs.groupedbarchart.updateData(newDate, this.selectedMealStaff)
 
-			this.cuisinesStaff=[]; // clear the cuisinesStaff
+		this.cuisinesStaff=[]; // clear the cuisinesStaff
 
-			database.collection("Order_test").doc(newDate)
-				.collection(this.selectedMealStaff).get().then(snapshot => {
-				snapshot.docs.forEach(doc => {
-						this.cuisinesStaff.push([doc.id,doc.data()])
+		database.collection("Order_test").doc(newDate)
+			.collection(this.selectedMealStaff).get().then(snapshot => {
+			snapshot.docs.forEach(doc => {
+					this.cuisinesStaff.push([doc.id,doc.data()])
 
-					})
 				})
+			})
 		},
 		fetch: function() {
 			//fetch cuisinesStaff from database when time and meal are selected
@@ -199,24 +199,21 @@ export default {
 		// goToProductPage:function(cuisine) {
 		// 	this.$router.push( {name: "Product", params: {"cuisine": cuisine, "meal": this.selectedMealStaff}} )
 		// },
-	logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          alert('Successfully logged out');
-          this.$router.push('/');
-        })
-        .catch(error => {
-          alert(error.message);
-          this.$router.push('/');
-        });
-    },
+		logout() {
+		firebase
+			.auth()
+			.signOut()
+			.then(() => {
+				alert('Successfully logged out');
+				this.$router.push('/');
+			})
+			.catch(error => {
+				alert(error.message);
+				this.$router.push('/');
+			});
+		},
 
-		// countMeals: function() {
-		// 	this.mealsCount = this.cuisinesStaff.length;
-		// 	//console.log(this.cuisinesStaff.length)
-		// },
+	
 
     // passData: function() {
     //   var strings = this.selectedDateStaff.split("-")
