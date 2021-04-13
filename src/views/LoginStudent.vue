@@ -161,7 +161,7 @@ body {
     height: 40px;
     line-height: 40px;
     width: 100%;
-    border: px solid black;
+    border: 1px solid black;
     border-radius: 4px;
     font-weight: 600;
 }
