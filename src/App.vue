@@ -2,7 +2,6 @@
   <div class="banner">
             <div class="navbar">
                 <img src="./assets/foodchop.png" class="logo">
-                <h1 style="color:white">NUS FoodChope</h1>
                 <ul>
                     
                 </ul>
@@ -24,12 +23,21 @@
   color: #2c3e50;
 }
 
+
 h1 {
+  color: #f1eeee;
   font-family: 'Raleway',sans-serif;
-  font-size:50px;
+  font-size: 50px;
+  font-weight: 800;
+  text-align: left;
+  text-transform: uppercase;
   text-shadow: 2px 2px lightslategray;
-  font-weight: 700;
-  
+
+}
+
+.logo{
+    width:250px;;
+    cursor:pointer;
 }
 
 
