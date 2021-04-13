@@ -5,7 +5,7 @@
             <li><router-link to="/profile">Profile</router-link></li>
             <li><router-link to="/menu">Menu</router-link></li>
             <li><router-link to="/history">History</router-link></li>
-            <li class="navbarstyle" v-on:click="logout()">Logout</li>  
+            <li class="navbarstyle" v-on:click="logout()">Logout</li> 
         </ul>
     </div>
     <div class="content">
