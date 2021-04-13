@@ -27,7 +27,7 @@
 h1 {
   font-family: Oswald, Avenir, Helvetica, Arial, sans-serif;
   font-size:50px;
-  text-shadow: 3px 4px grey;
+  
 }
 
 
