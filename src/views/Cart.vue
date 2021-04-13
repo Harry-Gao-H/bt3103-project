@@ -304,6 +304,7 @@ body {
 }
 
 .credits {
+    padding-top: 10px;
     text-align:center;
 }
 
