@@ -23,32 +23,7 @@
 		</div>
 	</form>
 
-	<!--
-	<div>
-		<div v-show = "selectedMeal == 'Breakfast'" class="box">
-			<p>Breakfast Takeaway Time</p>
-			<select id="time" name="time" v-model="takeawayTime">
-				<option value="0730">07:30</option>
-				<option value="0800">08:00</option>
-				<option value="0830">08:30</option>
-				<option value="0900">09:00</option>
-				<option value="0930">09:30</option>
-			</select>
-		</div>
 
-		<div v-show = "selectedMeal == 'Dinner'" class="box">
-			<p>Dinner Takeaway Time</p>
-			<select id="time" name="time" v-model="takeawayTime">
-				<option value="1800">18:00</option>
-				<option value="1830">18:30</option>
-				<option value="1900">19:00</option>
-				<option value="1930">19:30</option>
-				<option value="2000">20:00</option>
-			</select>
-		</div>
-  
-	</div>
-	-->
 
 	<br>
 	

@@ -4,6 +4,7 @@
   <ul>
       <li><router-link to="/profile">Profile</router-link></li>
       <li><router-link to="/cart">Cart</router-link></li>
+      <li><router-link to="/history">History</router-link></li>
       <li class="navbarstyle" v-on:click="logout()">Logout</li>
   </ul>
 </div>
