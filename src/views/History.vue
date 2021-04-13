@@ -8,55 +8,93 @@
             <li class="navbarstyle" v-on:click="logout()">Logout</li>  
         </ul>
     </div>
-    <div class="content">
-        
-        <h1>Your Order History</h1>
-        <p>Your Credit: {{credit}} </p>
-        
+
+    <div class="order-cart">
+        <!-- Title -->
+        <div class = "title">
+            Your Order History
+        </div>
+
+        <!-- Display Credits Left -->
+         <div class = "credits"> Available Credits: {{credit}} </div>
+
+        <!-- Select history option -->
+        <div class = "options">
         <form>
             <input type="radio" class="radio" id="coming" name="coming-or-expired" value="coming" v-model="orderType" > 
             <label for="coming" class="radio">Coming Orders  </label>     
             <input type="radio" class="radio" id="expired" name="coming-or-expired" value="expired" v-model="orderType"> 
             <label for="expired" class="radio">Expired Orders  </label>
         </form> 
+        </div>
 
-        <table v-if="orderType == 'coming'">
-            <tr>
-                <th>Cuisine</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Quantity</th>
-                <th>Remark</th>
-            </tr>
-                
-            <tr v-for="item in comingOrders" v-bind:key="item[0]">
-                <td>{{getCuisine(item.cuisine)}} </td>
-                <td>{{item.date}}</td>
-                <td>{{item.time}}</td>
-                <td>{{item.quantity}}</td>
-                <td>{{getRemark(item.small)}} <br><br>{{item.remark}} </td>
-            </tr>
+        <!-- unfufilled items -->
+        <div class = "item" v-if="orderType == 'coming'">
+            <!-- Heading -->
+        <div class = "header">
+            <div class = "a"> Cuisine </div>
+            <div class = "b"> Quantity </div>
+            <div class = "c"> Date </div>
+            <div class = "d"> Time </div>
+            <div class = "e"> Remark </div>
+        </div>
+          
+            <div class = "orders" v-for="item in comingOrders" v-bind:key="item[0]">
+                <div class = "cuisine">
+                {{getCuisine(item.cuisine)}} 
+            </div>
 
-        </table> 
+            <div class = "quantity">
+                  {{item.quantity}} 
+            </div>
 
-        <table v-if="orderType == 'expired'">
-            <tr>
-                <th>Cuisine</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Quantity</th>
-                <th>Remark</th>
-            </tr>
+            <div class = "date">
+                 {{item.date}} 
+            </div>
 
-            <tr v-for="item in expiredOrders" v-bind:key="item[0]">
-                <td>{{getCuisine(item.cuisine)}} </td>
-                <td>{{item.date}}</td>
-                <td>{{item.time}}</td>
-                <td>{{item.quantity}}</td>
-                <td>{{getRemark(item.small)}} <br><br>{{item.remark}} </td>
-            </tr>
+            <div class = "time">
+                 {{item.time}} 
+            </div>
 
-        </table>    
+            <div class = "remark">
+                 {{getRemark(item.small)}} <br>{{item.remark}}
+            </div>
+            </div>
+        </div>
+
+        <!-- expired items -->
+        <div class = "item" v-if="orderType == 'expired'">
+            <!-- Heading -->
+            <div class = "header">
+                <span class = "a"> Cuisine </span>
+                <span class = "b"> Quantity </span>
+                <span class = "c"> Date </span>
+                <span class = "d"> Time </span>
+                <span class = "e"> Remark </span>
+            </div>
+
+             <div class = "orders" v-for="item in expiredOrders" v-bind:key="item[0]">
+                <div class = "cuisine">
+                {{getCuisine(item.cuisine)}} 
+            </div>
+
+            <div class = "quantity">
+                  {{item.quantity}} 
+            </div>
+
+            <div class = "date">
+                 {{item.date}} 
+            </div>
+
+            <div class = "time">
+                 {{item.time}} 
+            </div>
+
+            <div class = "remark">
+                 {{getRemark(item.small)}} <br>{{item.remark}}
+            </div>
+            </div>
+            </div>  
         
     </div>
 </div>
@@ -184,36 +222,139 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.content{
-    width:100%;
-    position:absolute;
-    top:60%;
-    transform:translateY(-50%);
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+ .order-cart {
+  width: 70%;
+  height: 100%;
+  margin: 25px 0 auto 300px;
+  background: #FFFFFF;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  height: 60px;
+  border-bottom: 1px solid #E1E8EE;
+  padding: 20px 30px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.credits{
+    background-color: white;
+    text-align:center;
+    height: 30px;
+    padding-top: 8px;
+}
+
+.options {
+    border: 1px solid lightgrey;
     text-align: center;
-    color:#fff;
+    background-color:white;
+    height: 40px;
+    padding-top: 10px;
 }
 
-table {
-  border-collapse: collapse;
-  width: 70%; 
-  margin-left: auto;
-  margin-right: auto;
+.orders {
+  padding: 20px 30px;
+  height: 120px;
+  border: 1px solid lightgray;
+  display: flex;
 }
 
-td, th {
-  border: 4px solid #dddddd;
-  text-align: left;
-  padding: 28px;
+.old-orders {
+  padding: 20px 30px;
+  height: 120px;
+  border: 1px solid lightgray;
+  display: flex;
+}
+
+
+
+/* turns on flexbox */
+.header{
+    display:flex;
+    padding: 20px 30px;
+    font-weight: 700;
+}
+
+/* set width between each element */
+.a{
+    min-width: 450px;
+    max-width: 450px;
+    text-align: center;
+
+}
+.b{
+    flex:1;
+  margin-left: 3%;
+  min-width: 50px;
+  max-width: 120px;
+
+}
+
+.c{
+  min-width: 100px;
+  max-width: 100px;
+  margin-left: 3%;
+
+}
+
+.d{
+  min-width: 100px;
+  max-width: 120px;
+  margin-left: 6%;
+
+}
+
+.e{
+    min-width: 120px;
+    max-width: 120px;
+    margin-left: 7.5%;
+}
+
+.cuisine {
+  padding-top: 10px;
+  min-width: 450px;
+  max-width: 450px;
+  height: 120px;
+  text-align:center; 
+}
+
+.quantity {
+  padding-top: 10px;
+  margin-left: 5%;
+}
+
+.date,
+.time{
+  padding-top: 10px;
+  min-width: 100px;
+  margin-left: 8%;
+}
+
+.remark {
+  padding-top: 10px;
+  text-align: center;
+  font-weight: 300;
   font-size: 16px;
-}
-tr:nth-child(even) {
-  background-color: #acff59ad;
+  min-width: 120px;
+  max-width: 120px;
+  margin-left: 5%;
 }
 
-#request {
-  font-size: 25px;
-  height: 45px;
-  background-color: #41b3a3;
-}
 
 </style>
