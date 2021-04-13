@@ -80,11 +80,12 @@
     </body>
   </div>
 
- 
-  </template>
+</template>
 
 <script>
 import firebase from "firebase"
+import database from "../firebase.js"
+
 
 export default {
   data() {
@@ -100,16 +101,30 @@ export default {
 
     login:function() {
       var email = this.nusnet + "@u.nus.edu"
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, this.password)
-        .then(() => {
-          alert('Successfully logged in');
-          this.$router.push('/menu');
-        })
-        .catch(() => {
-          alert("Wrong Password or Account");
-        });
+      var account = database.collection("UserInfo").doc(email)
+      
+      account.get().then((doc) => {
+        if (!doc.exists) {
+          alert("The account does not exist")
+          return 
+        } else if (doc.data().role != "student") {
+            alert("You need to login as a staff")
+            return 
+        } else {
+          firebase
+          .auth()
+          .signInWithEmailAndPassword(email, this.password)
+          .then(() => {
+            alert('Successfully logged in');
+            this.$router.push('/menu');
+          })
+          .catch(() => {
+            alert("Wrong Password");
+          });
+        }
+    
+      })
+      
     },
   }
 }
