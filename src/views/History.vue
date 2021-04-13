@@ -267,6 +267,11 @@ body {
     padding-top: 5px;
 }
 
+input[type = "radio"] {
+    margin-right:8px;
+    margin-left: 5px;
+}
+
 .orders {
   padding: 20px 30px;
   height: 120px;
