@@ -10,42 +10,38 @@
         </ul>
     </div>
 
-    <div class="sidenav">
-        <div class="profile">
-            <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" width="100" height="100">
-
-            <div class="name">
-                {{userInfo.name}}  
-            </div>
-            <div class="title">
-                Student
-            </div>
-        </div>
-    </div>
 
     <div class = "main">
-        <h3> PROFILE </h3>
+        <h3> MY PROFILE </h3>
         <div class = "card">
+            <img style="float: left; margin: 0px 25px 15px 0px;" src="../assets/profile.png" width="100" />
             
         <table>
                 <tbody>
                     <tr>
-                        <td>Name</td>
+                        <td><span style="font-weight:bold"> Name </span></td>
                         <td>:</td>
                         <td>{{userInfo.name}} </td>
                     </tr>
+
                     <tr>
-                        <td>Email</td>
+                        <td><span style="font-weight:bold"> Status </span></td>
+                        <td>:</td>
+                        <td> Student </td>
+                    </tr>
+
+                    <tr>
+                        <td><span style="font-weight:bold"> Email </span></td>
                         <td>:</td>
                         <td>{{userInfo.email}}</td>
                     </tr>
                     <tr>
-                        <td>Hostel</td>
+                        <td><span style="font-weight:bold"> Accomodation </span></td>
                         <td>:</td>
                         <td>{{userInfo.hostel}}</td>
                     </tr>
                     <tr>
-                        <td>Available Credits</td>
+                        <td><span style="font-weight:bold"> Credits Left </span></td>
                         <td>:</td>
                         <td>{{userInfo.credit}}</td>
                     </tr>
@@ -128,40 +124,6 @@ body {
     overflow: hidden;
 }
 
-.sidenav {
-    color: white;
-    border-bottom-right-radius: 25px;
-    left: 0;
-    overflow-x: hidden;
-    padding-top: 50px;
-    padding-left: 60px;
-    position: absolute;
-    width: 250px;
-
-}
-
-.profile {
-    margin-bottom: 20px;
-    margin-top: -12px;
-    text-align: center;
-}
-
-.profile img {
-    border-radius: 50%;
-    box-shadow: 0px 0px 5px 1px grey;
-}
-
-.name {
-    font-size: 25px;
-    font-weight: bold;
-    padding-top: 20px;
-}
-
-.title {
-    font-size: 20px;
-    padding-top: 10px;
-}
-
 /* profile content */
 
 .main {
@@ -174,25 +136,27 @@ body {
 
 .main h3 {
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: sans-serif;
     font-size: 24px;
     margin-bottom: 10px;
 }
 
 .main .card {
-    background-color: #fff;
-    border-radius: 18px;
+    background-color: white;
     box-shadow: 1px 1px 8px 0 black;
+    border-radius: 10px;
     height: auto;
     margin-bottom: 20px;
     padding: 20px 0 20px 50px;
 }
+   
 
 .main .card table {
     border: none;
     font-size: 20px;
-    height: 270px;
+    height: 300px;
     width: 80%;
+ 
 }
 
 .navbarstyle {

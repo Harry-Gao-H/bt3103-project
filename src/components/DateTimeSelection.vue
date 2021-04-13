@@ -212,7 +212,7 @@ button{
     text-align:center;
     margin:20px 10px;
 	margin-top:5px;
-    border-radius:25px;
+    border-radius:5px;
     font-weight:bold;
     border:2px solid #009688;
     background:transparent;
@@ -221,6 +221,10 @@ button{
     font-size:20px;
     background-color: #f7f2e1;
     
+}
+
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .box select {

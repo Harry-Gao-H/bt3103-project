@@ -19,10 +19,7 @@
     justify-content:space-between;
     font-size:20px;
 }
-.logo{
-    width:120px;
-    cursor:pointer;
-}
+
 .navbar ul li{
     list-style:none;
     display:inline-block;

@@ -16,7 +16,7 @@
         <div class = "student">
             <button class = "button"> <router-link to="/login-student">Student</router-link> </button>
             </div>
-            
+
         <div class = "staff">
           <button class = "button" > <router-link to="/login-staff">Staff</router-link> </button>
           </div>
@@ -59,7 +59,7 @@ body {
 }
 
 .logo-login {
-  width: 12%;
+  width: 100%;
 }
 
 /* Setting font for right-side */
@@ -147,6 +147,11 @@ p {
   border-radius: 4px;
 
 }
+
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
 
 /* Gif CSS */
 
