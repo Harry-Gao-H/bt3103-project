@@ -14,7 +14,7 @@
 
       <div class = "centered-left">
           
-        <form v-on:submit.prevent="submit()">
+        <form v-on:submit.prevent="login()">
           <div class="loadingio-spinner-eclipse-uoxpvuq5zt"><div class="ldio-z1piwl5e5pi">
               <div></div>
               </div></div>
@@ -27,7 +27,7 @@
             <div class = "input">
 
               <div class = "title"> </div>
-                    <input class = "text" type = "text" name = "username"  placeholder = "STAFF ID" v-model.trim.lazy = "staff" required>
+                    <input class = "text" type = "text" name = "username"  placeholder = "STAFF ID" v-model.trim.lazy = "username" required>
             </div>
 
             <!-- Password -->
@@ -81,9 +81,12 @@
   </div>
 
  
-  </template>
+</template>
 
 <script>
+import firebase from "firebase"
+import database from "../firebase.js"
+
 export default {
 
   data() {
@@ -94,8 +97,35 @@ export default {
   },
   methods: {
     submit:function() {
-      this.$router.push("/orders-overview")
-    }
+      
+    },
+    login:function() {
+      var email = this.username + "@u.nus.edu"
+      var account = database.collection("UserInfo").doc(email)
+      
+      account.get().then((doc) => {
+        if (!doc.exists) {
+          alert("The account does not exist")
+          return 
+        } else if (doc.data().role != "staff") {
+            alert("You need to login as a student")
+            return 
+        } else {
+          firebase
+          .auth()
+          .signInWithEmailAndPassword(email, this.password)
+          .then(() => {
+            alert('Successfully logged in');
+            this.$router.push("/orders-overview")
+          })
+          .catch(() => {
+            alert("Wrong Password");
+          });
+        }
+    
+      })
+      
+    },
   }
 }
 </script>
