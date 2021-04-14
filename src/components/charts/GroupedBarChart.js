@@ -167,10 +167,9 @@ export default {
                       // console.log(doc.data().orders[index][i][0])
                       if (this.datacollection.labels.includes(doc.data().orders[index][i][0])) {
                         var index2 = this.datacollection.labels.indexOf(doc.data().orders[index][i][0])
-                        console.log(index2)
+                        // console.log(index2)
                         // console.log(doc.data().orders[index]["quantity"])
                         this.datacollection.datasets[1].data[index2] += (doc.data().orders[index]["quantity"])
-                        // console.log(this.datacollection.datasets[1].data)
 
                       }
                     }
@@ -182,7 +181,6 @@ export default {
                         if (this.datacollection.labels.includes(doc.data().orders[index][j][0])) {
                           var index3 = this.datacollection.labels.indexOf(doc.data().orders[index][j][0])
                           this.datacollection.datasets[2].data[index3] += doc.data().orders[index]["quantity"]
-                          console.log(this.datacollection.datasets[2].data)
                         }
                       }
                     }
