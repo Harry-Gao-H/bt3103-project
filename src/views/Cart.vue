@@ -102,16 +102,18 @@ export default {
     },
     methods: {
         logout() {
+            this.$router.push('/');
             firebase
                 .auth()
                 .signOut()
                 .then(() => {
-                alert('Successfully logged out');
-                this.$router.push('/');
+                    
+                    alert('Successfully logged out');
                 })
                 .catch(error => {
-                alert(error.message);
+                
                 this.$router.push('/');
+                alert(error.message);
             });
         },
         remove:function(item){

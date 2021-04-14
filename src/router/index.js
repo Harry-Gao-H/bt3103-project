@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import firebase from 'firebase'
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -84,20 +85,38 @@ router.beforeEach(( to,from,next ) => {
   if (to.meta.requiresAuth) {
     
     firebase.auth().onAuthStateChanged( (user) => {
-      if (user) {
-        // user is signed in, allowed access
       
-        return next()
+      if (user) {
+        
+        //disallow login student from accessing staff page, vice versa
+        if (user.email.charAt(0) == 'e' && to.meta.limitedTo == "student") {
+          return next()
+        }
+
+        if (user.email.charAt(0) == 's' && to.meta.limitedTo == "staff") {
+          return next()
+        }
+
+        return next({path: '/' })
+        /*
+        database.collection("UserInfo").doc(user.email).get().then((snapshot) => {
+          if (snapshot.role != to.meta.limitedTo)
+            return next({path: '/' })
+        })
+        */
+
+
       } else {
         //user is signed out, show login page
         //alert("Please login first")
         return next({path: '/' })
+        
       }
     })
+  } else {
+    return next()
   }
-
-  return next()
-} )
+})
 
 
 export default router

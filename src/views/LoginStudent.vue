@@ -113,7 +113,7 @@ export default {
           alert("The account does not exist")
           return 
         } else if (doc.data().role != "student") {
-            alert("You need to login as a staff")
+            alert("You may want to login as a staff")
             return 
         } else {
           firebase
