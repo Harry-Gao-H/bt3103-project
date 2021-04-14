@@ -35,7 +35,7 @@ export default {
             ]
         },
         options: {
-            legend: { display: false },
+            legend: { display: true },
             title: {
               display: false,
               text: 'Total orders'

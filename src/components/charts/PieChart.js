@@ -30,9 +30,9 @@ export default {
             ]
         },
         options: {
-            legend: { display: false },
+            legend: { display: true },
             title: {
-              display: false,
+              display: true,
               text: 'Total orders'
             },
             responsive: true,
