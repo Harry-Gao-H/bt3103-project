@@ -165,6 +165,7 @@ export default {
 			takeawayTimeStaff:'',
 			cuisinesStaff:[],
 			showBarChart:false,
+			showChart:false,
 			formattedDate:'',
 		}
 	},
