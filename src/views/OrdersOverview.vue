@@ -10,15 +10,15 @@
 <div>
   
   <form>
-  <div id="wrapper">
-  <input id="dateSelect" type="date" v-model="selectedDate" v-on:change="fetch()" required>
-  
-  <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
-	<label for="breakfast" class="radio">Breakfast</label> 
-	<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMeal" v-on:change="fetch()"> 
-	<label for="dinner" class="radio">Dinner</label>
-  
-  </div>
+    <div id="wrapper">
+      <input id="dateSelect" type="date" v-bind:min="dateMin" v-bind:max="dateMax" v-model="selectedDate" v-on:change="fetch()" required>
+      
+      <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
+      <label for="breakfast" class="radio">Breakfast</label> 
+      <input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMeal" v-on:change="fetch()"> 
+      <label for="dinner" class="radio">Dinner</label>
+    
+    </div>
   </form>
 
   <order-listing :orders="orders" />
@@ -43,10 +43,12 @@ export default {
     selectedMeal: "",  
     orders: [],
     selectedDate: "",
+    dateMin:"",
+    dateMax:"",
   }),
 
   methods: {
-    getOrders(date) {
+    getOrders() {
       var dict = {
         stud_id: "",
         collect_time: "",
@@ -55,12 +57,28 @@ export default {
         quantity: 0,
         remark: "",
         };
-      
+
+
+      var day = new Date(this.selectedDate).getDay();
+
+			var dayToDate = {
+				0 : "18-4-2021",
+				1 : "19-4-2021",
+				2 : "20-4-2021",
+				3 : "14-4-2021",
+				4 : "15-4-2021",
+				5 : "16-4-2021",
+				6 : "17-4-2021",
+			} 
+
+			var newDate = dayToDate[day]
+      /*
       var strings = this.selectedDate.split("-")
 			date = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
+      */
 
       this.orders = [];
-      database.collection("Order").doc(date)
+      database.collection("Order").doc(newDate)
         .collection(this.selectedMeal).get().then(snapshot => {
           snapshot.docs.forEach(doc => {
             let copyDict= JSON.parse(JSON.stringify(dict));
@@ -99,8 +117,42 @@ export default {
 		},
   },
   created() {
-    this.getOrders(this.selectedDate);
+    this.getOrders();
   },
+
+  mounted() {
+		var today = new Date();
+
+	
+		var startDay = new Date(today)
+		startDay.setDate(startDay.getDate() - 6)
+		var dd = startDay.getDate();
+		var mm = startDay.getMonth()+1; //January is 0!
+		var yyyy = startDay.getFullYear();
+		if(dd<10){
+				dd='0'+dd
+		}
+		if(mm<10){
+			mm='0'+mm
+		} 
+		this.dateMin = yyyy+'-'+mm+'-'+dd;
+
+
+		var endDay = new Date(today)
+		endDay.setDate(endDay.getDate() + 7)
+		dd = endDay.getDate();
+		mm = endDay.getMonth() + 1; //January is 0!
+		yyyy = endDay.getFullYear();
+		if(dd<10){
+				dd='0'+dd
+		} 
+		if(mm<10){
+			mm='0'+mm
+		} 
+		this.dateMax = yyyy+'-'+mm+'-'+dd;
+
+		
+	}
 }
 </script>
 
