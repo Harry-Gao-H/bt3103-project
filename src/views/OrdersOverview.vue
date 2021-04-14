@@ -49,6 +49,7 @@ export default {
 
   methods: {
     getOrders() {
+      
       var dict = {
         stud_id: "",
         collect_time: "",
@@ -93,31 +94,31 @@ export default {
               copyDict["remark"] = container[i].remark 
             }
             this.orders.push(copyDict)
-            console.log(this.orders)
+            //console.log(this.orders)
           })
+        }).then( () => {
+          this.orders.sort((a,b) => (a.collect_time > b.collect_time? 1 : -1))
         })
-        },
-          logout() {
-            firebase
-            .auth()
-            .signOut()
-            .then(() => {
-            alert('Successfully logged out');
-            this.$router.push('/');
-            })
-          .catch(error => {
-          alert(error.message);
-          this.$router.push('/');
-        });
+    },
+    logout() {
+      firebase
+      .auth()
+      .signOut()
+      .then(() => {
+      alert('Successfully logged out');
+        this.$router.push('/');
+      })
+      .catch(error => {
+        alert(error.message);
+        this.$router.push('/');
+    });
     },
     fetch: function() {
-			if (this.selectedDate != '' ) {
+      //if date or meal is not selected, end the function
+			if (this.selectedDate != '' && this.selectedMeal != '') {
 				this.getOrders()
 			}
 		},
-  },
-  created() {
-    this.getOrders();
   },
 
   mounted() {
