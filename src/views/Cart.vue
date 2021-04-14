@@ -74,7 +74,6 @@ export default {
     data() {
         return {
             items: [],
-            //creditCounter : 0,
             credit: 0,
             userId:"",
             //userInfo:{}

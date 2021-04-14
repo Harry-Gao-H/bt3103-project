@@ -101,12 +101,13 @@ export default {
         })
     },
     logout() {
+      this.$router.push('/');
       firebase
       .auth()
       .signOut()
       .then(() => {
-      alert('Successfully logged out');
-        this.$router.push('/');
+        alert('Successfully logged out');
+        
       })
       .catch(error => {
         alert(error.message);

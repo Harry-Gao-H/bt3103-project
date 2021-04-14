@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import firebase from 'firebase'
+//import firebase from 'firebase'
 
 
 Vue.use(VueRouter)
@@ -30,8 +30,31 @@ const routes = [
   {
     path: '/menu',
     name: 'Menu',
-    meta: { requiresAuth:true, limitedTo:"student" },
-    component: () => import('../views/Menu.vue')
+    meta: { requiresAuth:true, limitedTo:"student"},
+    component: () => import('../views/Menu.vue'),
+    /*
+    beforeEnter(to, from, next) {
+      firebase.auth().onAuthStateChanged( (user) => {
+        if (user) {
+          //disallow login student from accessing staff page, vice versa
+          if (user.email.charAt(0) == 'e') {
+            return next()
+          } else {
+            console.log(user.email.charAt(0))
+            console.log(to.meta.limitedTo)
+            console.log("The user has no access to this page")
+            return next({path: '/' })
+          }
+
+        } else {
+          //user is signed out, show login page
+          console.log("User signed out ")
+          return next({path: '/' })   
+        }
+      })
+    },
+    */
+    
   },
   {
     path: '/product',
@@ -80,8 +103,9 @@ const router = new VueRouter({
   routes
 })
 
-
+/*
 router.beforeEach(( to,from,next ) => {
+  console.log(to.name)
   if (to.meta.requiresAuth) {
     
     firebase.auth().onAuthStateChanged( (user) => {
@@ -91,24 +115,20 @@ router.beforeEach(( to,from,next ) => {
         //disallow login student from accessing staff page, vice versa
         if (user.email.charAt(0) == 'e' && to.meta.limitedTo == "student") {
           return next()
-        }
-
-        if (user.email.charAt(0) == 's' && to.meta.limitedTo == "staff") {
+        } else if (user.email.charAt(0) == 's' && to.meta.limitedTo == "staff") {
           return next()
+        } else {
+          
+          console.log(user.email.charAt(0))
+          console.log(to.meta.limitedTo)
+          console.log("The user has no access to this page")
+          return next({path: '/' })
         }
-
-        return next({path: '/' })
-        /*
-        database.collection("UserInfo").doc(user.email).get().then((snapshot) => {
-          if (snapshot.role != to.meta.limitedTo)
-            return next({path: '/' })
-        })
-        */
 
 
       } else {
         //user is signed out, show login page
-        //alert("Please login first")
+        console.log("User signed out ")
         return next({path: '/' })
         
       }
@@ -117,6 +137,7 @@ router.beforeEach(( to,from,next ) => {
     return next()
   }
 })
+*/
 
 
 export default router

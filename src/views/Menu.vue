@@ -35,12 +35,13 @@ export default {
   },
   methods: {
     logout() {
+      this.$router.push('/');
       firebase
         .auth()
         .signOut()
         .then(() => {
           alert('Successfully logged out');
-          this.$router.push('/');
+          
         })
         .catch(error => {
           alert(error.message);
