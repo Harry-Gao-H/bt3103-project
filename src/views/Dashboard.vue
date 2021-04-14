@@ -373,8 +373,8 @@ width:100%;
 	margin:20px auto;
     /*font-weight:100;*/
     line-height:25px;
-	border-radius: 25px;
-	border: 2px solid #73AD21;
+	/*border-radius: 25px;
+	border: 2px solid #73AD21;*/
 	padding: 20px;
 	float:left;
 	
