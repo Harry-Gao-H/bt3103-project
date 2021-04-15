@@ -18,7 +18,7 @@
             <div class="display-1 font-weight-regular white--text text-xs-center">
                 By taking ownership of your food at RCs.
             </div>
-            <v-btn fab class="mt-5 teal lighten-2">
+            <v-btn fab class="mt-5 teal lighten-2" disabled x-large>
                 <span class="material-icons md-dark md-inactive">arrow_downward</span>
             </v-btn>
         </v-layout>
