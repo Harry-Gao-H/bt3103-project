@@ -1,15 +1,22 @@
 <template>
-  <div class="banner">
-            <div class="navbar">
-                <img src="./assets/foodchop.png" class="logo">
-                <ul>
-                    
-                </ul>
-            </div>
+    <v-app id="app">
+        <app-navigation v-if="$route.meta.header !== 1"></app-navigation>
 
-             <router-view/>
-        </div>
+        <v-main transition="slide-x-transition">
+            <router-view></router-view>
+        </v-main>
+    </v-app>
 </template>
+
+<script>
+import AppNavigation from '@/components/AppNavigation';
+export default {
+    name: 'App',
+    components: {
+        AppNavigation
+    }
+};
+</script>
 
 <style>
 @import './assets/styles/style.css';
