@@ -4,12 +4,13 @@
     <span>
         <menu-hero></menu-hero>
         <menu-details></menu-details>
+        <div id="content">
+          <PageContent></PageContent>
+        </div>
         <menu-plans></menu-plans>
     </span>  
 
-<div id="content">
-   <PageContent></PageContent>
-</div>
+
 </div>
 </template>
 
