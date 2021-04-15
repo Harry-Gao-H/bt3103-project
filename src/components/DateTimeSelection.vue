@@ -76,9 +76,9 @@
                             outlined
                             block
                             color="green"
-                            v-on:click="goToProductPage('Asian')"
+                            v-on:click="goToProductPage(filtered('Asian'))"
                         >
-                            Select This Plan</v-btn
+                            Select</v-btn
                         >
                     </v-card-actions>
                 </v-card>
@@ -123,9 +123,9 @@
                             outlined
                             block
                             color="green"
-                            v-on:click="goToProductPage('Malay')"
+                            v-on:click="goToProductPage(filtered('Malay'))"
                         >
-                            Select This Plan</v-btn
+                            Select</v-btn
                         >
                     </v-card-actions>
                 </v-card>
@@ -170,9 +170,9 @@
                             outlined
                             block
                             color="green"
-                            v-on:click="goToProductPage('Vegetarian')"
+                            v-on:click="goToProductPage(filtered('Vegetarian'))"
                         >
-                            Select This Plan </v-btn>
+                            Select</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -216,9 +216,9 @@
                             outlined
                             block
                             color="green"
-                            v-on:click="goToProductPage('Western')"
+                            v-on:click="goToProductPage(filtered('Western'))"
                         >
-                            Select This Plan</v-btn
+                            Select</v-btn
                         >
                     </v-card-actions>
                 </v-card>
@@ -234,8 +234,6 @@
 
 <script>
 import database from "../firebase.js"
-
-
 
 
 export default {

@@ -18,9 +18,9 @@
     <div class="product-description">
       <span>{{selectedDate}} </span>
       <h2> {{meal}}</h2>
-      <h3> {{cuisine[0]}} </h3>
+      <h3> {{cuisine[0].type}} </h3>
       <br>
-      <p v-for= "dish in cuisine[1].dishes" v-bind:key = "dish">
+      <p v-for= "dish in cuisine[0].foods" v-bind:key = "dish">
             {{dish}} |
      </p>
     </div>
