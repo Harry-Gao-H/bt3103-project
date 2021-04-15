@@ -9,13 +9,19 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    meta:{requiresAuth:false},
-    component: () => import('../views/Home.vue')
+    meta:{
+      requiresAuth:false,
+      header: 1
+    },
+    component: () => import('../views/Home.vue'),
   },
   {
     path: '/login-staff',
     name: 'LoginStaff',
-    meta:{requiresAuth:false},
+    meta:{
+      requiresAuth:false,
+      header:1
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -24,8 +30,10 @@ const routes = [
   {
     path: '/login-student',
     name: 'LoginStudent',
-    meta:{requiresAuth:false},
-    component: () => import('../views/LoginStudent.vue')
+    meta:{
+      requiresAuth:false,
+      header: 1},
+    component: () => import('../views/LoginStudent.vue'),
   },
   {
     path: '/menu',
@@ -94,12 +102,6 @@ const routes = [
     name: 'Dashboard',
     meta: { requiresAuth:true, limitedTo:"staff" },
     component: () => import('../views/Dashboard.vue')
-  },
-  {
-    path: '/app',
-    name: 'App',
-    
-    component: () => import('../views/App.vue')
   },
 ]
 
