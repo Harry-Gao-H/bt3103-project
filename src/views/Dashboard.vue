@@ -2,7 +2,7 @@
 <div>
 <div class ="navbar">
   <ul>
-      <li><router-link to="/orders-overview">Overview</router-link></li>
+      <li><router-link to="/orders-overview" class="navbarstyle">Overview</router-link></li>
       <li class="navbarstyle" v-on:click="logout()">Logout</li>
 
   </ul>
@@ -259,7 +259,7 @@ label {
 
 .navbarstyle {
 	text-decoration:none;
-	color:#fff;
+	color:rgb(0, 0, 0);
 	text-transform:uppercase;
 }
 

@@ -2,7 +2,7 @@
 <div>
 <div class ="navbar">
   <ul>
-      <li><router-link to="/dashboard">Dashboard</router-link></li>
+      <li><router-link to="/dashboard" class="navbarstyle">Dashboard</router-link></li>
       <li class="navbarstyle" v-on:click="logout()">Logout</li>
   </ul>
 </div>
@@ -162,7 +162,7 @@ export default {
 
 .navbarstyle {
   text-decoration:none;
-  color:#fff;
+  color:rgb(0, 0, 0);
   text-transform:uppercase;
 }
 

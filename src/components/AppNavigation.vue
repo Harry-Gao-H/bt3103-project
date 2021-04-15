@@ -3,7 +3,7 @@
         <v-navigation-drawer
             app
             v-model="drawer"
-            class="brown lighten-2"
+            class="teal lighten-2"
             dark
             disable-resize-watcher
         >
