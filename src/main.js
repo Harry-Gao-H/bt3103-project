@@ -4,6 +4,7 @@ import router from './router/index.js'
 import firebase from "firebase";
 import store from "./store";
 import vuetify from './plugins/vuetify';
+import '@babel/polyfill'
 
 Vue.config.productionTip = false;
 

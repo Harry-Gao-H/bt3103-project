@@ -95,6 +95,12 @@ const routes = [
     meta: { requiresAuth:true, limitedTo:"staff" },
     component: () => import('../views/Dashboard.vue')
   },
+  {
+    path: '/app',
+    name: 'App',
+    
+    component: () => import('../views/App.vue')
+  },
 ]
 
 const router = new VueRouter({
