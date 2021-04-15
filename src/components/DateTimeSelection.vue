@@ -5,7 +5,7 @@
 			<p id="test"></p>
 			<label for="meal">Choose your preferred date and time:</label>
 			<input id="datefield" type="date" name="meal" v-bind:min="dateMin" v-bind:max="dateMax" v-model="selectedDate" v-on:change="fetch()" required>
-			{{selectedDate}}
+			
 			
 			<br>
 
@@ -17,7 +17,7 @@
 			<div v-show= "!isSaturday() && selectedDate!=''">
 				<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMeal" v-on:change="fetch()"> 
 				<label for="dinner" class="radio">Dinner</label>
-			{{selectedMeal}}
+			
 			</div>
 
 		</div>
