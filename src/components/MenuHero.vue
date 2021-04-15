@@ -11,7 +11,7 @@
             <div
                 class="display-3 font-weight-black white--text text-xs-center mb-3"
             >
-                <vue-typed-js :strings="['save your meal', 'save food waste', 'save time']" :loop="true" :typeSpeed="75" :backSpeed="30" :smartBackspace="true">
+                <vue-typed-js :strings="['save meals', 'save food waste', 'save time']" :loop="true" :typeSpeed="75" :backSpeed="30" :smartBackspace="true">
                 <h3>You can <span class="typing"></span></h3>
                 </vue-typed-js>
             </div>

@@ -8,7 +8,7 @@
                 >
                 <v-flex>
                     <div class="headline mt-3 black--text font-weight-bold">
-                        Book Your TakeAway Experience in Advanced
+                        Food Takeaway Pre-booking
                     </div>
                     <p class="subheading mt-3">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.

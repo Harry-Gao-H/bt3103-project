@@ -6,6 +6,7 @@ import store from "./store";
 import vuetify from './plugins/vuetify';
 import '@babel/polyfill'
 import VueTypedJs from 'vue-typed-js'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.use(VueTypedJs)
 
