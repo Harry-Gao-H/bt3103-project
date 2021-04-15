@@ -1,14 +1,5 @@
 <template>
-<div>
-    <div class ="navbar">
-        <ul>
-            <li><router-link to="/profile">Profile</router-link></li>
-            <li><router-link to="/menu">Menu</router-link></li>
-            <li><router-link to="/history">History</router-link></li>
-            <li class="logout-btn" v-on:click="logout()">Logout</li>  
-        </ul>
-    </div>
-    
+<div class="body">
     <div class="shopping-cart">
         <!-- Title -->
         <div class = "title">
@@ -43,12 +34,12 @@
             </div>
 
             <div class = "remark">
-                 {{getRemark(item.small)}} <br>{{item.remark}}
+                 {{getRemark(item.small)}} <br>  {{item.remark}}
             </div>
 
             <button id = "remove" v-on:click="remove(item)">Remove</button>
+        </div>
 
-            </div>
         <div class = "credits">
         <p>Your Credit: {{credit}} | Credit needed: {{creditCount()}}</p>
         </div>
@@ -57,10 +48,9 @@
         <div class = "confirm">
         <button v-on:click="sendOrders()"> Confirm Order</button> 
         </div>
-       
-
     </div>
 </div>
+
 </template>
 
 <script>
@@ -76,7 +66,6 @@ export default {
             items: [],
             credit: 0,
             userId:"",
-            //userInfo:{}
         }
     },
     created() {
@@ -254,9 +243,9 @@ body {
  .shopping-cart {
   width: 70%;
   height: 100%;
-  margin: 25px 0 auto 300px;
   background: #FFFFFF;
-  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  margin: 2%;
+  box-shadow: 1px 2px 3px 0px rgba(37, 37, 37, 0.1);
   border-radius: 6px;
   display: flex;
   flex-direction: column;
