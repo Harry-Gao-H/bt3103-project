@@ -1,20 +1,40 @@
 <template>
-<div id="product">
-<button onclick="location.href='/menu'" type="button" id="back">Back</button>
-    <div class="flex-col">
-        <div class="center" style="color : white" >
-            <!--{{cuisine}}-->
-            <h2>{{selectedDate}}     {{meal}}: {{cuisine[0]}}</h2>
-			<p v-for="dish in cuisine[1].dishes" v-bind:key = "dish">
-                {{dish}}
-            </p>
-            <br>
-            <br>
-            <br>
+<div>
+  <div class = "back">
+    <button onclick="location.href='/menu'" type="button" id="back">Back</button>
+    </div>
 
-            <div>
-                <div v-show = "meal == 'Breakfast'">
-                    <p>Breakfast Takeaway Time</p>
+<div class="container">
+
+  <!-- Left Column / Headphones Image -->
+  <div class="left-column">
+    <img src = "../assets/food.jpeg">
+  </div>
+ 
+  <!-- Right Column -->
+  <div class="right-column">
+ 
+    <!-- Product Description -->
+    <div class="product-description">
+      <span>{{selectedDate}} </span>
+      <h2> {{meal}}</h2>
+      <h3> {{cuisine[0]}} </h3>
+      <br>
+      <p v-for= "dish in cuisine[1].dishes" v-bind:key = "dish">
+            {{dish}} |
+     </p>
+    </div>
+ 
+    <!-- Meal Configuration -->
+    <div class="product-configuration">
+ 
+      <!-- Time -->
+      <div class="takeaway-time">
+        <span>Takeaway time</span>
+ 
+        <div class="meal-time">
+          <div v-show = "meal == 'Breakfast'">
+                    
                     <select id="time" name="time" v-model="time" >
                         <option value="0730">07:30</option>
                         <option value="0800">08:00</option>
@@ -25,7 +45,7 @@
                 </div>
 
                 <div v-show = "meal == 'Dinner'">
-                    <p>Dinner Takeaway Time</p>
+      
                     <select id="time" name="time" v-model="time">
                         <option value="1800">18:00</option>
                         <option value="1830">18:30</option>
@@ -34,46 +54,47 @@
                         <option value="2000">20:00</option>
                     </select>
                 </div>
-        
-            </div>
 
-            <br>
-            <label for="model">Select Quantity:</label>
+        </div>
+      </div>
+ 
+      <!-- Quantity -->
+      <div class="meal-config">
+        <span>  Select Quantity </span>
+
+        <div class="meal-choose" >
             <select class="form-control" name="model" id="model" v-model="quantity">
             <option v-for="option in quantity_options" v-bind:value="option.id" v-bind:key="option.id">{{option.text}}</option>
             </select>
-
-            {{quantity}}
-
-
-            <br>
-            <label for="small">I want a smaller proportion</label>
-            <input type="checkbox" id="small" v-model="smallProportionOption"> 
-            
-            {{smallProportionOption}}
-            <br>
-
-
-            <label for="remark">Please note down your special need here if any :)</label>
-            <br>
-            <textarea id="remark" name="remark" rows="4" cols="50" v-model.lazy.trim="remark"></textarea> 
-            {{remark}}
-
-            <br>
-            <br>
-
-            <p> Your credit: {{userInfo.credit}} </p>
-
-
-            <button id="addCart" v-on:click="addOrderToCart()">Add to Cart</button> 
         </div>
         
-       
+        <!-- Proportion -->
+        <span>  I want a smaller portion </span>
+        <div class="choose">
+            <input type="checkbox" class = "small-checkbox" id="small" v-model="smallProportionOption"> <label for = "small">
+            {{smallProportionOption}} </label>
+        </div>
+      
 
+      <span> Any remarks? </span>
+      <div class = "remark">
+          <textarea id="remark" name="remark" rows="2" cols="50" v-model.lazy.trim="remark"></textarea> 
+            </div>
     </div>
+ 
+    <!-- Credits  -->
+    <div class="credit">
+      <span> Your credit: {{userInfo.credit}} </span>
+    </div>
+    <div class = "cart">
+      <button id="addCart" v-on:click="addOrderToCart()">Add to Cart</button> 
+    </div>
+    
+  </div>
+</div>
+</div>
 </div>
 </template>
-
 
 <script>
 import { mapGetters } from "vuex";
@@ -142,89 +163,246 @@ export default {
 };
 </script>
 
-
 <style scoped>
-
-.flex-col {
-  display: flex;
-  justify-content: flex-start;
-  margin: 10%;
-  margin-top: 1%;
+.back {
+  margin-left: 5%;
+  display: inline-block;
 }
-
-.flex-col--2 {
-  width: 60%;
-  padding: 5px;
-  height:50%; 
-  margin: 5px;
-  font-size: 1.4em;
-}
-
-/* Button Design */
 
 #back {
-    position: absolute;
-    left: 10%;
-    top: 17%;
-    width: 8%;
-    text-align: center;
-    font-size: 100%;
-    line-height: 10px;
-    font-weight: bold;
-    padding: 0.9%;
-    border-radius:10px;
-    border:2px solid hsl(174, 100%, 29%);
-    cursor:pointer;
-    background: cornsilk;
-}
-
-button:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-#addCart {
-    margin-top: 5%;
-    padding: 3%;
-    font-weight: bold;
-    cursor:pointer;
-    border:2px solid hsl(174, 100%, 29%);
-    border-radius:10px;
-    font-size: 18px;
-    background: cornsilk;
-    color: black;
-}
-
-.center {
-  margin: auto;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid black ;
+  font-size: 16px;
+  color: #358ED7;
+  text-decoration: none;
+  padding: 5%;
   text-align: center;
-  width: 50%;
-  border: 3px solid green;
-  padding: 10px;
-}
-
-.left {
-  float: left;
-  width: 50%;
-  height: auto;
-  padding: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
   
 }
 
-.right {
-  text-align: left;
-  float: right;
-  width: 50%;
-  padding: 20px; 
+/* Basic Styling */
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+ 
+.container {
+  max-width: 1200px;
+  max-height: 75vh;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+  background-color: white;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 6px;
 }
 
-select {
-	cursor: pointer;
-    padding: 1px;
+/* Columns */
+.left-column {
+  width: 30%;
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+ 
+.right-column {
+  width: 70%;
+  margin-top: 20px;
+}
+
+/* Left Column */
+.left-column img {
+  width: 90%;
+  min-height: 100%;
+  position: absolute;
+}
+
+/* Meal Description */
+.product-description {
+  border-bottom: 1px solid #E1E8EE;
+  padding-bottom: 1%;
+  margin-bottom: 2%;
+}
+.product-description span {
+  font-size: 15px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.product-description h2 {
+  font-weight: 700;
+  font-size: 40px;
+  color: rgb(8, 8, 8);
+  text-transform: uppercase;
+  margin-top: 1%;
+}
+
+.product-description h3 {
+  font-weight: 500;
+  font-size: 22px;
+  text-transform: uppercase;
+  margin-top: 1%;
+}
+
+.product-description p {
+  font-size: 15px;
+  color: grey;
+  display: inline;
+}
+
+/* Takeaway time */
+.takeaway-time  {
+  margin-bottom: 1%;
+}
+
+.takeaway-time span {
+  font-size: 15px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+ 
+.meal-time div {
+  display: inline-block;
+  margin-top: 1%;
+}
+
+#time {
+  cursor: pointer;
+  padding: 4px;
 	border-radius: 1px;
 	background-color: #ddd;
 	list-style: none;
-    margin-left: 3px
+  margin-top: 1%;
+  width: 50px;
 }
 
+/* Meal Configuration */
+.meal-choose {
+  margin-bottom: 2%;
+}
+ 
+.meal-config {
+  margin-bottom: 1%;
+}
+
+.meal-config span {
+  font-size: 15px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* Quantity */
+.form-control {
+  cursor: pointer;
+  padding: 4px;
+	border-radius: 1px;
+	background-color: #ddd;
+	list-style: none;
+  margin-top: 1%;
+  width: 50px;
+}
+
+/* Proportion */
+label{
+    display: inline-block;
+    border: 1px solid grey;
+    color: black;
+    border-radius: 2px;
+    white-space: nowrap;
+    margin: 3px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+label {
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    transition: transform .3s ease-in-out;
+}
+
+input[type="checkbox"]:checked + label::before {
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: lightgreen;
+    color: black;
+    transition: all .2s;
+}
+
+input[type="checkbox"] {
+  display: absolute;
+}
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+input[type="checkbox"]:focus + label {
+  border: 2px solid #358ED7;
+}
+
+/* Remarks */
+#remark{
+  border-bottom:1px solid #358ED7;
+}
+
+/* Credit */
+
+.credit {
+  font-size: 15px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 2%;
+}
+.cart {
+  display: inline-block;
+  
+}
+
+#addCart {
+  cursor: pointer;
+  border: 1px solid black ;
+  font-size: 16px;
+  color: #358ED7;
+  text-decoration: none;
+  padding: 3%;
+  text-align: center;
+  margin: auto;
+}
+
+#addCart:hover {
+  background-color: greenyellow;
+}
 
 </style>
