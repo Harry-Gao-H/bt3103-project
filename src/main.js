@@ -5,6 +5,9 @@ import firebase from "firebase";
 import store from "./store";
 import vuetify from './plugins/vuetify';
 import '@babel/polyfill'
+import VueTypedJs from 'vue-typed-js'
+
+Vue.use(VueTypedJs)
 
 Vue.config.productionTip = false;
 
