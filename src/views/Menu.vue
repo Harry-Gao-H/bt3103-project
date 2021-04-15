@@ -7,7 +7,6 @@
         <div id="content">
           <PageContent></PageContent>
         </div>
-        <menu-plans></menu-plans>
     </span>  
 
 
@@ -20,20 +19,18 @@ import PageContent from '@/components/PageContent.vue'
 import firebase from "firebase"
 import MenuHero from '@/components/MenuHero';
 import MenuDetails from '@/components/MenuDetails';
-import MenuPlans from '@/components/MenuPlans';
 
 export default {
     name: 'home',
     components: {
         MenuHero,
         MenuDetails,
-        MenuPlans,
         PageContent
     },
 
   data() {
     return {
-      title:'Your first Vue Component',
+      title:'Menu Page',
       
       items: []
     }

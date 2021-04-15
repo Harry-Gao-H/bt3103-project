@@ -23,25 +23,211 @@
 		</div>
 	</form>
 
-
-
 	<br>
 	
 	<button v-on:click="displayMenu()" id="buttonClick">Check Menu</button>
 
+	<p>Note: Only breakfast is served on Saturday and only dinner is served on Sunday </p>
+	
 	<div v-show="showMenu">
-		<ul>
-			<li v-for="cuisine in cuisines" v-bind:key="cuisine[0]" >
-				<h2><u v-on:click="goToProductPage(cuisine)">{{cuisine[0]}}</u></h2>
-				
-				<p v-for="dish in cuisine[1].dishes" v-bind:key = "dish">
-					{{dish}}
-				</p>
-			</li>
-		</ul>
+		<v-container grid-list-lg>
+        <v-layout row>
+            <v-flex xs12 class="text-xs-center display-1 font-weight-black my-5"
+                >Available Meal Selections</v-flex
+            >
+        </v-layout>
+        <v-layout row wrap class="meal-plans">
+            <v-flex xs12 sm12 md3>
+                <v-card height="100%" class="card-outter">  
+                    <v-responsive>
+                        <v-img
+                            src="http://source.unsplash.com/hjCA3ecCXAQ"
+                            height="500px"
+                        >
+                            <v-container fill-height fluid>
+                                <v-layout fill-height>
+                                    <v-flex xs12 align-end flexbox>
+                                        <span class="headline white--text"
+                                            >ASIAN</span
+                                        >
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-img>
+                    </v-responsive>
+
+                    <v-card-text>
+                        <div>
+                            <h3 class="headline mb-0">Asian</h3>
+                            <div>
+								<ol>
+									<template v-for="cuisines in filtered('Asian')">
+										<li v-for="dish in cuisines.foods" :key="dish">
+											{{dish}}
+										</li>
+									</template>
+								</ol>
+                            </div>
+                        </div>
+                    </v-card-text>
+
+                    <v-card-actions class="card-actions">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            v-on:click="goToProductPage('Asian')"
+                        >
+                            Select This Plan</v-btn
+                        >
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+
+            <v-flex xs12 sm12 md3>
+                <v-card height="100%" class="card-outter">
+                    <v-responsive>
+                        <v-img
+                            src="http://source.unsplash.com/6S27S6pZ6o0"
+                            height="500px"
+                        >
+                            <v-container fill-height fluid>
+                                <v-layout fill-height>
+                                    <v-flex xs12 align-end flexbox>
+                                        <span class="headline white--text"
+                                            >MALAY</span
+                                        >
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-img>
+                    </v-responsive>
+
+                    <v-card-text>
+                        <div>
+                            <h3 class="headline mb-0">Malay</h3>
+                            <div>
+                                <ol>
+									<template v-for="cuisines in filtered('Malay')">
+										<li v-for="dish in cuisines.foods" :key="dish">
+											{{dish}}
+										</li>
+									</template>
+								</ol>
+                            </div>
+                        </div>
+                    </v-card-text>
+
+                    <v-card-actions class="card-actions">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            v-on:click="goToProductPage('Malay')"
+                        >
+                            Select This Plan</v-btn
+                        >
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+
+            <v-flex xs12 sm12 md3>
+                <v-card height="100%" class="card-outter">
+                    <v-responsive>
+                        <v-img
+                            src="http://source.unsplash.com/1SPu0KT-Ejg"
+                            height="500px"
+                        >
+                            <v-container fill-height fluid>
+                                <v-layout fill-height>
+                                    <v-flex xs12 align-end flexbox>
+                                        <span class="headline white--text"
+                                            >VEGETARIAN</span
+                                        >
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-img>
+                    </v-responsive>
+
+                    <v-card-text>
+                        <div>
+                            <h3 class="headline mb-0">Vegetarian</h3>
+                            <div>
+                                <ol>
+									<template v-for="cuisines in filtered('Vegetarian')">
+										<li v-for="dish in cuisines.foods" :key="dish">
+											{{dish}}
+										</li>
+									</template>
+								</ol>
+                            </div>
+                        </div>
+                    </v-card-text>
+
+                    <v-card-actions class="card-actions">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            v-on:click="goToProductPage('Vegetarian')"
+                        >
+                            Select This Plan </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+
+            <v-flex xs12 sm12 md3>
+                <v-card height="100%"  class="card-outter">  
+                    <v-responsive>
+                        <v-img
+                            src="https://images.unsplash.com/photo-1598578013897-10940997c1a2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=691&q=80"
+                            height="500px"
+                        >
+                            <v-container fill-height fluid>
+                                <v-layout fill-height>
+                                    <v-flex xs12 align-end flexbox>
+                                        <span class="headline white--text"
+                                            >WESTERN</span
+                                        >
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-img>
+                    </v-responsive>
+
+                    <v-card-text>
+                        <div>
+                            <h3 class="headline mb-0">Western</h3>
+                            <div>
+                                <ol>
+									<template v-for="cuisines in filtered('Western')">
+										<li v-for="dish in cuisines.foods" :key="dish">
+											{{dish}}
+										</li>
+									</template>
+								</ol>
+                            </div>
+                        </div>
+                    </v-card-text>
+
+                    <v-card-actions class="card-actions">
+                        <v-btn
+                            outlined
+                            block
+                            color="green"
+                            v-on:click="goToProductPage('Western')"
+                        >
+                            Select This Plan</v-btn
+                        >
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+
+        </v-layout>
+    </v-container>
 	</div>
 
-	<p>Note: Only breakfast is served on Saturday and only dinner is served on Sunday </p>
 
   </div>
 </template>
@@ -88,15 +274,30 @@ export default {
 
 			var newDate = dayToDate[day]
 
+			var dict = {
+				type: "",
+				foods:[],
+			}
+
 			this.cuisines=[]; // clear the cuisines
 			database.collection("Menu").doc(newDate)
 				.collection(this.selectedMeal).get().then(snapshot => {
 				snapshot.docs.forEach(doc => {
-						this.cuisines.push([doc.id,doc.data()])
+						let copyDict= JSON.parse(JSON.stringify(dict));
+						copyDict["type"] = doc.id;
+						copyDict["foods"] = doc.data().dishes.map(dish => dish.toLowerCase().split(' ').map(function(word) { 
+              return (word.charAt(0).toUpperCase() + word.slice(1));}).join(' '));
+						this.cuisines.push(copyDict)
 					})
 				})
+				console.log(this.cuisines)
 		},
 
+		filtered(category) {
+			const res = this.cuisines.filter(({type}) => type == category);
+			console.log(res);
+			return res;
+		},
 
 		isSaturday() {
 			return new Date(this.selectedDate).getDay() == 6
@@ -152,11 +353,7 @@ export default {
 			mm='0'+mm
 		} 
 		this.dateMax = yyyy+'-'+mm+'-'+dd;
-
-		
-	}
-
-
+	},
 
 }
 
@@ -169,6 +366,28 @@ export default {
 font-family: Avenir, Helvetica, Arial, sans-serif;
 
 }
+
+
+li {
+	text-align: left;
+	font-size:1em;
+}
+
+.card-outter {
+  position: relative;
+  padding-bottom: 50px;
+}
+.card-actions {
+  position: absolute;
+  bottom: 0;
+}
+
+.listing {
+	margin-bottom: 2%;
+	margin-top: 2%;
+	text-align: left;
+}
+
 label {
     display: block;
     font: 1rem 'Fira Sans', sans-serif;
@@ -189,23 +408,6 @@ label {
     margin: 30px auto;
     padding: 0 5px;
     box-sizing: border-box;
-}
-
-ul {
-    display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-    padding: 0;
-}
-li {
-    flex-grow: 1;
-	flex-basis: 300px;
-	line-height: 40px;
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #222;
-	margin: 10px;
-	cursor: pointer;
 }
 
 button{

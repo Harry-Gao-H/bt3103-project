@@ -73,10 +73,6 @@ export default {
 			} 
 
 			var newDate = dayToDate[day]
-      /*
-      var strings = this.selectedDate.split("-")
-			date = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
-      */
 
       this.orders = [];
       database.collection("Order").doc(newDate)
