@@ -1,14 +1,5 @@
 <template>
 <div>
-    <div class ="navbar">
-        <ul>
-            <li><router-link to="/profile">Profile</router-link></li>
-            <li><router-link to="/menu">Menu</router-link></li>
-            <li><router-link to="/cart">Cart</router-link></li>
-            <li class="logout-btn" v-on:click="logout()">Logout</li>  
-        </ul>
-    </div>
-
     <div class="order-cart">
         <!-- Title -->
         <div class = "title">
@@ -234,9 +225,9 @@ body {
 }
 
   .order-cart {
-  width: 70%;
-  height: 60vh;
-  margin: 25px 0 auto 300px;
+  width: 100%;
+  height: auto;
+
   background: #FFFFFF;
   box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
   border-radius: 6px;
