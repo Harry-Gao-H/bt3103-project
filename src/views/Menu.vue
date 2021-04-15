@@ -1,13 +1,11 @@
 <template>
 <div>
-<div class ="navbar">
-  <ul>
-      <li><router-link to="/profile">Profile</router-link></li>
-      <li><router-link to="/cart">Cart</router-link></li>
-      <li><router-link to="/history">History</router-link></li>
-      <li class="navbarstyle" v-on:click="logout()">Logout</li>
-  </ul>
-</div>
+ 
+    <span>
+        <menu-hero></menu-hero>
+        <menu-details></menu-details>
+        <menu-plans></menu-plans>
+    </span>  
 
 <div id="content">
    <PageContent></PageContent>
@@ -19,12 +17,19 @@
 import PageContent from '@/components/PageContent.vue'
 //import database from "../firebase.js"
 import firebase from "firebase"
+import MenuHero from '@/components/MenuHero';
+import MenuDetails from '@/components/MenuDetails';
+import MenuPlans from '@/components/MenuPlans';
 
 export default {
-  components: {
-    PageContent
+    name: 'home',
+    components: {
+        MenuHero,
+        MenuDetails,
+        MenuPlans,
+        PageContent
+    },
 
-  },
   data() {
     return {
       title:'Your first Vue Component',
