@@ -94,13 +94,13 @@ const routes = [
   {
     path: '/orders-overview',
     name: 'OrdersOverview',
-    meta: { requiresAuth:true, limitedTo:"staff" },
+    meta: { requiresAuth:true, limitedTo:"staff", header:1},
     component: () => import('../views/OrdersOverview.vue')
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
-    meta: { requiresAuth:true, limitedTo:"staff" },
+    meta: { requiresAuth:true, limitedTo:"staff", header: 1},
     component: () => import('../views/Dashboard.vue')
   },
 ]

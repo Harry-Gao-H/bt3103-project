@@ -36,6 +36,7 @@
                 <p>Menu<i class="inline-icon material-icons">restaurant_menu</i></p>
 
             </v-btn>
+
             <v-spacer class="hidden-md-and-up"></v-spacer>
             <v-btn
             class="hidden-sm-and-down"
@@ -47,6 +48,19 @@
                 <p>Profile<i class="inline-icon material-icons">account_circle</i></p>
 
             </v-btn>
+
+            <v-spacer class="hidden-md-and-up"></v-spacer>
+            <v-btn
+            class="hidden-sm-and-down"
+            color="white"
+            plain
+            to="/history"
+            data-cy="historyBtn"
+            > 
+                <p>History<i class="inline-icon material-icons">history</i></p>
+
+            </v-btn>
+
             <v-spacer class="hidden-sm-and-down"></v-spacer>
             
             <v-btn text to="/" data-cy="signinBtn" v-on:click="logout()">Sign out</v-btn>
