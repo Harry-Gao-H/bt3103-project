@@ -1,9 +1,11 @@
 <template>
     <span>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
         <v-navigation-drawer
             app
             v-model="drawer"
-            class="teal lighten-2"
+            class="teal darken-3"
             dark
             disable-resize-watcher
         >
@@ -18,30 +20,39 @@
                 </template>
             </v-list>
         </v-navigation-drawer>
-        <v-app-bar app color="teal lighten-2" dark> 
+        <v-app-bar app color="teal darken-3" dark> 
             <v-app-bar-nav-icon 
                 class="hidden-md-and-up"
                 @click="drawer = !drawer"
             ></v-app-bar-nav-icon >
             <v-spacer class="hidden-md-and-up"></v-spacer>
-            <router-link to="/">
-                <v-toolbar-title data-cy="titleBtn">{{
-                    appTitle
-                }}</v-toolbar-title>
-            </router-link>
             <v-btn
-                text
-                class="hidden-sm-and-down nav-menu"
-                to="/menu"
-                data-cy="menuBtn"
-                >Order Your Takeaway</v-btn
-            >
+            class="hidden-sm-and-down"
+            color="white"
+            plain
+            to="/menu"
+            data-cy="menuBtn"
+            > 
+                <p>Menu<i class="inline-icon material-icons">restaurant_menu</i></p>
+
+            </v-btn>
+            <v-spacer class="hidden-md-and-up"></v-spacer>
+            <v-btn
+            class="hidden-sm-and-down"
+            color="white"
+            plain
+            to="/profile"
+            data-cy="profileBtn"
+            > 
+                <p>Profile<i class="inline-icon material-icons">account_circle</i></p>
+
+            </v-btn>
             <v-spacer class="hidden-sm-and-down"></v-spacer>
             
-            <v-btn text to="/sign-in" data-cy="signinBtn" v-on:click="logout()">Sign out</v-btn>
+            <v-btn text to="/" data-cy="signinBtn" v-on:click="logout()">Sign out</v-btn>
             <v-btn
                 color="teal lighten-1"
-                to="/join"
+                to="/cart"
                 class="nav-join"
                 data-cy="joinBtn"
                 >Checkout</v-btn
@@ -57,13 +68,13 @@ export default {
     name: 'AppNavigation',
     data() {
         return {
-            appTitle: 'HOME',
+            title: 'Menu',
             drawer: false,
             items: [
                 { title: 'Menu', url: '/menu' },
-                { title: 'Profile', url: '/about' },
-                { title: 'Sign Out', url: '/sign-in' },
-                { title: 'Checkout', url: '/join' }
+                { title: 'Profile', url: '/profile' },
+                { title: 'Sign Out', url: '/' },
+                { title: 'Checkout', url: '/cart'}
             ]
         };
     },
@@ -87,6 +98,12 @@ export default {
 </script>
 
 <style scoped>
+
+.inline-icon {
+   vertical-align: bottom;
+   font-size: -6px;
+}
+
 a {
     color: white;
     text-decoration: none;
