@@ -11,11 +11,11 @@
         >
             <v-list>
                 <template v-for="(item, index) in items">
-                    <v-list :key="index" :to="item.url">
+                    <v-list-item :key="index" :to="item.url" link>
                         <v-list-item-content>
                             {{ item.title }}
                         </v-list-item-content>
-                    </v-list>
+                    </v-list-item>
                     <v-divider :key="`divider-${index}`"></v-divider>
                 </template>
             </v-list>
@@ -87,6 +87,7 @@ export default {
             items: [
                 { title: 'Menu', url: '/menu' },
                 { title: 'Profile', url: '/profile' },
+                { title: 'History', url: '/history' },
                 { title: 'Sign Out', url: '/' },
                 { title: 'Checkout', url: '/cart'}
             ]
