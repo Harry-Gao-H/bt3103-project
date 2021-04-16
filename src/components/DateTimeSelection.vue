@@ -3,7 +3,7 @@
 	<form>
 		<div>
 			<p id="test"></p>
-			<label for="meal">Choose your preferred date and time:</label>
+			<label for="meal">Choose the date of menu you want to view :)</label>
 			<input id="datefield" type="date" name="meal" v-bind:min="dateMin" v-bind:max="dateMax" v-model="selectedDate" v-on:change="fetch()" required>
 			
 			

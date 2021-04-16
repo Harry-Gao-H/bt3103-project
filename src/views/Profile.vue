@@ -25,7 +25,7 @@
                         <td>{{userInfo.email}}</td>
                     </tr>
                     <tr>
-                        <td><span style="font-weight:bold"> Accomodation </span></td>
+                        <td><span style="font-weight:bold"> Accommodation </span></td>
                         <td>:</td>
                         <td>{{userInfo.hostel}}</td>
                     </tr>
