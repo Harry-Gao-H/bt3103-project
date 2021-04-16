@@ -35,7 +35,7 @@ export default {
 <style scoped>
 
 .home-hero {
-    background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)), url('http://source.unsplash.com/0BhSKStVtdM');
+    background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)), url(../assets/styles/background2.jpg);
     background-size: cover;
     width: 100%;
     height: 100%;

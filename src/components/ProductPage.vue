@@ -1,102 +1,124 @@
 <template>
-<div>
+
+<div id="main">
   <div class = "back">
-    <button onclick="location.href='/menu'" type="button" id="back">Back</button>
+    <button onclick="location.href='/menu'" type="button" id="back" autofocus>Back</button>
     </div>
 
-<div class="container">
 
-  <!-- Left Column / Headphones Image 
-  <div class="left-column">
-    <img src = "../assets/food.jpeg">
-  </div>
-  -->
-
-  <!-- Right Column 
-  <div class="right-column">
-  -->
-  <div class= "middle">
- 
-    <!-- Product Description -->
-    <div class="product-description">
-      <span>{{selectedDate}} </span>
-      <h2> {{meal}}</h2>
-      <h3> {{cuisine[0].type}} </h3>
-      <br>
-      <p v-for= "dish in cuisine[0].foods" v-bind:key = "dish">
-            {{dish}} |
-     </p>
-    </div>
- 
-    <!-- Meal Configuration -->
-    <div class="product-configuration">
- 
-      <!-- Time -->
-      <div class="takeaway-time">
-        <span>Takeaway time</span>
- 
-        <div class="meal-time">
-          <div v-show = "meal == 'Breakfast'">
-                    
-                    <select id="time" name="time" v-model="time" >
-                        <option value="0730">07:30</option>
-                        <option value="0800">08:00</option>
-                        <option value="0830">08:30</option>
-                        <option value="0900">09:00</option>
-                        <option value="0930">09:30</option>
-                    </select>
-                </div>
-
-                <div v-show = "meal == 'Dinner'">
-      
-                    <select id="time" name="time" v-model="time">
-                        <option value="1800">18:00</option>
-                        <option value="1830">18:30</option>
-                        <option value="1900">19:00</option>
-                        <option value="1930">19:30</option>
-                        <option value="2000">20:00</option>
-                    </select>
-                </div>
-
-        </div>
-      </div>
- 
-      <!-- Quantity -->
-      <div class="meal-config">
-        <span>  Select Quantity </span>
-
-        <div class="meal-choose" >
-            <select class="form-control" name="model" id="model" v-model="quantity">
-            <option v-for="option in quantity_options" v-bind:value="option.id" v-bind:key="option.id">{{option.text}}</option>
-            </select>
-        </div>
-        
-        <!-- Proportion -->
-        <span>  I want a smaller portion </span>
-        <div class="choose">
-            <input type="checkbox" class = "small-checkbox" id="small" v-model="smallProportionOption"> <label for = "small">
-            {{smallProportionOption}} </label>
-        </div>
-      
-
-      <span> Any remarks? </span>
-      <div class = "remark">
-          <textarea id="remark" name="remark" rows="2" cols="50" v-model.lazy.trim="remark"></textarea> 
-            </div>
-    </div>
- 
-    <!-- Credits  -->
-    <div class="credit">
-      <span> Your credit: {{userInfo.credit}} </span>
-    </div>
-    <div class = "cart">
-      <button id="addCart" v-on:click="addOrderToCart()">Add to Cart</button> 
-    </div>
+  <v-app id="inspire">
+    <v-card
+      :loading="loading"
+      class="mx-auto my-12"
+      max-width="480"
+    >
+      <template slot="progress">
+        <v-progress-linear
+          color="deep-purple"
+          height="10"
+          indeterminate
+        ></v-progress-linear>
+      </template>
+  
+      <v-img
+        height="250"
+        src="https://source.unsplash.com/random/?${type}-food,${type}"
+      ></v-img>
+  
+      <v-card-title>{{cuisine[0].type}}</v-card-title>
+  
+      <v-card-text>
+        <v-row
+          align="left"
+          class="mx-0"
+        >
+          <div class="my-4 subtitle-1">
+            <p><i class="inline-icon material-icons">date_range</i> {{selectedDate}}  |  <i class="inline-icon material-icons">restaurant</i> {{meal}}</p>
+          </div>
     
+          <div>
+            <span v-for= "dish in cuisine[0].foods" v-bind:key = "dish">
+              {{dish}} \
+            </span>
+          </div>
+          <br>
+        </v-row>
+      </v-card-text>
+  
+      <v-divider class="mx-4"></v-divider>
+  
+      <v-card-title>Takeaway Timings</v-card-title>
+  
+      <v-card-text class="pb-0 mx-0">
+        <div v-if = "meal == 'Breakfast'">
+            <v-chip-group
+            v-model="selection"
+            active-class="deep-purple accent-4 white--text"
+            column
+          >
+            <v-chip>7:30PM</v-chip>
+    
+            <v-chip>8:00PM</v-chip>
+    
+            <v-chip>8:30PM</v-chip>
+    
+            <v-chip>9:00PM</v-chip>
 
-  </div>
-</div>
-</div>
+            <v-chip>9:30PM</v-chip>
+         </v-chip-group>
+      </div>
+
+      <div v-else>
+            <v-chip-group
+            v-model="selection"
+            active-class="deep-purple accent-4 white--text"
+            column
+          >
+            <v-chip>18:00PM</v-chip>
+    
+            <v-chip>18:30PM</v-chip>
+    
+            <v-chip>19:00PM</v-chip>
+    
+            <v-chip>19:30PM</v-chip>
+
+            <v-chip>20:00PM</v-chip>
+         </v-chip-group>
+      </div>
+
+      <v-checkbox
+        v-model="smallProportionOption"
+        :label="`I want a smaller portion: ${(smallProportionOption ? 'Yea! Save it!' : 'Nope')}`"
+      ></v-checkbox>
+
+      <v-textarea
+            outlined
+            name="remark"
+            label="Additional Remarks"
+            v-model.trim="remark"
+            value="Any additional remarks you want the food operator to know?"
+          >
+      </v-textarea>
+      YOUR CREDIT: {{userInfo.credit}}
+      </v-card-text>
+      <v-card-actions>
+        <v-btn
+          color="teal lighten-1"
+          class="white--text"
+          @click="addOrderToCart"
+        >
+          Add to Cart
+          <v-icon
+          right
+          dark
+        >
+          mdi-basket-unfill
+        </v-icon>
+        
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-app>
 </div>
 </template>
 
@@ -115,6 +137,7 @@ export default {
             time:"",
             remark: "",
             userInfo:{},
+            type: "",
             quantity_options: [
             {
                 text: "1",
@@ -134,12 +157,11 @@ export default {
         this.cuisine = this.$route.params.cuisine
         this.meal = this.$route.params.meal
         this.selectedDate = this.$route.params.date
+        this.type = this.cuisine[0].type;
         database.collection("UserInfo").doc(this.user.data.email).get()
             .then(snapshot=> {
                 this.userInfo = snapshot.data()
-            })
-        
-        
+            });
     },
     methods: {
         addOrderToCart: function() {
@@ -157,7 +179,7 @@ export default {
                 cart:thiscart
             })
             this.$router.push("/menu")
-        }
+        },
     },
     computed: {
     ...mapGetters({
@@ -170,253 +192,40 @@ export default {
 
 <style scoped>
 .back {
-  margin-left: 5%;
   display: inline-block;
+  position: relative;
+  left: auto
+}
+
+.inline-icon {
+   vertical-align: text-bottom;
+   font-size: -6px;
 }
 
 #back {
   cursor: pointer;
   background-color: white;
-  border: 2px solid black ;
+  border: 4px solid rgb(10, 168, 102) ;
   font-size: 16px;
-  color: #358ED7;
+  color: #001d11;
   text-decoration: none;
   padding: 5%;
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
-  
-}
-
-/* Basic Styling */
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-}
- 
-.container {
-  text-align: center;
-  max-width: 1200px;
-  max-height: 75vh;
-  margin: 0 auto;
-  padding: 15px;
-  display: flex;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.055)), url(../assets/styles/background2.jpg);
-  
-  background-color: white;
-  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  box-shadow: grey;
   border-radius: 6px;
 }
 
-/* Columns */
-.left-column {
-  width: 30%;
-  position: relative;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
- 
-.right-column {
-  width: 70%;
-  margin-top: 20px;
+#inspire{
+  background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)), url(https://images.unsplash.com/photo-1493770348161-369560ae357d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
+  background-repeat: no-repeat;
+  background-size:cover;
+  box-shadow: 10px 10px grey;
 }
 
-.middle {
-  
-  margin-top: 20px;
-}
-
-
-/* Left Column */
-.left-column img {
-  width: 90%;
-  min-height: 100%;
-  position: absolute;
-}
-
-/* Meal Description */
-.product-description {
-  border-bottom: 1px solid #E1E8EE;
-  padding-bottom: 1%;
-  margin-bottom: 2%;
-}
-.product-description span {
-  font-size: 15px;
-  color: #358ED7;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.product-description h2 {
-  font-weight: 700;
-  font-size: 40px;
-  color: rgb(8, 8, 8);
-  text-transform: uppercase;
-  margin-top: 1%;
-}
-
-.product-description h3 {
-  font-weight: 500;
-  font-size: 22px;
-  text-transform: uppercase;
-  margin-top: 1%;
-}
-
-.product-description p {
-  font-size: 15px;
-  color: grey;
-  display: inline;
-}
-
-/* Takeaway time */
-.takeaway-time  {
-  margin-bottom: 1%;
-}
-
-.takeaway-time span {
-  font-size: 15px;
-  color: #358ED7;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
- 
-.meal-time div {
-  display: inline-block;
-  margin-top: 1%;
-}
-
-#time {
-  cursor: pointer;
-  padding: 4px;
-	border-radius: 1px;
-	background-color: #ddd;
-	list-style: none;
-  margin-top: 1%;
-  width: 50px;
-}
-
-/* Meal Configuration */
-.meal-choose {
-  margin-bottom: 2%;
-}
- 
-.meal-config {
-  margin-bottom: 1%;
-}
-
-.meal-config span {
-  font-size: 15px;
-  color: #358ED7;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-/* Quantity */
-.form-control {
-  cursor: pointer;
-  padding: 4px;
-	border-radius: 1px;
-	background-color: #ddd;
-	list-style: none;
-  margin-top: 1%;
-  width: 50px;
-}
-
-/* Proportion */
-label{
-    display: inline-block;
-    border: 1px solid grey;
-    color: black;
-    border-radius: 2px;
-    white-space: nowrap;
-    margin: 3px 0px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    transition: all .2s;
-}
-
-label {
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-top: 1%;
-    margin-bottom: 2%;
-}
-
-label::before {
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    font-weight: 900;
-    font-size: 12px;
-    padding: 2px 6px 2px 2px;
-    transition: transform .3s ease-in-out;
-}
-
-input[type="checkbox"]:checked + label::before {
-    transform: rotate(-360deg);
-    transition: transform .3s ease-in-out;
-}
-
-input[type="checkbox"]:checked + label {
-    background-color: lightgreen;
-    color: black;
-    transition: all .2s;
-}
-
-input[type="checkbox"] {
-  display: absolute;
-}
-input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-}
-input[type="checkbox"]:focus + label {
-  border: 2px solid #358ED7;
-}
-
-/* Remarks */
-#remark{
-  border-bottom:1px solid #358ED7;
-}
-
-/* Credit */
-
-.credit {
-  font-size: 15px;
-  color: #358ED7;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-bottom: 2%;
-}
-.cart {
-  display: inline-block;
-  
-}
-
-#addCart {
-  cursor: pointer;
-  border: 1px solid black ;
-  font-size: 16px;
-  color: #358ED7;
-  text-decoration: none;
-  padding: 3%;
-  text-align: center;
-  margin: auto;
-}
-
-#addCart:hover {
-  background-color: greenyellow;
+#main {
+  background-color: rgb(13, 19, 18);
 }
 
 </style>
