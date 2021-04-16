@@ -246,10 +246,7 @@ export default {
 			cuisines:[],
 			dateMin:"",
 			dateMax:"",
-
-			dateMap: {
-
-			}
+			dateMap: {}
 		}
 	},
 
@@ -257,7 +254,8 @@ export default {
 		fetchCuisines: function() {
 			//var strings = this.selectedDate.split("-")
 			//var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
-			//get the day of selected date
+			
+            //get the day of selected date
 			var day = new Date(this.selectedDate).getDay();
 
 			var dayToDate = {
@@ -288,12 +286,12 @@ export default {
 						this.cuisines.push(copyDict)
 					})
 				})
-				console.log(this.cuisines)
+				//console.log(this.cuisines)
 		},
 
 		filtered(category) {
 			const res = this.cuisines.filter(({type}) => type == category);
-			console.log(res);
+			//console.log(res);
 			return res;
 		},
 
