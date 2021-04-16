@@ -80,11 +80,13 @@ export default {
                         this.credit = snapshot.data().credit
                         this.userId = user.email.split("@")[0]
                         this.items = snapshot.data().cart
-                        this.items.sort((a,b) => (a.date>b.date) ? 1 : ((b.time > a.time) ? -1:0))
+                        console.log(this.items)
+
+                        //this.items.sort((a,b) => (a.date>b.date) ? 1 : ((b.time > a.time) ? -1:0))
                     })
             }
 
-            //console.log(this.items)
+            
             
         })
     },
@@ -207,6 +209,7 @@ export default {
         },
 
         getCuisine:function(cuisine) {
+            console.log(cuisine)
             var string =  cuisine[1].dishes.toString()
             return cuisine[0] + " : " + string.toLowerCase()
         },
