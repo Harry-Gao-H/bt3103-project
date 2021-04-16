@@ -22,7 +22,7 @@
   
       <v-img
         height="250"
-        src="https://source.unsplash.com/random/?${type}-food,${type}"
+        src="https://source.unsplash.com/random/?${type}-food,food"
       ></v-img>
   
       <v-card-title>{{cuisine[0].type}}</v-card-title>
