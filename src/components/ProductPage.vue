@@ -29,7 +29,6 @@
   
       <v-card-text>
         <v-row
-          align="left"
           class="mx-0"
         >
           <div class="my-4 subtitle-1">
@@ -56,16 +55,14 @@
             active-class="deep-purple accent-4 white--text"
             column
           >
-            <v-chip>7:30PM</v-chip>
-    
-            <v-chip>8:00PM</v-chip>
-    
-            <v-chip>8:30PM</v-chip>
-    
-            <v-chip>9:00PM</v-chip>
-
-            <v-chip>9:30PM</v-chip>
-         </v-chip-group>
+            <v-chip
+            v-for="timing in breakfastTime"
+            :key="timing"
+            :value="timing"
+          >
+            {{ timing }}
+          </v-chip>
+          </v-chip-group>
       </div>
 
       <div v-else>
@@ -74,15 +71,13 @@
             active-class="deep-purple accent-4 white--text"
             column
           >
-            <v-chip>18:00PM</v-chip>
-    
-            <v-chip>18:30PM</v-chip>
-    
-            <v-chip>19:00PM</v-chip>
-    
-            <v-chip>19:30PM</v-chip>
-
-            <v-chip>20:00PM</v-chip>
+            <v-chip
+            v-for="timing in dinnerTime"
+            :key="timing"
+            :value="timing"
+          >
+            {{ timing }}
+          </v-chip>
          </v-chip-group>
       </div>
 
@@ -90,6 +85,12 @@
         v-model="smallProportionOption"
         :label="`I want a smaller portion: ${(smallProportionOption ? 'Yea! Save it!' : 'Nope')}`"
       ></v-checkbox>
+
+      <v-select
+            :items="this.numOpt"
+            label="Quantity"
+            v-model="this.quantity"
+          ></v-select>
 
       <v-textarea
             outlined
@@ -132,13 +133,16 @@ export default {
             selectedDate: '',
             meal:"",
             cuisine:[],
+            numOpt: [1,2,3],
             quantity:1,
             smallProportionOption:false,
+            breakfastTime:['0730','0800','0830','0900','0930'],
+            dinnerTime:['1800','1830','1900','1930','2000'],
             time:"",
             remark: "",
             userInfo:{},
             type: "",
-            loading: true,
+            loading: false,
             quantity_options: [
             {
                 text: "1",
@@ -166,6 +170,8 @@ export default {
     },
     methods: {
         addOrderToCart: function() {
+          this.loading = true;
+
             if (this.time == "") {
                 alert("Please select the time")
                 return 
@@ -179,7 +185,7 @@ export default {
             database.collection("UserInfo").doc(this.user.data.email).update({
                 cart:thiscart
             })
-            this.$router.push("/menu")
+            this.$router.push("/cart")
         },
     },
     computed: {
@@ -188,7 +194,7 @@ export default {
             user: "user"
         })
     }
-};
+}
 </script>
 
 <style scoped>
