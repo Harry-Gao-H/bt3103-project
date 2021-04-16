@@ -6,13 +6,16 @@
 
 <div class="container">
 
-  <!-- Left Column / Headphones Image -->
+  <!-- Left Column / Headphones Image 
   <div class="left-column">
     <img src = "../assets/food.jpeg">
   </div>
- 
-  <!-- Right Column -->
+  -->
+
+  <!-- Right Column 
   <div class="right-column">
+  -->
+  <div class= "middle">
  
     <!-- Product Description -->
     <div class="product-description">
@@ -194,11 +197,14 @@ body {
 }
  
 .container {
+  text-align: center;
   max-width: 1200px;
   max-height: 75vh;
   margin: 0 auto;
   padding: 15px;
   display: flex;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.055)), url(../assets/styles/background2.jpg);
+  
   background-color: white;
   box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
   border-radius: 6px;
@@ -216,6 +222,12 @@ body {
   width: 70%;
   margin-top: 20px;
 }
+
+.middle {
+  
+  margin-top: 20px;
+}
+
 
 /* Left Column */
 .left-column img {
