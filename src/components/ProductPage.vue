@@ -91,7 +91,6 @@
     </div>
     
 
-    {{cuisine}}
   </div>
 </div>
 </div>
