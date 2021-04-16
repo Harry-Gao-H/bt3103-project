@@ -18,7 +18,7 @@
                         your takeaway meal in advanced through our Ordering System (below!). Doing so, not 
                         just that food operators are better informed of the demands in advanced which 
                         will reduce food wastage from overcooking, you are also able to skip the queue, 
-                        better customise your takeaway experience, and save time and Earth at the same time!
+                        better customise your takeaway experience, and save time and Earth at one "Chope"!
                     </p>
                 </v-flex>
                 <v-flex>
