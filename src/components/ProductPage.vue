@@ -52,7 +52,7 @@
       <v-card-text class="pb-0 mx-0">
         <div v-if = "meal == 'Breakfast'">
             <v-chip-group
-            v-model="selection"
+            v-model="time"
             active-class="deep-purple accent-4 white--text"
             column
           >
@@ -70,7 +70,7 @@
 
       <div v-else>
             <v-chip-group
-            v-model="selection"
+            v-model="time"
             active-class="deep-purple accent-4 white--text"
             column
           >
@@ -138,6 +138,7 @@ export default {
             remark: "",
             userInfo:{},
             type: "",
+            loading: true,
             quantity_options: [
             {
                 text: "1",
