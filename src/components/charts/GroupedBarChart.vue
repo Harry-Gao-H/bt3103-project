@@ -44,7 +44,7 @@ export default {
             ]
         },
         options: {
-            legend: { display: true },
+            legend: { display: false },
             title: {
               display: false,
               text: 'Total Number of each cuisine'
