@@ -22,8 +22,6 @@
 
 		</div>
 	</form>
-
-	<br>
 	
 	<button v-on:click="displayMenu()" id="buttonClick">Check Menu</button>
 	
