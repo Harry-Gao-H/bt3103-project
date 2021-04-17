@@ -18,23 +18,23 @@
 
         <!--{{items}}-->    
         <div class = "item" v-for="item in items" v-bind:key="item[0]" >
-            <div class = "cuisine">
+            <div class = "cuisine" style="text-align:center">
                 {{getCuisine(item.cuisine)}} 
             </div>
 
-            <div class = "quantity">
+            <div class = "quantity" style="text-align: center;">
                   {{item.quantity}} 
             </div>
 
-            <div class = "date">
+            <div class = "date" style="text-align: center;">
                  {{item.date}} 
             </div>
 
-            <div class = "time">
+            <div class = "time" style="text-align: center;">
                  {{item.time}} 
             </div>
 
-            <div class = "remark">
+            <div class = "remark" style="text-align: center;">
                  {{getRemark(item.small)}} <br>  {{item.remark}}
             </div>
 
@@ -277,31 +277,31 @@ body {
 }
 .b{
     flex:1;
-  margin-left: 3%;
-  min-width: 50px;
-  max-width: 120px;
-
+    margin-left: 3%;
+    min-width: 50px;
+    max-width: 120px;
+    text-align: center;
 }
 
 .c{
-  min-width: 100px;
-  max-width: 100px;
-  margin-left: 3%;
-
+    min-width: 100px;
+    max-width: 100px;
+    margin-left: 3%;
+    text-align: center;
 }
 
 .d{
-  min-width: 100px;
-  max-width: 120px;
-  margin-left: 6%;
-
+    min-width: 100px;
+    max-width: 120px;
+    margin-left: 6%;
+    text-align: center;
 }
 
 .e{
     min-width: 120px;
     max-width: 120px;
     margin-left: 7.5%;
-
+    text-align: center;
 }
 
 
