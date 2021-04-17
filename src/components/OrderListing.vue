@@ -40,7 +40,7 @@ export default {
           value: 'stud_id',
         },
         { text: 'Collection Time', value: 'collect_time' },
-        { text: 'Meal Type', value: 'meal_type' },
+        { text: 'Cuisine', value: 'meal_type' },
         { text: 'Quantity', value: 'quantity'},
         { text: 'Smaller Proportion', value: 'smaller' },
         { text: 'Remark', value: 'remark'}
