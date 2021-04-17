@@ -148,6 +148,10 @@ a {
     animation: pulse 2s infinite;
 }
 
+#cart-pulse:hover {
+    animation: none
+}
+
 @keyframes pulse {
 	0% {
 		transform: scale(0.95);
