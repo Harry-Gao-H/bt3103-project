@@ -8,17 +8,9 @@
 
   <v-app id="inspire">
     <v-card
-      :loading="loading"
       class="mx-auto my-12"
       max-width="480"
     >
-      <template slot="progress">
-        <v-progress-linear
-          color="deep-purple"
-          height="10"
-          indeterminate
-        ></v-progress-linear>
-      </template>
   
       <v-img
         height="250"
@@ -118,6 +110,16 @@
         
         </v-btn>
       </v-card-actions>
+        
+      <template slot="progress">
+        <v-progress-linear
+          color="deep-purple"
+          :indeterminate="loading"
+          :active="loading"
+          bottom
+        ></v-progress-linear>
+      </template>
+
     </v-card>
   </v-app>
 </div>
@@ -171,13 +173,15 @@ export default {
     methods: {
         addOrderToCart: function() {
           this.loading = true;
+          setTimeout(() => (this.loading = false), 3000);
 
-            if (this.time == "") {
+            if (this.time == ""  || typeof this.time === 'undefined') {
                 alert("Please select the time")
                 return 
-            } 
+            }
 
-            alert("This order is successfully added to your cart")
+            console.log(this.time)
+            
             var thiscart = this.userInfo.cart
             var newCuisine = [this.cuisine[0].type, {dishes: this.cuisine[0].foods}]
             thiscart.push({cuisine: newCuisine, quantity: this.quantity, small:this.smallProportionOption,
@@ -185,6 +189,7 @@ export default {
             database.collection("UserInfo").doc(this.user.data.email).update({
                 cart:thiscart
             })
+            alert("This order is successfully added to your cart")
             this.$router.push("/menu")
         },
     },
