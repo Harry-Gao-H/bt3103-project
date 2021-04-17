@@ -1,4 +1,5 @@
 <template>
+
 <div class="body">
     <div class="shopping-cart">
         <!-- Title -->
@@ -85,9 +86,6 @@ export default {
                         //this.items.sort((a,b) => (a.date>b.date) ? 1 : ((b.time > a.time) ? -1:0))
                     })
             }
-
-            
-            
         })
     },
     methods: {

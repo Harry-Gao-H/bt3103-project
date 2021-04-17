@@ -38,7 +38,7 @@ const routes = [
   {
     path: '/menu',
     name: 'Menu',
-    meta: { requiresAuth:true, limitedTo:"student"},
+    meta: { requiresAuth:true, limitedTo:"student", header: 1},
     component: () => import('../views/Menu.vue'),
     /*
     beforeEnter(to, from, next) {

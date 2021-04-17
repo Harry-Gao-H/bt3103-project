@@ -16,7 +16,7 @@
                 </vue-typed-js>
             </div>
             <div class="display-1 font-weight-regular white--text text-xs-center">
-                By taking ownership of your food at RCs.
+                By taking ownership of your food at RC/Halls.
             </div>
             <v-btn fab class="mt-5 teal lighten-2" disabled x-large>
                 <span class="material-icons md-dark md-inactive">arrow_downward</span>

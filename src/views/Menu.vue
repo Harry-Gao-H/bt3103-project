@@ -1,6 +1,6 @@
 <template>
 <div>
- 
+    <app-navigation-menu v-bind:cart="cart"></app-navigation-menu>
     <span>
         <menu-hero></menu-hero>
         <menu-details></menu-details>
@@ -19,20 +19,22 @@ import PageContent from '@/components/PageContent.vue'
 import firebase from "firebase"
 import MenuHero from '@/components/MenuHero';
 import MenuDetails from '@/components/MenuDetails';
+import AppNavigationMenu from '@/components/AppNavigationMenu';
+import database from "../firebase.js";
 
 export default {
     name: 'home',
     components: {
         MenuHero,
         MenuDetails,
-        PageContent
+        PageContent,
+        AppNavigationMenu,
     },
 
   data() {
     return {
       title:'Menu Page',
-      
-      items: []
+      cart:[]
     }
     
   },
@@ -51,9 +53,20 @@ export default {
           this.$router.push('/');
         });
     },
-  }
-  
+  },
+    created() {
 
+        firebase.auth().onAuthStateChanged(user =>  {
+        
+            if (user) {
+                database.collection("UserInfo").doc(user.email).get()
+                    .then(snapshot=> {
+                        this.cart = snapshot.data().cart
+                    })
+            }
+        })
+    },
+  
 }
 </script>
 

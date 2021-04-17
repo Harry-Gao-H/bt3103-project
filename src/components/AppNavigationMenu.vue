@@ -69,6 +69,18 @@
                 to="/cart"
                 class="nav-join"
                 data-cy="joinBtn"
+                v-if="this.cart.length==0"
+                >
+                Checkout<i class="inline-icon material-icons">shopping_cart</i>
+                </v-btn
+            >
+            <v-btn
+                color="teal lighten-1"
+                to="/cart"
+                class="nav-join"
+                data-cy="joinBtn"
+                id="cart-pulse" 
+                v-if="this.cart.length>0"
                 >
                 Checkout<i class="inline-icon material-icons">shopping_cart</i>
                 </v-btn
@@ -81,7 +93,8 @@
 import firebase from "firebase";
 
 export default {
-    name: 'AppNavigation',
+    name: 'AppNavigationMenu',
+    props: ['cart'],
     data() {
         return {
             title: 'Menu',
@@ -129,5 +142,27 @@ a {
     text-decoration: none;
 }
 
+#cart-pulse {
+    box-shadow: 0 0 0 0 rgb(1, 160, 107);
+    transform: scale(1);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
 
 </style>
