@@ -185,7 +185,7 @@ export default {
             database.collection("UserInfo").doc(this.user.data.email).update({
                 cart:thiscart
             })
-            this.$router.push("/cart")
+            this.$router.push("/menu")
         },
     },
     computed: {
