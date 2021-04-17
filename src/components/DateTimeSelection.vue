@@ -22,12 +22,8 @@
 
 		</div>
 	</form>
-
-	<br>
 	
 	<button v-on:click="displayMenu()" id="buttonClick">Check Menu</button>
-
-	<p>Note: Only breakfast is served on Saturday and only dinner is served on Sunday </p>
 	
 	<div v-show="showMenu">
 		<v-container grid-list-lg>
@@ -227,7 +223,7 @@
         </v-layout>
     </v-container>
 	</div>
-
+    <p>Note: Only breakfast is served on Saturday and only dinner is served on Sunday </p>
 
   </div>
 </template>
