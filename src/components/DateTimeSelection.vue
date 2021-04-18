@@ -23,9 +23,7 @@
 		</div>
 	</form>
 	
-	<button v-on:click="displayMenu()" id="buttonClick">Check Menu</button>
-	
-	<div v-show="showMenu">
+    <div v-show="showMenu">
 		<v-container grid-list-lg>
         <v-layout row>
             <v-flex xs12 class="text-xs-center display-1 font-weight-black my-5"
@@ -223,6 +221,9 @@
         </v-layout>
     </v-container>
 	</div>
+
+	<button v-on:click="displayMenu()" id="buttonClick">Check Menu</button>
+	
     <p>Note: Only breakfast is served on Saturday and only dinner is served on Sunday </p>
 
   </div>

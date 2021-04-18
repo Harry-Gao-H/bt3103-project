@@ -1,5 +1,6 @@
 <template>
 <div>
+
 <div class ="navbar">
   <ul>
       <li><router-link to="/dashboard" class="navbarstyle">Dashboard</router-link></li>
@@ -7,23 +8,32 @@
   </ul>
 </div>
 
-<div>
-  
-  <form>
-    <div id="wrapper">
-      <input id="dateSelect" type="date" v-bind:min="dateMin" v-bind:max="dateMax" v-model="selectedDate" v-on:change="fetch()" required>
-      
-      <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
-      <label for="breakfast" class="radio">Breakfast</label> 
-      <input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMeal" v-on:change="fetch()"> 
-      <label for="dinner" class="radio">Dinner</label>
-    
-    </div>
-  </form>
-
-  <order-listing :orders="orders" />
-  
+<div id="content">
+  <div id = "profile">
+    <ul>
+      <li> 
+        <center> <div id="dropdown">
+          <form>
+            <div>
+              <label for="meal">Choose date and time:</label>
+              <input id="meal" type="date" name="meal" min="2021-04-14" max="2021-04-20" v-model="selectedDate" v-on:change="fetch()" required>
+              
+              <br>
+              <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
+              <label for="breakfast" class="radio">Breakfast</label> 
+              <input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMeal" v-on:change="fetch()"> 
+              <label for="dinner" class="radio">Dinner</label>
+            </div>
+            </form>
+        </div> </center>
+        <br>
+      </li>
+    </ul> 
 </div>
+</div>
+
+<order-listing :orders="orders" />
+  
 
 </div>
 </template>
@@ -155,23 +165,10 @@ export default {
 </script>
 
 <style scoped>
+#dropdown {
+font-family: Avenir, Helvetica, Arial, sans-serif;
 
-.navbarstyle {
-  text-decoration:none;
-  color:rgb(0, 0, 0);
-  text-transform:uppercase;
 }
-
-form {
-   background-color: rgb(232, 237, 255);
-   width: 100%;
-}
-
-#wrapper {
-  display: block;
-  margin-left: 38%;
-}
-
 label {
     display: block;
     font: 1rem 'Fira Sans', sans-serif;
@@ -179,12 +176,30 @@ label {
 
 input,
 label {
-    margin: 0 auto;
+    margin: .4rem 0;
 }
 
 .radio { 
 	display: inline;
-  margin-left: 20px;
+	padding: 10px;
 }
+
+#content {
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+.navbarstyle {
+  text-decoration:none;
+  color:rgb(0, 0, 0);
+  text-transform:uppercase;
+}
+
+
+#wrapper {
+  display: block;
+  margin-left: 38%;
+}
+
 
 </style>

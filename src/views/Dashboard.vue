@@ -27,66 +27,6 @@
 		
 		</div>
 	</form>
-
-<!--
-	<div>
-		<div v-show = "selectedMealStaff == 'Breakfast'" class="box">
-			<p>Breakfast Takeaway Time</p>
-			<select id="time" name="time" v-model="takeawayTimeStaff" v-on:change="fetch()">
-				<option value="0730">07:30</option>
-				<option value="0800">08:00</option>
-				<option value="0830">08:30</option>
-				<option value="0900">09:00</option>
-				<option value="0930">09:30</option>
-			</select>
-		</div>
-
-		<div v-show = "selectedMealStaff == 'Dinner'" class="box">
-			<p>Dinner Takeaway Time</p>
-			<select id="time" name="time" v-model="takeawayTimeStaff" v-on:change="fetch()">
-				<option value="1800">18:00</option>
-				<option value="1830">18:30</option>
-				<option value="1900">19:00</option>
-				<option value="1930">19:30</option>
-				<option value="2000">20:00</option>
-			</select>
-		</div>
-  
-	</div>
--->
-	<br>
-	
-	<!-- <button v-on:click="showMenuStaff=true; passData();" id="buttonClick">Check Menu</button> -->
-	<!-- <button v-on:click="showBarChart=true" id="buttonClick">Populate Charts</button> -->
-
-<!--
-	<div v-show="showMenuStaff">
-		<ul>
-
-			<li v-for="cuisine in cuisinesStaff" v-bind:key="cuisine[0]" >
-				<h2><u v-on:click="goToProductPage(cuisine)">{{cuisine[0]}}</u></h2>
-				
-				<p v-for="cuisineType in cuisine[1]" v-bind:key = "cuisineType">
-				{{cuisineType}}
-				</p>  
-
-				<p> {{cuisine[1].cuisine}}</p>
-
-				<p v-for="dish in cuisine[1].dishes" v-bind:key = "dish">
-					{{dish}}
-				</p>
-
-				<p> {{cuisine[1].takeawayTiming}} </p>
-
-        <p> {{cuisine[1].quantity}} </p>
-
-				
-			</li>
-
-		</ul>
-	</div>
-	-->
-
 </div></center>
     <br>
 	<center> <p class="message" v-show="showChart"> Charts Populated for {{selectedMealStaff}} on {{this.formattedDate}}</p> </center>
@@ -127,15 +67,6 @@
 
 </div>
 
-
-
-
-<!-- 
-<div v-show="showBarChart" class="chart">
-  <h1>Bar Chart</h1> 
-	<BarChart ref="barchart"></BarChart>  
-</div> 
--->
 
 </div>
 </div>
@@ -263,22 +194,6 @@ label {
 	text-transform:uppercase;
 }
 
-button{
-    width:200px;
-    padding:15px 0;
-    text-align:center;
-    margin:20px 10px;
-	margin-top:5px;
-    border-radius:25px;
-    font-weight:bold;
-    border:2px solid #009688;
-    background:transparent;
-    color:rgb(22, 20, 20);
-    cursor:pointer;
-    font-size:20px;
-    background-color: #f7f2e1;
-    
-}
 
 .box select {
   background-color: #f00c0c;
