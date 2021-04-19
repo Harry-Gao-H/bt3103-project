@@ -6,7 +6,7 @@
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
-          label="Filter by typing the Cuisine Types"
+          label="Filter by typing the Cuisine Types, Collection Time, etc"
           single-line
           hide-details
           class="centered-input text--darken-3 mt-3" 
