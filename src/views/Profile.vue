@@ -135,7 +135,8 @@ body {
     box-shadow: 1px 1px 8px 0 black;
     border-radius: 10px;
     height: auto;
-    margin-bottom: 20px;
+    margin: auto;
+    /*margin-bottom: 20px;*/
     padding: 20px 0 20px 50px;
 }
    
