@@ -6,9 +6,11 @@
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
-          label="Filter"
+          label="Filter by typing the Cuisine Types"
           single-line
           hide-details
+          class="centered-input text--darken-3 mt-3" 
+          outlined
         ></v-text-field>
 
     <v-data-table
@@ -67,5 +69,7 @@ export default {
 </script>
 
 <style scoped>
-
+.centered-input {
+      text-align: center
+    }
 </style>
