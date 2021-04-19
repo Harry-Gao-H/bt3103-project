@@ -92,10 +92,10 @@ export default {
       database.collection("Order").doc(newDate)
         .collection(this.selectedMeal).get().then(snapshot => {
           snapshot.docs.forEach(doc => {
-            let copyDict= JSON.parse(JSON.stringify(dict));
             var container = doc.data().orders;
-            copyDict["stud_id"] = doc.id;
             for (var i = 0; i < container.length; i++) {
+              let copyDict= JSON.parse(JSON.stringify(dict))
+              copyDict["stud_id"] = doc.id;
               copyDict["collect_time"] = container[i].time,
               copyDict["dishes"] = container[i].cuisine[1].dishes.map(dish => dish.toLowerCase().split(' ').map(function(word) { 
               return (word.charAt(0).toUpperCase() + word.slice(1));}).join(' ')),
@@ -103,9 +103,9 @@ export default {
               copyDict["smaller"] = container[i].small,
               copyDict["quantity"] = container[i].quantity,
               copyDict["remark"] = container[i].remark 
+              this.orders.push(copyDict)
             }
-            this.orders.push(copyDict)
-            //console.log(this.orders)
+            console.log(container)
           })
         }).then( () => {
           this.orders.sort((a,b) => (a.collect_time > b.collect_time? 1 : -1))
