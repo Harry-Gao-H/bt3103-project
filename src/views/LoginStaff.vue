@@ -51,7 +51,7 @@
           <label class="tab" for="link-to-student">
             <div class="text">
               <p><a href = "/login-student"> Not a Staff? Login as a Student instead </a></p>
-              <p> <a href = "#"> Forgot Password </a></p>
+              <p> <a href = "#" @click="forgotPasswordAlert()"> Forgot Password </a></p>
               </div>
           </label>
           
@@ -92,13 +92,19 @@ export default {
   data() {
     return {
       username:"",
-      password:""
+      password:"",
+      message:"Please contact your manager at 82883888"
     }
   },
   methods: {
     submit:function() {
       
     },
+
+    forgotPasswordAlert: function() {
+      alert(this.message)
+    },
+
     login:function() {
       var email = this.username + "@u.nus.edu"
       var account = database.collection("UserInfo").doc(email)

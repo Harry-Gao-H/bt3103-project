@@ -15,7 +15,7 @@
               <center> <div id="dropdown">
 	<form>
 		<div>
-			<label for="meal">Choose date and time:</label>
+			<label for="meal">Choose date of the orders you want to see:</label>
 			<input id="meal" type="date" name="meal" min="2021-04-14" max="2021-04-20" v-model="selectedDateStaff" v-on:change="fetch()" required>
 			
 			
