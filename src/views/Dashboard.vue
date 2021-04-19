@@ -151,8 +151,21 @@ export default {
 	methods: {
 			fetchcuisinesStaff: function() {
 			//change the form of date
-			var strings = this.selectedDateStaff.split("-")
-			var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
+      var day = new Date(this.selectedDateStaff).getDay();
+
+			var dayToDate = {
+				0 : "18-4-2021",
+				1 : "19-4-2021",
+				2 : "20-4-2021",
+				3 : "14-4-2021",
+				4 : "15-4-2021",
+				5 : "16-4-2021",
+				6 : "17-4-2021",
+			} 
+
+			var newDate = dayToDate[day]
+			//var strings = this.selectedDateStaff.split("-")
+			//var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
 			
 			this.formattedDate = newDate;
 			//this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
