@@ -15,8 +15,8 @@
         <center> <div id="dropdown">
           <form>
             <div>
-              <label for="meal">Choose date and time:</label>
-              <input id="meal" type="date" name="meal" min="2021-04-14" max="2021-04-20" v-model="selectedDate" v-on:change="fetch()" required>
+              <label for="meal">Choose date of the orders you want to see:</label>
+              <input id="meal" type="date" name="meal" v-bind:min="dateMin" v-bind:max="dataMax" v-model="selectedDate" v-on:change="fetch()" required>
               
               <br>
               <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
@@ -130,13 +130,23 @@ export default {
 
   mounted() {
 		var today = new Date();
-
+    var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+		if(dd<10){
+				dd='0'+dd
+		}
+		if(mm<10){
+			mm='0'+mm
+		} 
+		this.selectedDate = yyyy+'-'+mm+'-'+dd;
+    
 	
 		var startDay = new Date(today)
 		startDay.setDate(startDay.getDate() - 6)
-		var dd = startDay.getDate();
-		var mm = startDay.getMonth()+1; //January is 0!
-		var yyyy = startDay.getFullYear();
+		dd = startDay.getDate();
+		mm = startDay.getMonth()+1; //January is 0!
+		yyyy = startDay.getFullYear();
 		if(dd<10){
 				dd='0'+dd
 		}
