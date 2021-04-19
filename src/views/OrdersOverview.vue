@@ -66,7 +66,8 @@ export default {
       var dict = {
         stud_id: "",
         collect_time: "",
-        meal_type: [],
+        meal_type: "",
+        dishes:[],
         smaller: false,
         quantity: 0,
         remark: "",
@@ -96,8 +97,9 @@ export default {
             copyDict["stud_id"] = doc.id;
             for (var i = 0; i < container.length; i++) {
               copyDict["collect_time"] = container[i].time,
-              copyDict["meal_type"] = container[i].cuisine[1].dishes.map(dish => dish.toLowerCase().split(' ').map(function(word) { 
+              copyDict["dishes"] = container[i].cuisine[1].dishes.map(dish => dish.toLowerCase().split(' ').map(function(word) { 
               return (word.charAt(0).toUpperCase() + word.slice(1));}).join(' ')),
+              copyDict["meal_type"] = container[i].cuisine[0],
               copyDict["smaller"] = container[i].small,
               copyDict["quantity"] = container[i].quantity,
               copyDict["remark"] = container[i].remark 
