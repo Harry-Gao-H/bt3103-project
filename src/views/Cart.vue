@@ -242,8 +242,8 @@ body {
 }
  
  .shopping-cart {
-  width: 70%;
-  height: 100%;
+  width: 100%;
+  height: auto;
   background: #FFFFFF;
   margin: 2%;
   box-shadow: 1px 2px 3px 0px rgba(37, 37, 37, 0.1);
@@ -277,7 +277,7 @@ body {
 }
 .b{
     flex:1;
-    margin-left: 3%;
+    margin-left: 1.5%;
     min-width: 50px;
     max-width: 120px;
     text-align: center;
@@ -286,21 +286,21 @@ body {
 .c{
     min-width: 100px;
     max-width: 100px;
-    margin-left: 3%;
+    margin-left: 3.5%;
     text-align: center;
 }
 
 .d{
     min-width: 100px;
     max-width: 120px;
-    margin-left: 6%;
+    margin-left: 8%;
     text-align: center;
 }
 
 .e{
     min-width: 120px;
     max-width: 120px;
-    margin-left: 7.5%;
+    margin-left: 5%;
     text-align: center;
 }
 

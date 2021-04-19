@@ -50,7 +50,7 @@
           
           <label class="tab" for="link-to-staff">
             <div class="text">
-              <p><a href = "/login-staff"> Not a Student? Login as a Staff instead </a></p>
+              <p style = "color: #1167b1"><a href = "/login-staff"> Not a Student? Login as a Staff instead </a></p>
               <p> <a href = "#"> Forgot Password </a></p>
               </div>
           </label>
@@ -163,7 +163,7 @@ body {
 .split .centered-left input.text {
     outline: 0;
     border-width: 0 0 2px;
-    border-bottom: 1px solid #1890ff;
+    border-bottom: 2px solid #1167b1;
     width: 100%;
     height: 40px;
     line-height: 40px;
