@@ -16,14 +16,17 @@
 	<form>
 		<div>
 			<label for="meal">Choose date of the orders you wish to view:</label>
-			<input id="meal" type="date" name="meal" min="2021-04-14" max="2021-04-20" v-model="selectedDateStaff" v-on:change="fetch()" required>
+			<input id="meal" type="date" name="meal" v-bind:min="dateMin" v-bind:max="dateMax" v-model="selectedDateStaff" v-on:change="fetch()" required>
 			
 			
-			<br>
-			<input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showChart=true"> 
-			<label for="breakfast" class="radio">Breakfast</label> 
-			<input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showChart=true"> 
-			<label for="dinner" class="radio">Dinner</label>
+			<div v-if="showBreakfastOption()">
+        <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showChart=true"> 
+        <label for="breakfast" class="radio">Breakfast</label> 
+      </div>
+      <div v-if="showDinnerOption()">
+        <input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMealStaff" v-on:change="fetch()" v-on:click="showChart=true"> 
+        <label for="dinner" class="radio">Dinner</label>
+      </div>
 		
 		</div>
 	</form>
@@ -98,7 +101,52 @@ export default {
 			showBarChart:false,
 			showChart:false,
 			formattedDate:'',
+      dateMin:'',
+      dateMax:''
 		}
+	},
+  mounted() {
+		var today = new Date();
+    var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0
+		var yyyy = today.getFullYear();
+		if(dd<10){
+				dd='0'+dd
+		}
+		if(mm<10){
+			mm='0'+mm
+		} 
+		this.selectedDateStaff = yyyy+'-'+mm+'-'+dd;
+    
+	
+		var startDay = new Date(today)
+		startDay.setDate(startDay.getDate() - 6)
+		dd = startDay.getDate();
+		mm = startDay.getMonth()+1; //January is 0
+		yyyy = startDay.getFullYear();
+		if(dd<10){
+				dd='0'+dd
+		}
+		if(mm<10){
+			mm='0'+mm
+		} 
+		this.dateMin = yyyy+'-'+mm+'-'+dd;
+
+
+		var endDay = new Date(today)
+		endDay.setDate(endDay.getDate() + 7)
+		dd = endDay.getDate();
+		mm = endDay.getMonth() + 1; //January is 0!
+		yyyy = endDay.getFullYear();
+		if(dd<10){
+				dd='0'+dd
+		} 
+		if(mm<10){
+			mm='0'+mm
+		} 
+		this.dateMax = yyyy+'-'+mm+'-'+dd;
+
+		
 	},
 	methods: {
 			fetchcuisinesStaff: function() {
@@ -131,32 +179,38 @@ export default {
 		// goToProductPage:function(cuisine) {
 		// 	this.$router.push( {name: "Product", params: {"cuisine": cuisine, "meal": this.selectedMealStaff}} )
 		// },
-	logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          alert('Successfully logged out');
-          this.$router.push('/');
-        })
-        .catch(error => {
-          alert(error.message);
-          this.$router.push('/');
-        });
+    showBreakfastOption() {
+
+      if (this.selectedDateStaff!='' ) {
+        var day = new Date(this.selectedDateStaff).getDay();
+        return day!=0
+      } else {
+        return false
+      }
     },
+    showDinnerOption() {
 
-		// countMeals: function() {
-		// 	this.mealsCount = this.cuisinesStaff.length;
-		// 	//console.log(this.cuisinesStaff.length)
-		// },
+      if (this.selectedDateStaff!='' ) {
+        var day = new Date(this.selectedDateStaff).getDay();
+        return day!=6
+      } else {
+        return false
+      }
+    },
+    logout() {
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            alert('Successfully logged out');
+            this.$router.push('/');
+          })
+          .catch(error => {
+            alert(error.message);
+            this.$router.push('/');
+          });
+      },
 
-    // passData: function() {
-    //   var strings = this.selectedDateStaff.split("-")
-	// 		var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
-    //   this.itemsProps.push(newDate)
-    //   this.itemsProps.push(this.selectedMealStaff)
-    //   console.log(this.itemsProps)
-    // },
 	}
   
 
