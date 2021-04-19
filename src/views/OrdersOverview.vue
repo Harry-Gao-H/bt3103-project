@@ -16,7 +16,7 @@
           <form>
             <div>
               <label for="meal">Choose date of the orders you wish to view:</label>
-              <input id="meal" type="date" name="meal" v-bind:min="dateMin" v-bind:max="dataMax" v-model="selectedDate" v-on:change="fetch()" required>
+              <input id="meal" type="date" name="meal" v-bind:min="dateMin" v-bind:max="dateMax" v-model="selectedDate" v-on:change="fetch()" required>
               
               <div v-if="showBreakfastOption()">
                 <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
