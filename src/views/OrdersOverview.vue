@@ -18,11 +18,14 @@
               <label for="meal">Choose date of the orders you want to see:</label>
               <input id="meal" type="date" name="meal" v-bind:min="dateMin" v-bind:max="dataMax" v-model="selectedDate" v-on:change="fetch()" required>
               
-              <br>
-              <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
-              <label for="breakfast" class="radio">Breakfast</label> 
-              <input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMeal" v-on:change="fetch()"> 
-              <label for="dinner" class="radio">Dinner</label>
+              <div v-if="showBreakfastOption()">
+                <input type="radio" class="radio" id="breakfast" name="breakfast-or-dinner" value="Breakfast" v-model="selectedMeal" v-on:change="fetch()"> 
+                <label for="breakfast" class="radio">Breakfast</label> 
+              </div>
+              <div v-if="showDinnerOption()">
+                <input type="radio" class="radio" id="dinner" name="breakfast-or-dinner" value="Dinner" v-model="selectedMeal" v-on:change="fetch()"> 
+                <label for="dinner" class="radio">Dinner</label>
+              </div>
             </div>
             </form>
         </div> </center>
@@ -126,6 +129,24 @@ export default {
 				this.getOrders()
 			}
 		},
+    showBreakfastOption() {
+
+      if (this.selectedDate!='' ) {
+        var day = new Date(this.selectedDate).getDay();
+        return day!=0
+      } else {
+        return false
+      }
+    },
+    showDinnerOption() {
+
+      if (this.selectedDate!='' ) {
+        var day = new Date(this.selectedDate).getDay();
+        return day!=6
+      } else {
+        return false
+      }
+    }
   },
 
   mounted() {
