@@ -51,7 +51,7 @@
           <label class="tab" for="link-to-staff">
             <div class="text">
               <p style = "color: #1167b1"><a href = "/login-staff"> Not a Student? Login as a Staff instead </a></p>
-              <p> <a href = "#"> Forgot Password </a></p>
+              <p> <a href = "#" @click="forgotPassword()" > Forgot Password </a></p>
               </div>
           </label>
           
@@ -126,6 +126,10 @@ export default {
       })
       
     },
+
+    forgotPassword() {
+      window.open("https://exchange.nus.edu.sg/passwordportal/")
+    }
   }
 }
 </script>
