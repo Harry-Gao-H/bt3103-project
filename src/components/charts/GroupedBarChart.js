@@ -1,16 +1,11 @@
 import {Bar} from 'vue-chartjs' 
-
 import database from '../../firebase.js'
-//import "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"
-//import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
-
 
 export default {
   extends: Bar,
 
   components: {
-		//ChartJSPluginDataLabels,
-
+	
 	},
 
   data: function () {
@@ -23,8 +18,7 @@ export default {
                 label: "Total Orders", 
                 backgroundColor: ["#25668e", "#634171","#2c8773","#873f2c"],
                 data: [],
-                //hidden:true,
-              }, //35, 80
+              }, 
 
               {
                 label: "Total orders with smaller portion", 
@@ -48,20 +42,6 @@ export default {
             },
             responsive: true,
             maintainAspectRatio: false,
-        //     scales: {
-        //       yAxes: [{
-        //         stacked: true,
-        //         ticks: {
-        //           beginAtZero: true
-        //         }
-        //       }],
-        //       xAxes: [{
-        //         stacked: true,
-        //         ticks: {
-        //           beginAtZero: true
-        //         }
-        //       }]
-        // }
 
         scales:{
           yAxes:[{
@@ -69,10 +49,8 @@ export default {
                   min:0,
                   precision:0
               },
-              //stacked:true
            }],
            xAxes: [{
-                    // stacked: true,
                     ticks: {
                       beginAtZero: true
                     }
@@ -149,26 +127,18 @@ export default {
 
           for (var index in doc.data().orders) {
 
-            // console.log(doc.data().orders[index])
-
             for (var order in doc.data().orders[index]) { 
-              // console.log(order)
 
               if (order == "small") {
 
 
 
                 if (doc.data().orders[index]["small"]) {
-                  // console.log(doc.data().orders[index]["small"])
-                  // console.log(doc.data().orders[index])
 
                   for (var i in doc.data().orders[index]) {
                     if (i == "cuisine") {
-                      // console.log(doc.data().orders[index][i][0])
                       if (this.datacollection.labels.includes(doc.data().orders[index][i][0])) {
                         var index2 = this.datacollection.labels.indexOf(doc.data().orders[index][i][0])
-                        // console.log(index2)
-                        // console.log(doc.data().orders[index]["quantity"])
                         this.datacollection.datasets[1].data[index2] += (doc.data().orders[index]["quantity"])
 
                       }

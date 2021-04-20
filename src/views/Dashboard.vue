@@ -164,11 +164,8 @@ export default {
 			} 
 
 			var newDate = dayToDate[day]
-			//var strings = this.selectedDateStaff.split("-")
-			//var newDate = strings[2] + "-" + strings[1].substring(1,2) + "-" + strings[0]
 			
 			this.formattedDate = newDate;
-			//this.$refs.barchart.updateData(newDate, this.selectedMealStaff)
 			this.$refs.piechart.updateData(newDate, this.selectedMealStaff)
 			this.$refs.groupedbarchart.updateData(newDate, this.selectedMealStaff)
 
@@ -185,13 +182,10 @@ export default {
 		fetch: function() {
 			//fetch cuisinesStaff from database when time and meal are selected
 			if (this.selectedDateStaff != '' && this.selectedMealStaff != '') {
-				// if (this.takeawayTimeStaff!='') {
 				this.fetchcuisinesStaff()
 			}
 		},
-		// goToProductPage:function(cuisine) {
-		// 	this.$router.push( {name: "Product", params: {"cuisine": cuisine, "meal": this.selectedMealStaff}} )
-		// },
+		
     showBreakfastOption() {
 
       if (this.selectedDateStaff!='' ) {
@@ -304,12 +298,8 @@ label {
 
 .chart {
 	width:100%;
-    /*position:absolute;*/
-    text-align: center;
-    /*color:#fff;*/
-    /*margin-top:80px;*/
+    text-align: center;  
 	margin:20px auto;
-    /*font-weight:100;*/
     line-height:25px;
 	border-radius: 25px;
 	border: 2px solid #73AD21;
@@ -326,43 +316,33 @@ label {
 	font-weight:bold;
 }
 
-/* TESTING BELOW */
 #main{
     display:table;
 }
 
 #chart{
 width:100%;
-    /*position:absolute;*/
     text-align: center;
-    /*color:#fff;*/
-    /*margin-top:80px;*/
+    
 	margin:20px auto;
-    /*font-weight:100;*/
     line-height:25px;
 	border-radius: 25px;
 	border: 2px solid #73AD21;
 	padding: 20px;
 }
 
-/*TESTING 2*/
 .column {
 	width:50%;
-    /*position:absolute;*/
     text-align: center;
-    /*color:#fff;*/
-    /*margin-top:80px;*/
+    
 	margin:20px auto;
-    /*font-weight:100;*/
     line-height:25px;
-	/*border-radius: 25px;
-	border: 2px solid #73AD21;*/
+	
 	padding: 20px;
 	float:left;
 	
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;

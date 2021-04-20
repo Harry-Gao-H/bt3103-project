@@ -141,27 +141,7 @@ export default {
                                 this.expiredOrders.push(item)
                             }
                         }
-                        /*
-                        this.comingOrders.sort(
-                            function(a, b) {
-                                if (a.date != b.date) {
-                                    return a.date > b.date ? 1:-1
-                                } else {
-                                    return a.time > b.time ? 1 : -1
-                                }
                         
-                            })
-                        this.expiredOrders.sort(
-                            function(a, b) {
-                                if (a.date != b.date) {
-                                    return a.date > b.date ? 1:-1
-                                } else {
-                                    return a.time > b.time ? 1 : -1
-                                }
-                        
-                            })
-
-                        */
                     })
             }
             
@@ -276,8 +256,6 @@ input[type = "radio"] {
   border: 1px solid lightgray;
   display: flex;
 }
-
-
 
 /* turns on flexbox */
 .header{
