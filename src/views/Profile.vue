@@ -97,7 +97,6 @@ export default {
     },
     computed: {
         ...mapGetters({
-    // map `this.user` to `this.$store.getters.user`
         user: "user"
         })
     }

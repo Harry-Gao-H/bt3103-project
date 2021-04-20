@@ -15,7 +15,6 @@
 
 <script>
 import PageContent from '@/components/PageContent.vue'
-//import database from "../firebase.js"
 import firebase from "firebase"
 import MenuHero from '@/components/MenuHero';
 import MenuDetails from '@/components/MenuDetails';

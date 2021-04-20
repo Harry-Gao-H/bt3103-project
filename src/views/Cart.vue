@@ -76,14 +76,10 @@ export default {
             if (user) {
                 database.collection("UserInfo").doc(user.email).get()
                     .then(snapshot=> {
-                        //this.userInfo = snapshot.data()
-                        //this.userInfo.email = user.email
                         this.credit = snapshot.data().credit
                         this.userId = user.email.split("@")[0]
                         this.items = snapshot.data().cart
                         console.log(this.items)
-
-                        //this.items.sort((a,b) => (a.date>b.date) ? 1 : ((b.time > a.time) ? -1:0))
                     })
             }
         })

@@ -54,7 +54,7 @@
   <br>
   <h3> Total orders along with/without smaller portions <br> for each cuisine</h3>
   <br>
-  <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
+  
 <center>	<GroupedBarChart ref="groupedbarchart"></GroupedBarChart>  </center>
 </div> 
 
@@ -62,7 +62,7 @@
   <br>
 <h3> Total orders for each cuisine </h3>
 <br>
-  <!-- <p class="chartDetails"> {{selectedMealStaff}} on {{this.formattedDate}} </p> -->
+
 <center>	<PieChart ref="piechart"></PieChart>  </center>
 </div> 
 
